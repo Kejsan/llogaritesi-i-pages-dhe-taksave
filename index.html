@@ -502,10 +502,11 @@
         // Formaton monedhën bazuar në zgjedhjen e përdoruesit
         const formatCurrency = (value, currency, rates) => {
             if (value === null || value === undefined) value = 0;
+            const isALL = currency === 'ALL';
             const rate = rates[currency] || 1;
-            const convertedValue = value / rate;
-            
-            return new Intl.NumberFormat(currency === 'ALL' ? 'sq-AL' : (currency === 'USD' ? 'en-US' : 'de-DE'), {
+            const convertedValue = isALL ? value : value / rate;
+
+            return new Intl.NumberFormat(isALL ? 'sq-AL' : (currency === 'USD' ? 'en-US' : 'de-DE'), {
                 style: 'currency',
                 currency: currency,
                 minimumFractionDigits: 2,
@@ -1243,7 +1244,7 @@
             const [activePage, setActivePage] = useState('employee');
             const [language, setLanguage] = useState('sq');
             const [currency, setCurrency] = useState('ALL');
-            const [rates, setRates] = useState({ 'ALL': 1, 'EUR': 0.0093, 'USD': 0.0098 }); // Vlera fallback
+            const [rates, setRates] = useState({ 'ALL': 1, 'EUR': 107.53, 'USD': 102.04 }); // Vlera fallback
             
             const t = useMemo(() => translations[language], [language]);
 
@@ -1255,18 +1256,18 @@
                         if (!response.ok) throw new Error('Network response was not ok');
                         const data = await response.json();
                         
-                        const rateALL = data.rates.ALL; 
-                        const rateUSD = data.rates.USD; 
+                        const rateALL = data.rates.ALL;
+                        const rateUSD = data.rates.USD;
 
                         setRates({
                             'ALL': 1,
-                            'EUR': 1 / rateALL,
-                            'USD': rateUSD / rateALL
+                            'EUR': rateALL,
+                            'USD': rateALL / rateUSD
                         });
-                        
+
                     } catch (error) {
                         console.error("Failed to fetch exchange rates, using fallback.", error);
-                        setRates({ 'ALL': 1, 'EUR': 0.0093, 'USD': 0.0098 });
+                        setRates({ 'ALL': 1, 'EUR': 107.53, 'USD': 102.04 });
                     }
                 };
 
