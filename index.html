@@ -170,7 +170,11 @@
                 // Llogaritësi i Punonjësit
                 employeeTitle: "Kalkulatori i Pagës së Punëmarrësit",
                 tapWarning: "**Vërejtje 2025:** Kllapat e Tatimit (TAP) do të ndryshojnë në Janar 2025. Llogaritja është sipas rregullave aktuale 2024.",
+                salaryInputMode: "Zgjidh mënyrën e inputit",
+                modeGrossToNet: "Nga Bruto në Neto",
+                modeNetToGross: "Nga Neto në Bruto",
                 grossMonthlySalary: "Paga Bruto Mujore",
+                netMonthlySalary: "Paga Neto Mujore",
                 workingDays: "Ditë pune në muaj",
                 grossSalary: "Paga Bruto",
                 netSalary: "Paga Neto (Në dorë)",
@@ -270,7 +274,11 @@
                 // Employee Calculator
                 employeeTitle: "Employee Salary Calculator",
                 tapWarning: "**2025 Warning:** The Payroll Tax (TAP) brackets will change in January 2025. This calculation uses the current 2024 rules.",
+                salaryInputMode: "Input mode",
+                modeGrossToNet: "Gross to Net",
+                modeNetToGross: "Net to Gross",
                 grossMonthlySalary: "Gross Monthly Salary",
+                netMonthlySalary: "Net Monthly Salary",
                 workingDays: "Working days per month",
                 grossSalary: "Gross Salary",
                 netSalary: "Net Salary (Take-Home)",
@@ -370,7 +378,11 @@
                 // Calcolatore Dipendente
                 employeeTitle: "Calcolatore Stipendio Dipendente",
                 tapWarning: "**Avviso 2025:** Le aliquote dell'imposta sul reddito (TAP) cambieranno a gennaio 2025. Questo calcolo utilizza le regole attuali del 2024.",
+                salaryInputMode: "Modalità di input",
+                modeGrossToNet: "Lordo a Netto",
+                modeNetToGross: "Netto a Lordo",
                 grossMonthlySalary: "Stipendio Lordo Mensile",
+                netMonthlySalary: "Stipendio Netto Mensile",
                 workingDays: "Giorni lavorativi al mese",
                 grossSalary: "Stipendio Lordo",
                 netSalary: "Stipendio Netto (In tasca)",
@@ -565,6 +577,46 @@
                 totalEmployerCost,
                 contributionBase,
             };
+        };
+
+        const solveGrossFromNet = (targetNetSalary) => {
+            const minimumCalculation = calculateEmployeeTax(CORE_CONSTANTS.PagaMinimale);
+
+            if (targetNetSalary <= minimumCalculation.netSalary) {
+                return { grossSalary: minimumCalculation.grossSalary, calculation: minimumCalculation };
+            }
+
+            let low = CORE_CONSTANTS.PagaMinimale;
+            let high = Math.max(targetNetSalary, CORE_CONSTANTS.PagaMinimale * 1.5);
+            let highCalculation = calculateEmployeeTax(high);
+            let iterations = 0;
+
+            while (highCalculation.netSalary < targetNetSalary && iterations < 60) {
+                low = high;
+                high *= 2;
+                highCalculation = calculateEmployeeTax(high);
+                iterations += 1;
+            }
+
+            let resultCalculation = highCalculation;
+
+            for (let i = 0; i < 80; i++) {
+                const mid = (low + high) / 2;
+                const midCalculation = calculateEmployeeTax(mid);
+                if (Math.abs(midCalculation.netSalary - targetNetSalary) <= 0.5) {
+                    resultCalculation = midCalculation;
+                    break;
+                }
+
+                if (midCalculation.netSalary >= targetNetSalary) {
+                    resultCalculation = midCalculation;
+                    high = mid;
+                } else {
+                    low = mid;
+                }
+            }
+
+            return { grossSalary: resultCalculation.grossSalary, calculation: resultCalculation };
         };
 
         // Llogaritjet për Profesionistin e Lirë
@@ -852,38 +904,70 @@
         // --- LLOGARITËSI I PUNONJËSIT ---
 
         const EmployeeCalculator = ({ t, currency, rates }) => {
+            const [inputMode, setInputMode] = useState('gross');
             const [inputValue, setInputValue] = useState(74010);
             const [workingDays, setWorkingDays] = useState(22);
             const [showAlert, setShowAlert] = useState(true);
 
-            // Gjithmonë konverto inputin në ALL për llogaritje
-            const grossSalaryALL = useMemo(() => {
+            const rate = useMemo(() => rates[currency] || 1, [rates, currency]);
+
+            const baseAmountALL = useMemo(() => {
                 const numValue = parseFloat(inputValue);
                 if (isNaN(numValue) || numValue < 0) return 0;
-                return numValue * (rates[currency] || 1);
-            }, [inputValue, currency, rates]);
-            
+                return numValue * rate;
+            }, [inputValue, rate]);
+
             const displayValue = inputValue === 0 ? '' : inputValue;
 
             const handleSalaryChange = (e) => {
                 const value = e.target.value;
                 setInputValue(value === '' ? 0 : parseFloat(value));
             };
-            
+
+            const convertFromALLForInput = useCallback((valueALL) => {
+                const converted = valueALL / rate;
+                if (currency === 'ALL') {
+                    return Math.round(converted);
+                }
+                return parseFloat(converted.toFixed(2));
+            }, [currency, rate]);
+
+            const handleModeChange = useCallback((mode) => {
+                if (mode === inputMode) return;
+
+                const currentALL = baseAmountALL;
+
+                if (mode === 'net') {
+                    const currentCalculation = calculateEmployeeTax(currentALL);
+                    setInputValue(convertFromALLForInput(currentCalculation.netSalary));
+                } else {
+                    const { grossSalary } = solveGrossFromNet(currentALL);
+                    setInputValue(convertFromALLForInput(grossSalary));
+                }
+
+                setInputMode(mode);
+            }, [inputMode, baseAmountALL, convertFromALLForInput]);
+
             const handleDaysChange = (e) => {
                 const value = parseInt(e.target.value, 10);
                 setWorkingDays(isNaN(value) || value < 1 ? 1 : value);
             };
 
-            const calculation = useMemo(() => calculateEmployeeTax(grossSalaryALL), [grossSalaryALL]);
-            
+            const calculation = useMemo(() => {
+                if (inputMode === 'gross') {
+                    return calculateEmployeeTax(baseAmountALL);
+                }
+
+                return solveGrossFromNet(baseAmountALL).calculation;
+            }, [inputMode, baseAmountALL]);
+
             const dailyGross = calculation.grossSalary / workingDays;
             const dailyNet = calculation.netSalary / workingDays;
 
             return (
                 <div className="bg-white p-6 rounded-xl shadow-lg">
                     <SectionTitle icon={IconUser} title={t.employeeTitle} />
-                    
+
                     {showAlert && (
                         <div className="mb-6 p-4 rounded-xl bg-brand-red/10 border border-brand-red text-brand-red flex justify-between items-start">
                             <p className="text-sm font-medium flex items-center">
@@ -896,9 +980,37 @@
                         </div>
                     )}
                     
+                    <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-4">
+                        <span className="text-sm font-semibold text-gray-700">{t.salaryInputMode}</span>
+                        <div className="inline-flex bg-gray-100 p-1 rounded-lg">
+                            <button
+                                type="button"
+                                onClick={() => handleModeChange('gross')}
+                                className={`px-3 py-1.5 text-sm font-semibold rounded-md transition-colors ${
+                                    inputMode === 'gross'
+                                        ? 'bg-brand-cyan text-white shadow'
+                                        : 'text-gray-600 hover:text-brand-navy'
+                                }`}
+                            >
+                                {t.modeGrossToNet}
+                            </button>
+                            <button
+                                type="button"
+                                onClick={() => handleModeChange('net')}
+                                className={`ml-1 px-3 py-1.5 text-sm font-semibold rounded-md transition-colors ${
+                                    inputMode === 'net'
+                                        ? 'bg-brand-cyan text-white shadow'
+                                        : 'text-gray-600 hover:text-brand-navy'
+                                }`}
+                            >
+                                {t.modeNetToGross}
+                            </button>
+                        </div>
+                    </div>
+
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <InputGroup
-                            label={t.grossMonthlySalary}
+                            label={inputMode === 'gross' ? t.grossMonthlySalary : t.netMonthlySalary}
                             value={displayValue}
                             onChange={handleSalaryChange}
                             placeholder="P.sh. 74010"
