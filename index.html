@@ -266,7 +266,7 @@
                 linksSigurime: "Instituti i Sigurimeve Shoqërore (ISSH)",
                 // Footer
                 footerCreatedBy: "Krijuar nga Kejsan Coku",
-                footerCopyright: "© 2025. Të gjitha të drejtat e rezervuara. Ky mjet ofrohet vetëm për qëllime informimi.",
+                footerCopyright: "© 2025. Llogaritjet mund të përmbajnë pasaktësi ose të mos pasqyrojnë përditësimet e fundit ligjore. Konsultohuni me një kontabilist ose këshilltar ligjor përpara se të merrni vendime financiare.",
             },
             en: {
                 // Navigation
@@ -380,7 +380,7 @@
                 linksSigurime: "Social Insurance Institute (ISSH)",
                 // Footer
                 footerCreatedBy: "Created by Kejsan Coku",
-                footerCopyright: "© 2025. All rights reserved. This tool is for informational purposes only.",
+                footerCopyright: "© 2025. Calculations may include inaccuracies or omit recent legal updates. Seek advice from a certified accountant or legal professional before making financial decisions.",
             },
             it: {
                 // Navigazione
@@ -494,7 +494,7 @@
                 linksSigurime: "Istituto delle Assicurazioni Sociali (ISSH)",
                 // Footer
                 footerCreatedBy: "Creato da Kejsan Coku",
-                footerCopyright: "© 2025. Tutti i diritti riservati. Questo strumento è fornito solo a scopo informativo.",
+                footerCopyright: "© 2025. I calcoli possono contenere imprecisioni o non riflettere gli ultimi aggiornamenti normativi. Confrontati con un consulente fiscale o legale prima di prendere decisioni finanziarie.",
             }
         };
 
@@ -909,12 +909,12 @@
 
         const Footer = ({ t }) => (
             <footer className="bg-gray-800 text-gray-400 p-6 mt-auto"> {/* Mt-auto e shtyn poshtë */}
-                <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center text-sm">
-                    <p className="mb-2 md:mb-0">{t.footerCopyright}</p>
-                    <p>
-                        {t.footerCreatedBy} - <a 
-                            href="https://kejsan-coku.netlify.app/" 
-                            target="_blank" 
+                <div className="max-w-7xl mx-auto flex flex-col gap-3 md:flex-row md:items-start md:justify-between text-sm">
+                    <p className="text-center leading-relaxed md:text-left md:max-w-4xl">{t.footerCopyright}</p>
+                    <p className="text-center md:text-right">
+                        {t.footerCreatedBy} - <a
+                            href="https://kejsan-coku.netlify.app/"
+                            target="_blank"
                             rel="noopener noreferrer"
                             className="font-semibold text-brand-cyan hover:underline"
                         >
