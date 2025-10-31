@@ -130,6 +130,9 @@
         const IconMail = () => (
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
         );
+        const IconNewspaper = () => (
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 4H5a2 2 0 0 0-2 2v12"></path><path d="M19 4a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2"></path><path d="M7 8h6"></path><path d="M7 12h10"></path><path d="M7 16h10"></path></svg>
+        );
         const IconLink = () => (
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
         );
@@ -156,6 +159,7 @@
                 navEmployee: "Punëmarrës",
                 navFreelancer: "Freelancer",
                 navInfluencer: "Influencer", // I RI
+                navNews: "Lajme & Përditësime",
                 navInfo: "Si funksionon?",
                 navFAQ: "Pyetje të Shpeshta (FAQ)",
                 navLinks: "Burime Zyrtare",
@@ -246,6 +250,15 @@
                 faq6Title: "Si tatohen pagesat në natyrë (barter) për influencerët?", // E RE
                 faq6Text: "Pagesat në natyrë (p.sh., produkte, shërbime, udhëtime) konsiderohen **e ardhur e tatueshme**. Vlera e tyre e tregut duhet të shtohet në xhiron tuaj bruto vjetore dhe të tatohet si e ardhur normale. Për shkak të vështirësisë së vlerësimit, konsultohuni me një kontabilist. Përdorimi i shpenzimeve të supozuara (30%) mund të thjeshtojë llogaritjen.",
                 // Links Seksioni
+                newsTitle: "Përditësime zyrtare të tatimeve",
+                newsSubtitle: "Përditësohuni me njoftimet më të fundit nga institucionet fiskale shqiptare.",
+                newsLoading: "Duke ngarkuar përditësimet zyrtare...",
+                newsError: "Nuk mundëm të marrim përditësimet. Ju lutemi provoni sërish pas pak.",
+                newsRetry: "Provo përsëri",
+                newsEmpty: "Aktualisht nuk ka përditësime të reja. Rikthehuni më vonë.",
+                newsSourceLabel: "Burimi",
+                newsPublished: "Publikuar",
+                newsReadMore: "Lexo më shumë",
                 linksTitle: "Burime Zyrtare & Lidhje të Dobishme",
                 linksDpt: "Drejtoria e Përgjithshme e Tatimeve (DPT)",
                 linksQkb: "Qendra Kombëtare e Biznesit (QKB)",
@@ -260,6 +273,7 @@
                 navEmployee: "Employee",
                 navFreelancer: "Freelancer",
                 navInfluencer: "Influencer", // NEW
+                navNews: "News & Updates",
                 navInfo: "How does it work?",
                 navFAQ: "Frequently Asked Questions (FAQ)",
                 navLinks: "Official Resources",
@@ -350,6 +364,15 @@
                 faq6Title: "How are in-kind (barter) payments taxed for influencers?", // NEW
                 faq6Text: "In-kind payments (e.g., products, services, trips) are considered **taxable income**. Their market value must be added to your gross annual turnover and taxed as normal income. Due to the difficulty of valuation, consult an accountant. Using presumed expenses (30%) can simplify the calculation.",
                 // Links Section
+                newsTitle: "Official fiscal updates",
+                newsSubtitle: "Stay on top of the latest announcements from Albanian tax institutions.",
+                newsLoading: "Loading official updates...",
+                newsError: "We couldn’t fetch the latest updates. Please try again shortly.",
+                newsRetry: "Try again",
+                newsEmpty: "No new updates are available at the moment. Please check back soon.",
+                newsSourceLabel: "Source",
+                newsPublished: "Published",
+                newsReadMore: "Read more",
                 linksTitle: "Official Resources & Useful Links",
                 linksDpt: "General Directorate of Taxes (DPT)",
                 linksQkb: "National Business Center (QKB)",
@@ -364,6 +387,7 @@
                 navEmployee: "Dipendente",
                 navFreelancer: "Freelancer",
                 navInfluencer: "Influencer", // NUOVO
+                navNews: "Notizie & Aggiornamenti",
                 navInfo: "Come funziona?",
                 navFAQ: "Domande Frequenti (FAQ)",
                 navLinks: "Risorse Ufficiali",
@@ -454,6 +478,15 @@
                 faq6Title: "Come vengono tassati i pagamenti in natura (barter) per gli influencer?", // NUOVO
                 faq6Text: "I pagamenti in natura (es. prodotti, servizi, viaggi) sono considerati **reddito imponibile**. Il loro valore di mercato deve essere aggiunto al tuo fatturato lordo annuo e tassato come reddito normale. A causa della difficoltà di valutazione, consulta un commercialista. L'utilizzo delle spese forfettarie (30%) può semplificare il calcolo.",
                 // Links Sezione
+                newsTitle: "Aggiornamenti fiscali ufficiali",
+                newsSubtitle: "Rimani aggiornato con gli ultimi annunci degli enti fiscali albanesi.",
+                newsLoading: "Caricamento degli aggiornamenti ufficiali...",
+                newsError: "Impossibile recuperare gli aggiornamenti. Riprova tra poco.",
+                newsRetry: "Riprova",
+                newsEmpty: "Al momento non ci sono nuovi aggiornamenti. Controlla più tardi.",
+                newsSourceLabel: "Fonte",
+                newsPublished: "Pubblicato",
+                newsReadMore: "Scopri di più",
                 linksTitle: "Risorse Ufficiali e Link Utili",
                 linksDpt: "Direzione Generale delle Tasse (DPT)",
                 linksQkb: "Centro Nazionale delle Imprese (QKB)",
@@ -463,6 +496,56 @@
                 footerCreatedBy: "Creato da Kejsan Coku",
                 footerCopyright: "© 2025. Tutti i diritti riservati. Questo strumento è fornito solo a scopo informativo.",
             }
+        };
+        const NEWS_SOURCES = [
+            {
+                id: 'tatime-wordpress',
+                endpoint: 'https://www.tatime.gov.al/wp-json/wp/v2/posts?per_page=6&_fields=id,link,title.rendered,modified',
+                baseUrl: 'https://www.tatime.gov.al',
+                hostLabel: 'tatime.gov.al',
+                parser: async (response) => {
+                    const payload = await response.json();
+                    if (!Array.isArray(payload)) return [];
+                    return payload.map(entry => ({
+                        id: entry.id ?? entry.link,
+                        title: entry.title?.rendered ?? entry.title ?? '',
+                        link: entry.link,
+                        updatedAt: entry.modified ?? entry.date,
+                        source: 'tatime.gov.al',
+                    }));
+                },
+            },
+            {
+                id: 'tatime-open-data',
+                endpoint: 'https://www.tatime.gov.al/c/657/open-data',
+                baseUrl: 'https://www.tatime.gov.al',
+                hostLabel: 'tatime.gov.al',
+                parser: async (response) => {
+                    const markup = await response.text();
+                    return parseOpenDataMarkup(markup, 'https://www.tatime.gov.al');
+                },
+            },
+            {
+                id: 'lajmi9-rssing',
+                endpoint: 'https://lajmi9.rssing.com/chan-51245418/all_p9.html',
+                baseUrl: 'https://lajmi9.rssing.com',
+                hostLabel: 'lajmi9.rssing.com',
+                parser: async (response) => {
+                    const markup = await response.text();
+                    return parseGenericNewsMarkup(markup, {
+                        baseUrl: 'https://lajmi9.rssing.com',
+                        hostLabel: 'lajmi9.rssing.com',
+                        minimumTitleLength: 20,
+                    });
+                },
+            },
+        ];
+        const NEWS_CACHE_DURATION = 15 * 60 * 1000; // 15 minuta
+        const newsCache = {
+            timestamp: 0,
+            data: null,
+            promise: null,
+            lastSource: null,
         };
 
 
@@ -524,6 +607,243 @@
                 minimumFractionDigits: 2,
                 maximumFractionDigits: 2,
             }).format(convertedValue);
+        };
+
+        const decodeHtmlEntities = (value) => {
+            if (!value) return '';
+            const textarea = document.createElement('textarea');
+            textarea.innerHTML = value;
+            return textarea.value;
+        };
+
+        const sanitizeNewsTitle = (value) => {
+            if (!value) return '';
+            return decodeHtmlEntities(String(value))
+                .replace(/<[^>]*>/g, '')
+                .replace(/\s+/g, ' ')
+                .trim();
+        };
+
+        const ensureAbsoluteUrl = (maybeRelative, baseUrl) => {
+            if (!maybeRelative) return '';
+            try {
+                return new URL(maybeRelative, baseUrl || window.location.origin).toString();
+            } catch {
+                return '';
+            }
+        };
+
+        const normalizeNewsTimestamp = (value) => {
+            if (!value) return null;
+            if (value instanceof Date) {
+                return value.toISOString();
+            }
+            if (typeof value === 'number' && Number.isFinite(value)) {
+                return new Date(value).toISOString();
+            }
+            const stringValue = String(value).trim();
+            if (!stringValue) return null;
+            if (/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}/.test(stringValue) || /^\d{4}-\d{2}-\d{2}$/.test(stringValue)) {
+                return stringValue;
+            }
+            const parsed = Date.parse(stringValue);
+            if (Number.isNaN(parsed)) return null;
+            return new Date(parsed).toISOString();
+        };
+
+        const extractHostName = (value) => {
+            try {
+                return new URL(value).hostname.replace(/^www\./, '');
+            } catch {
+                return '';
+            }
+        };
+
+        const parseHtmlDocument = (markup) => {
+            if (!markup) return null;
+            try {
+                if (typeof DOMParser !== 'undefined') {
+                    return new DOMParser().parseFromString(markup, 'text/html');
+                }
+                const template = document.createElement('template');
+                template.innerHTML = markup;
+                return template.content;
+            } catch (error) {
+                console.warn('Failed to parse HTML markup for news feed', error);
+                return null;
+            }
+        };
+
+        const parseOpenDataMarkup = (markup, baseUrl) => {
+            const documentRoot = parseHtmlDocument(markup);
+            if (!documentRoot) return [];
+
+            const items = [];
+            const seen = new Set();
+            const candidateSelectors = ['article', '.e-loop-item', '.elementor-post', '.jeg_post', '.post', '.news-item', 'li'];
+            const candidates = candidateSelectors.flatMap(selector => Array.from(documentRoot.querySelectorAll?.(selector) || []));
+
+            const tryAppendItem = (anchorNode, contextNode) => {
+                if (!anchorNode) return;
+                const link = ensureAbsoluteUrl(anchorNode.getAttribute('href'), baseUrl);
+                if (!link || seen.has(link)) return;
+                const title = sanitizeNewsTitle(anchorNode.textContent || contextNode?.textContent || '');
+                if (!title || title.length < 8) return;
+
+                const timeNode = contextNode?.querySelector?.('time');
+                const timestamp = normalizeNewsTimestamp(timeNode?.getAttribute?.('datetime') || timeNode?.textContent || null);
+
+                items.push({
+                    id: link,
+                    title,
+                    link,
+                    updatedAt: timestamp,
+                    source: 'tatime.gov.al',
+                });
+                seen.add(link);
+            };
+
+            candidates.forEach(node => {
+                if (items.length >= 8) return;
+                const anchorNode = node.querySelector?.('a[href]') || node;
+                tryAppendItem(anchorNode, node);
+            });
+
+            if (items.length < 4) {
+                const anchors = Array.from(documentRoot.querySelectorAll?.('a[href*="tatime.gov.al"]') || []);
+                anchors.forEach(anchor => {
+                    if (items.length >= 8) return;
+                    tryAppendItem(anchor, anchor.closest?.('article, .e-loop-item, .elementor-post, .jeg_post, .post, .news-item, li'));
+                });
+            }
+
+            return items.slice(0, 6);
+        };
+
+        const parseGenericNewsMarkup = (markup, { baseUrl, hostLabel, minimumTitleLength = 10 } = {}) => {
+            const documentRoot = parseHtmlDocument(markup);
+            if (!documentRoot) return [];
+
+            const items = [];
+            const seen = new Set();
+            const anchors = Array.from(documentRoot.querySelectorAll?.('a[href]') || []);
+
+            anchors.forEach(anchor => {
+                if (items.length >= 6) return;
+                const link = ensureAbsoluteUrl(anchor.getAttribute('href'), baseUrl);
+                if (!link || seen.has(link)) return;
+                if (baseUrl && !link.startsWith(baseUrl)) return;
+
+                const title = sanitizeNewsTitle(anchor.textContent || '');
+                if (!title || title.length < minimumTitleLength) return;
+
+                items.push({
+                    id: link,
+                    title,
+                    link,
+                    updatedAt: null,
+                    source: hostLabel || extractHostName(link),
+                });
+                seen.add(link);
+            });
+
+            return items;
+        };
+
+        const standardizeNewsItems = (items, { baseUrl, fallbackSource } = {}) => {
+            if (!Array.isArray(items)) return [];
+            const seen = new Set();
+            const normalized = [];
+
+            items.forEach((item, index) => {
+                if (!item) return;
+                const title = sanitizeNewsTitle(item.title || '');
+                const link = ensureAbsoluteUrl(item.link || item.url, baseUrl);
+                if (!title || !link) return;
+
+                const id = item.id || `${link}-${index}`;
+                if (seen.has(id)) return;
+                seen.add(id);
+
+                normalized.push({
+                    id,
+                    title,
+                    link,
+                    updatedAt: normalizeNewsTimestamp(item.updatedAt || item.published || item.pubDate || item.date),
+                    source: item.source || fallbackSource || '',
+                });
+            });
+
+            normalized.sort((a, b) => {
+                const timeA = a.updatedAt ? Date.parse(a.updatedAt) : 0;
+                const timeB = b.updatedAt ? Date.parse(b.updatedAt) : 0;
+                return timeB - timeA;
+            });
+
+            return normalized.slice(0, 6);
+        };
+
+        const fetchNewsUpdates = async ({ forceRefresh = false } = {}) => {
+            if (forceRefresh) {
+                newsCache.timestamp = 0;
+                newsCache.data = null;
+                newsCache.lastSource = null;
+            }
+
+            const now = Date.now();
+
+            if (!forceRefresh && newsCache.data && (now - newsCache.timestamp) < NEWS_CACHE_DURATION) {
+                return newsCache.data;
+            }
+
+            if (newsCache.promise) {
+                return newsCache.promise;
+            }
+
+            const request = (async () => {
+                let lastError = null;
+
+                for (const source of NEWS_SOURCES) {
+                    try {
+                        const response = await fetch(source.endpoint, {
+                            mode: 'cors',
+                            credentials: 'omit',
+                            cache: 'no-store',
+                            headers: {
+                                'Accept': 'application/json, text/html;q=0.9',
+                            },
+                        });
+
+                        if (!response.ok) {
+                            throw new Error(`Failed to load updates from ${source.id} (HTTP ${response.status})`);
+                        }
+
+                        const rawItems = await source.parser(response);
+                        const normalized = standardizeNewsItems(rawItems, {
+                            baseUrl: source.baseUrl,
+                            fallbackSource: source.hostLabel || rawItems?.[0]?.source,
+                        });
+
+                        if (normalized.length) {
+                            newsCache.data = normalized;
+                            newsCache.timestamp = Date.now();
+                            newsCache.lastSource = source.id;
+                            return normalized;
+                        }
+                    } catch (error) {
+                        lastError = error;
+                        console.warn('News source failed', source.id, error);
+                        continue;
+                    }
+                }
+
+                throw lastError || new Error('Failed to load official updates');
+            })().finally(() => {
+                newsCache.promise = null;
+            });
+
+            newsCache.promise = request;
+            return request;
         };
 
         // --- LOGJIKA KRYESORE E LLOGARITJES ---
@@ -755,6 +1075,7 @@
             ];
             
             const infoItems = [
+                { id: 'news', label: t.navNews, icon: IconNewspaper },
                 { id: 'info', label: t.navInfo, icon: IconInfo },
                 { id: 'faq', label: t.navFAQ, icon: IconHelp },
                 { id: 'links', label: t.navLinks, icon: IconLink },
@@ -1245,6 +1566,151 @@
 
         // --- KOMPONENTËT E PËRMBAJTJES ---
 
+        const NewsUpdatesSection = ({ t, language }) => {
+            const [status, setStatus] = useState('loading');
+            const [items, setItems] = useState([]);
+            const [error, setError] = useState(null);
+            const isMountedRef = React.useRef(true);
+
+            const locale = useMemo(() => {
+                switch (language) {
+                    case 'sq':
+                        return 'sq-AL';
+                    case 'it':
+                        return 'it-IT';
+                    default:
+                        return 'en-GB';
+                }
+            }, [language]);
+
+            const loadNews = useCallback(async ({ forceRefresh = false } = {}) => {
+                if (!isMountedRef.current) return;
+                setStatus('loading');
+                setError(null);
+                try {
+                    const updates = await fetchNewsUpdates({ forceRefresh });
+                    if (!isMountedRef.current) return;
+                    setItems(updates);
+                    setStatus(updates.length ? 'success' : 'empty');
+                } catch (err) {
+                    if (!isMountedRef.current) return;
+                    setError(err);
+                    setStatus('error');
+                }
+            }, []);
+
+            useEffect(() => {
+                isMountedRef.current = true;
+                loadNews();
+                return () => {
+                    isMountedRef.current = false;
+                };
+            }, [loadNews]);
+
+            const formatTimestamp = useCallback((value) => {
+                if (!value) return '';
+                try {
+                    return new Date(value).toLocaleString(locale, {
+                        dateStyle: 'medium',
+                        timeStyle: 'short',
+                    });
+                } catch (err) {
+                    console.warn('Failed to format news timestamp', err);
+                    return value;
+                }
+            }, [locale]);
+
+            const getHostName = extractHostName;
+
+            const handleRetry = () => {
+                loadNews({ forceRefresh: true });
+            };
+
+            return (
+                <div className="bg-white p-6 rounded-xl shadow-lg">
+                    <SectionTitle icon={IconNewspaper} title={t.newsTitle} />
+                    <p className="text-gray-600 mb-6">{t.newsSubtitle}</p>
+
+                    {status === 'loading' && (
+                        <div className="flex items-center gap-3 text-brand-navy font-semibold">
+                            <svg className="animate-spin h-5 w-5 text-brand-cyan" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                            </svg>
+                            <span>{t.newsLoading}</span>
+                        </div>
+                    )}
+
+                    {status === 'error' && (
+                        <div className="bg-brand-red/10 border border-brand-red/40 text-brand-red rounded-lg p-4">
+                            <p className="font-semibold">{t.newsError}</p>
+                            {error?.message && (
+                                <p className="text-sm mt-2 text-brand-red/80">{error.message}</p>
+                            )}
+                            <button
+                                onClick={handleRetry}
+                                className="mt-3 inline-flex items-center px-4 py-2 rounded-lg bg-brand-cyan text-white font-semibold hover:bg-brand-navy transition-colors"
+                            >
+                                {t.newsRetry}
+                            </button>
+                        </div>
+                    )}
+
+                    {status === 'empty' && (
+                        <p className="text-gray-600">{t.newsEmpty}</p>
+                    )}
+
+                    {status === 'success' && (
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            {items.map(item => {
+                                const source = getHostName(item.link) || item.source;
+                                const publishedAt = formatTimestamp(item.updatedAt);
+                                return (
+                                    <article
+                                        key={item.id}
+                                        className="p-4 border border-gray-200 rounded-lg hover:border-brand-cyan hover:shadow-md transition-shadow h-full flex flex-col"
+                                    >
+                                        <h3 className="text-lg font-semibold text-brand-navy mb-2">
+                                            <a
+                                                href={item.link}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="hover:underline"
+                                            >
+                                                {item.title}
+                                            </a>
+                                        </h3>
+                                        <div className="text-sm text-gray-500 space-y-1 mb-4">
+                                            {source && (
+                                                <p>
+                                                    <span className="font-medium text-gray-600">{t.newsSourceLabel}:</span> {source}
+                                                </p>
+                                            )}
+                                            {publishedAt && (
+                                                <p>
+                                                    <span className="font-medium text-gray-600">{t.newsPublished}:</span> {publishedAt}
+                                                </p>
+                                            )}
+                                        </div>
+                                        <div className="mt-auto">
+                                            <a
+                                                href={item.link}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="inline-flex items-center text-sm font-semibold text-brand-cyan hover:text-brand-navy transition-colors"
+                                            >
+                                                {t.newsReadMore}
+                                            </a>
+                                        </div>
+                                    </article>
+                                );
+                            })}
+                        </div>
+                    )}
+                </div>
+            );
+        };
+
         const InfoSection = ({ t }) => (
             <div className="bg-white p-6 rounded-xl shadow-lg">
                 <SectionTitle icon={IconInfo} title={t.infoTitle} />
@@ -1402,6 +1868,9 @@
                     break;
                 case 'influencer': // RAST I RI
                     ActiveComponent = <FreeProfCalculator t={t} currency={currency} rates={rates} isInfluencer={true} />;
+                    break;
+                case 'news':
+                    ActiveComponent = <NewsUpdatesSection t={t} language={language} />;
                     break;
                 case 'info':
                     ActiveComponent = <InfoSection t={t} />;
