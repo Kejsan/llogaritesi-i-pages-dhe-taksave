@@ -1,0 +1,1145 @@
+export const translations = {
+    sq: {
+        navEmployee: "Punëmarrës",
+        navFreelancer: "Freelancer",
+        navInfluencer: "Influencer",
+        navFreelancerGuide: "Udhëzuesi Tatimor (2025)",
+        navNews: "Lajme & Përditësime",
+        navInfo: "Si funksionon?",
+        navFAQ: "Pyetje të Shpeshta (FAQ)",
+        navLinks: "Burime Zyrtare",
+        navContact: "Kontakt",
+        navTools: "Mjetet",
+        navResources: "Burimet",
+        selectCurrency: "Monedha",
+        gross: "Bruto",
+        net: "Neto",
+        employeeTitle: "Kalkulatori i Pagës së Punëmarrësit",
+        tapWarning: "**Vërejtje 2025:** Kllapat e Tatimit (TAP) do të ndryshojnë në Janar 2025. Llogaritja është sipas rregullave aktuale 2024.",
+        salaryInputMode: "Zgjidh mënyrën e inputit",
+        modeGrossToNet: "Nga Bruto në Neto",
+        modeNetToGross: "Nga Neto në Bruto",
+        grossMonthlySalary: "Paga Bruto Mujore",
+        netMonthlySalary: "Paga Neto Mujore",
+        workingDays: "Ditë pune në muaj",
+        grossSalary: "Paga Bruto",
+        netSalary: "Paga Neto (Në dorë)",
+        employeeDeductions: "Ndalesat e Punonjësit (Sig. + TAP)",
+        employerTotalCost: "Kosto Totale e Punëdhënësit",
+        dailyGross: "Paga Bruto Ditore",
+        dailyNet: "Paga Neto Ditore",
+        deductionBreakdown: "Detajet e Zbritjeve & Kostove",
+        employeeContributions: "1. Kontributet e Punonjësit (11.2%)",
+        employeeTax: "2. Tatimi mbi Pagën (TAP)",
+        employerContributionsLabel: "3. Kontributet e Punëdhënësit (16.7%)",
+        employerSocial: "Sig. Shoqërore (15.0%)",
+        employerHealth: "Sig. Shëndetësore (1.7%)",
+        maxContributionBase: "Baza Maksimale e Kontributeve",
+        freelancerTitle: "Llogaritësi i Detyrimeve (Profesionist i Lirë)",
+        legislativeWarning: "VËREJTJE LEGJISLATIVE (2024-2025):",
+        legislativeWarningText: "Kllapa e tatimit 15% (për fitimin neto deri në 14 milionë ALL) u shpall **jokushtetuese** në Qershor 2024. Qeveria po përgatit një skemë të re. Ky kalkulator reflekton rregullat më të përditësuara por shkalla e tatimit 0-14M ALL mbetet e paqartë.",
+        grossAnnualTurnover: "Xhiro Bruto Vjetore",
+        expenseMethod: "Metoda e Shpenzimeve",
+        presumedExpenses: "30% Shpenzime të Supozuara",
+        actualExpenses: "Shpenzime Aktuale (Kontabilitet)",
+        grossAnnualTurnoverCard: "Xhiro Bruto Vjetore",
+        netAnnualIncome: "Të Ardhurat Neto (Pas Detyrimeve)",
+        obligationBreakdown: "Detajet e Detyrimeve",
+        calculatedExpenses: "Shpenzimet e Llogaritura",
+        annualContributions: "Kontributet Vjetore (27.9% mbi Pagën Min.)",
+        taxableProfit: "Fitimi i Tatueshëm",
+        incomeTax: "Tatimi mbi Fitimin",
+        taxRateUsed: "Shkalla e Tatimit e Përdorur",
+        taxStatusUncertain: "0% Tatim (Status i paqartë pas vendimit të GJK)",
+        taxStatusHigh: (threshold) => `23% Tatim mbi fitimin neto mbi ${threshold}`,
+        legalObligations: "Detyrimet Themelore Ligjore",
+        vatObligation: "Detyrimi për TVSH (VAT):",
+        vatYes: (threshold) => `PO (Mbi ${threshold} ALL)`,
+        vatNo: (threshold) => `JO (Nën ${threshold} ALL)`,
+        divaObligation: "Detyrimi për Deklaratën Vjetore (DIVA):",
+        divaYes: (threshold) => `PO (Mbi ${threshold})`,
+        divaNo: "JO",
+        foreignClients: "Klientët e Huaj:",
+        foreignClientsText: "Të ardhurat nga klientët e huaj janë **të tatueshme** në Shqipëri. Ju duhet të lëshoni faturë të fiskalizuar dhe t'i përfshini në xhiron tuaj vjetore.",
+        freelancerGuide: {
+            title: "Udhëzuesi Tatimor për Freelancer (2025)",
+            intro: "Përzgjidh xhiron e pritshme dhe profilin e klientëve për të parë çfarë kërkon ligji dhe si të planifikosh tatimin për vitin 2025.",
+            filtersTitle: "Parametrat kryesorë",
+            revenueLabel: "Xhiroja vjetore",
+            revenueCaption: "Zgjidh intervalin që i përshtatet më mirë kontratave të tua të 12 muajve të fundit.",
+            clientMixLabel: "Profili i klientëve",
+            clientMixCaption: "Sa të përqendruara janë kontratat e tua dhe në cilat tregje operon?",
+            mobileNarrativeSummary: "Shfaq rekomandimet e detajuara",
+            narrativeHeading: "Çfarë duhet të kesh parasysh",
+            actionsHeading: "Hapat që sugjerojmë",
+            warningsHeading: "Sinjale për t'u mbajtur mend",
+            thresholds: {
+                vat: "10,000,000 ALL",
+                profit: "14,000,000 ALL"
+            },
+            revenueOptions: {
+                under5: "< 5M ALL · Faza e nisjes",
+                '5to10': "5M–10M ALL · Nën pragun e TVSH-së",
+                '10to14': "10M–14M ALL · Afër tatimit mbi fitimin",
+                above14: "> 14M ALL · Tatim i plotë mbi fitimin"
+            },
+            clientMixOptions: {
+                singleLocal: "1 klient vendas kryesor",
+                localPortfolio: "2-5 klientë vendas të rregullt",
+                balanced: "Mix lokal & ndërkombëtar",
+                global: "Kryesisht klientë të huaj"
+            },
+            table: {
+                heading: "Përmbledhje e detyrimeve ligjore",
+                obligation: "Detyrimi",
+                status: "Statusi",
+                notes: "Çfarë nënkupton"
+            },
+            statuses: {
+                required: "I detyrueshëm",
+                threshold: "Prag për t'u monitoruar",
+                recommended: "E rekomanduar",
+                monitor: "Vëzhgo ndryshimet",
+                caution: "Kujdes i shtuar"
+            },
+            statusDescriptions: {
+                required: "Duhet të përmbushet menjëherë.",
+                threshold: "Aktivohet sapo të kalosh pragun përkatës.",
+                recommended: "E dobishme për të shmangur gjoba ose auditime.",
+                monitor: "Mbaj evidencë dhe prit qartësime ligjore.",
+                caution: "Rrezik i mundshëm që kërkon dokumentim."
+            },
+            obligationsHeading: "Detyrimet kryesore",
+            obligations: {
+                registerNipt: {
+                    label: "Regjistrimi si NIPT",
+                    note: "Apliko në QKB për t'u regjistruar si profesionist i lirë përpara faturimit."
+                },
+                socialSecurity: {
+                    label: "Kontributet shoqërore & shëndetësore",
+                    note: "Paguaj 27.9% mbi pagën minimale ose bazën që zgjedh çdo muaj."
+                },
+                incomeTax: {
+                    label: "Tatimi mbi fitimin",
+                    note: "Tatimi mbi të ardhurat e biznesit individual ndryshon sipas fitimit neto."
+                },
+                vat: {
+                    label: "TVSH (VAT)",
+                    note: "Detyrim për regjistrim pasi kalon pragun vjetor të TVSH-së."
+                },
+                diva: {
+                    label: "Deklarata vjetore DIVA",
+                    note: "Dorëzo formularin DIVA deri më 31 Mars për të ardhurat e vitit të kaluar."
+                },
+                invoicing: {
+                    label: "Fiskalizimi i faturave",
+                    note: "Lësho fatura elektronike për çdo pagesë, sipas ligjit të fiskalizimit."
+                },
+                accounting: {
+                    label: "Kontabiliteti & dokumentimi",
+                    note: "Mbaj evidencë të shpenzimeve dhe kontratave për të justifikuar të ardhurat."
+                }
+            },
+            dynamicNotes: {
+                incomeTax: {
+                    under5: "Aktualisht fitimet deri në 14M ALL nuk tatohet, por priten udhëzime të reja.",
+                    '5to10': "Sigurohu që fitimi të kalkulohet drejt pasi vendimmarrja për shkallën 0-14M ALL mund të ndryshojë.",
+                    '10to14': "Je në zonë gri: përgatit rezerva në rast se zbatohet tatim 15% për këtë fashë.",
+                    above14: "Fitimi mbi 14M tatohet me 23%; llogarit paraprakisht dhe paguaj këste."
+                },
+                vat: {
+                    under5: "Je larg pragut 10M ALL, por dokumento xhiron për të provuar vëllimin.",
+                    '5to10': "Planifiko regjistrimin sapo të parashikosh kalimin e pragut prej 10M ALL.",
+                    '10to14': "Duhet të regjistrohesh dhe deklarosh TVSH-në mujore brenda 15 ditëve.",
+                    above14: "TVSH e detyrueshme; kontrollo kreditimin e TVSH-së për klientët e huaj."
+                },
+                accounting: {
+                    under5: "Mjafton kontabilitet i thjeshtuar ose software bazë.",
+                    '5to10': "Përgatit raporte mujore të shpenzimeve për të optimizuar fitimin neto.",
+                    '10to14': "Kërkon ekspert kontabël për të përmbushur TVSH dhe raportimet mujore.",
+                    above14: "Rekomandohet kontabilist i licencuar dhe bilanc vjetor i audituar."
+                }
+            },
+            clientNotes: {
+                invoicing: {
+                    singleLocal: "Klienti vendor kërkon kontratë shërbimi dhe raporte pune për të shmangur 'punësimin e fshehur'.",
+                    localPortfolio: "Sigurohu që çdo klient të ketë marrëveshje të qartë dhe fatura mujore.",
+                    balanced: "Përdor valutë të saktë dhe shënim për shërbimet e eksportuara pa TVSH.",
+                    global: "Për klientët e huaj përdor kode shërbimi dhe ruaj provat e eksportit."
+                },
+                accounting: {
+                    singleLocal: "Dokumento pavarësinë tënde (afate, fatura, pajisje personale) për të mbrojtur statusin.",
+                    localPortfolio: "Segmento të ardhurat sipas klientit për të treguar diversifikim.",
+                    balanced: "Klasifiko të ardhurat sipas vendndodhjes për raportim statistikor.",
+                    global: "Mbaj raport me kursin e këmbimit për të mbyllur librat në ALL."
+                }
+            },
+            warnings: {
+                disguisedTitle: "Rreziku i punësimit të fshehur",
+                disguisedBody: "Një klient i vetëm vendas mund të interpretohet si marrëdhënie pune. Mbani kontratë shërbimi, orare fleksibël dhe prova të pavarësisë.",
+                vatTitle: "Pragu i TVSH-së",
+                vatBody: "Pasi të kalosh 10,000,000 ALL në 12 muajt e fundit, regjistrimi në TVSH është i detyrueshëm brenda 15 ditëve.",
+                profitTitle: "Tatimi 23% mbi fitimin",
+                profitBody: "Fitimi neto mbi 14,000,000 ALL tatohet me 23%. Planifiko paraprakisht këste tremujore dhe konsulto kontabilistin."
+            },
+            details: {
+                under5: {
+                    singleLocal: {
+                        title: "Startues me një klient vendas",
+                        summary: "Je në fazë fillestare me një kontratë të vetme vendase. Pavarësia ligjore është prioritet kryesor ndërsa ndërton portofolin.",
+                        actions: [
+                            "Formalizo kontratën si shërbim konsulence dhe përcakto qartë oraret fleksibël.",
+                            "Kujdesu që kontributet të paguhen çdo muaj për të shmangur kamatat.",
+                            "Investo kohë në gjetjen e klientëve të rinj për të ulur riskun e varësisë."
+                        ]
+                    },
+                    localPortfolio: {
+                        title: "Freelancer lokal në rritje",
+                        summary: "Menaxhon disa klientë vendas nën 5M ALL. Fokusohu në proceset e faturimit dhe në mbajtjen e evidencave të sakta.",
+                        actions: [
+                            "Implemento një sistem të thjeshtë menaxhimi faturash me fiskalizim të automatizuar.",
+                            "Ruaj shpenzimet me faturë për të justifikuar metodën e zgjedhur të zbritjes.",
+                            "Planifiko rritjen graduale të bazës së kontributeve pas vitit të parë."
+                        ]
+                    },
+                    balanced: {
+                        title: "Portofol i balancuar në fazë nisjeje",
+                        summary: "Ke kombinim klientësh vendas e të huaj me xhiro të ulët. Regjistro qartë shërbimet e eksportuara dhe menaxho valutën.",
+                        actions: [
+                            "Përdor fatura në valutë me shënimin 'shërbim i eksportuar pa TVSH'.",
+                            "Konverto pagesat në ALL sipas kursit zyrtar në datën e faturimit.",
+                            "Ruaj kontratat në gjuhë të huaj të përkthyera për inspektimet fiskale."
+                        ]
+                    },
+                    global: {
+                        title: "Eksporues digjital fillestar",
+                        summary: "Kryesisht klientë të huaj me xhiro modeste. Fokusohu në provat e eksportit dhe në menaxhimin e kursit të këmbimit.",
+                        actions: [
+                            "Arkivo vërtetimet e pagesave ndërkombëtare (Swift, PayPal, Stripe).",
+                            "Përdor metoda të sakta për përllogaritjen e fitimit në ALL.",
+                            "Monitoro shpenzimet në valutë për të ruajtur marzhin e fitimit."
+                        ]
+                    }
+                },
+                '5to10': {
+                    singleLocal: {
+                        title: "Kontratë e vetme pranë pragut të TVSH-së",
+                        summary: "Xhiroja po afrohet me 10M ALL me një klient të vetëm. Diversifikimi është kritik për të shmangur rrezikun e punësimit të fshehur.",
+                        actions: [
+                            "Negocio klauzola të qarta për pavarësinë dhe të drejtën për të punuar me klientë të tjerë.",
+                            "Monitoro xhiron mujore për të parashikuar momentin e regjistrimit në TVSH.",
+                            "Rezervo 10-15% të të ardhurave për detyrime tatimore të paparashikuara."
+                        ]
+                    },
+                    localPortfolio: {
+                        title: "Freelancer vendor drejt zgjerimit",
+                        summary: "Portofoli vendas po rritet dhe po i afrohet pragut 10M ALL. Nevojitet disiplinë në faturim dhe dokumentim.",
+                        actions: [
+                            "Automatizo raportimin e xhiros për të llogaritur 12 muajt rrotullues.",
+                            "Shqyrto hapjen e llogarisë bankare dedikuar biznesit për transparencë.",
+                            "Përgatis dokumentacionin për regjistrim në TVSH (NIPT, kontrata, qarkullim)."
+                        ]
+                    },
+                    balanced: {
+                        title: "Mix klientësh me xhiro mesatare",
+                        summary: "Xhiroja 5-10M ALL me klientë vendas dhe të huaj kërkon menaxhim të dyfishtë të fiskalizimit dhe deklarimeve.",
+                        actions: [
+                            "Ndarja e faturave me dhe pa TVSH sipas destinacionit të shërbimit.",
+                            "Kontrollo marrëveshjet ndërkombëtare për të shmangur tatimin në burim jashtë vendit.",
+                            "Përditëso politikat e çmimeve për të mbuluar kostot e ardhshme të TVSH-së."
+                        ]
+                    },
+                    global: {
+                        title: "Eksportues me ritëm të qëndrueshëm",
+                        summary: "Të ardhurat 5-10M ALL kryesisht nga jashtë. Fokusohu në dokumentimin e eksportit dhe në shlyerjen e taksave në ALL.",
+                        actions: [
+                            "Ruaj provat e eksportit (kontrata, korrespondencë, dorëzime digjitale).",
+                            "Menaxho flukset valutore me kurs mesatar mujor për deklarime.",
+                            "Kontrollo marrëveshjet tatimore për të shmangur tatimin e dyfishtë."
+                        ]
+                    }
+                },
+                '10to14': {
+                    singleLocal: {
+                        title: "Kontratë e madhe vendase me TVSH",
+                        summary: "Kalimi i 10M ALL me një klient vendas të vetëm nënkupton regjistrim TVSH dhe risk të shtuar për ri-kategorizim si punësim.",
+                        actions: [
+                            "Deklaro TVSH-në mujore dhe kërko rimbursim të inputeve të lejuara.",
+                            "Dokumento rreptësisht oraret, objektivat dhe mjetet e tua të punës.",
+                            "Sigurohu që klienti të pranojë faturë me TVSH dhe të paguajë në kohë."
+                        ]
+                    },
+                    localPortfolio: {
+                        title: "Agjenci e vogël freelance",
+                        summary: "Me disa klientë vendas mbi 10M ALL, duhet kontabilitet profesional dhe monitorim i fitimit neto.",
+                        actions: [
+                            "Vendos politika pagese për të menaxhuar TVSH-në dalëse dhe hyrëse.",
+                            "Përgatit parashikime fitimi për të vlerësuar ndikimin e tatimit të mundshëm 15%.",
+                            "Implemento arkivë digjitale për kontratat dhe fletët e punës."
+                        ]
+                    },
+                    balanced: {
+                        title: "Portofol i pjekur me TVSH",
+                        summary: "Të ardhurat 10-14M ALL me klientë miks kërkojnë koordinim midis faturimit me TVSH dhe shërbimeve të eksportuara.",
+                        actions: [
+                            "Segmento librat e shitjeve në faturë me TVSH dhe pa TVSH.",
+                            "Kontrollo retencione tatimore jashtë vendit dhe aplikimin e marrëveshjeve.",
+                            "Planifiko cash-flow për pagesat mujore të TVSH-së dhe sigurimeve."
+                        ]
+                    },
+                    global: {
+                        title: "Eksportues i avancuar",
+                        summary: "Xhiroja 10-14M ALL nga jashtë. TVSH në shitje nuk aplikohet, por raportimi dhe tatimi mbi fitimin kërkojnë kujdes.",
+                        actions: [
+                            "Deklaro TVSH-në si eksport me normë 0% dhe kërko kreditimet e inputeve vendase.",
+                            "Sigurohu që fitimi të mbështetet me shpenzime të dokumentuara.",
+                            "Mbaj kalendar tatimor për parapagimet dhe raportimet ndërkombëtare."
+                        ]
+                    }
+                },
+                above14: {
+                    singleLocal: {
+                        title: "Kontratë e vetme me tatim të plotë",
+                        summary: "Mbi 14M ALL me një klient vendas nënkupton tatim 23% dhe auditim të mundshëm për marrëdhënie pune.",
+                        actions: [
+                            "Paguaj këste tremujore të tatimit mbi fitimin dhe TVSH-së.",
+                            "Kërko opinion profesional mbi strukturën kontraktuale për të shmangur ri-klasifikimin.",
+                            "Diversifiko të ardhurat për të redukuar riskun operacional."
+                        ]
+                    },
+                    localPortfolio: {
+                        title: "Freelancer me volum të lartë vendor",
+                        summary: "Një portofol i gjerë vendas mbi 14M ALL kërkon sistem të plotë kontabiliteti dhe kontroll të shpenzimeve.",
+                        actions: [
+                            "Krijo buxhete mujore për të monitoruar marzhin pas tatimit.",
+                            "Përditëso kontratat me klauzola TVSH-je dhe penalitete për pagesa të vonuara.",
+                            "Analizo mundësinë e hapjes së një shoqërie për avantazhe tatimore."
+                        ]
+                    },
+                    balanced: {
+                        title: "Portofol i matur ndërkombëtar",
+                        summary: "Mbi 14M ALL me klientë vendas dhe të huaj kërkon strategji tatimore të integruar dhe kontroll të kursit të këmbimit.",
+                        actions: [
+                            "Përgatis raporte të ndara për të ardhurat e eksportit dhe ato vendase.",
+                            "Optimizoni shpenzimet e zbritshme për të ulur bazën e tatimit 23%.",
+                            "Bashkëpuno me kontabilist të licencuar për mbylljen vjetore."
+                        ]
+                    },
+                    global: {
+                        title: "Eksportues premium",
+                        summary: "Xhiro mbi 14M ALL kryesisht nga klientë të huaj kërkon fokus në marrëveshjet e tatimit të dyfishtë dhe menaxhimin e riskut valutor.",
+                        actions: [
+                            "Kontrollo nëse vendet e klientëve aplikojnë tatim në burim dhe kërko kreditim.",
+                            "Optimizoni shpenzimet në valutë për të mbrojtur fitimin neto.",
+                            "Planifiko cash-flow-in për këstet e tatimit dhe kontributet e rritura."
+                        ]
+                    }
+                }
+            }
+        },
+        influencerTitle: "Kalkulatori i Detyrimeve (Influencer)",
+        influencerWarning: "VËREJTJE PËR INFLUENCERËT:",
+        influencerWarningText: "Trajtimi juaj fiskal është i njëjtë me atë të një **Profesionisti të Lirë**. Dallimi kryesor është tek pagesat në natyrë (barter). Rekomandohet përdorimi i metodës së **shpenzimeve të supozuara (30%)** për shkak të kompleksitetit të vlerësimit të produkteve ose shërbimeve të marra si pagesë.",
+        infoTitle: "Si funksionon Kalkulatori?",
+        infoIntro: "Ky mjet ju ndihmon të kuptoni sistemin e taksave në Shqipëri, qoftë si punëmarrës, profesionist i lirë apo influencer. Më poshtë gjeni një shpjegim të thjeshtë të termave kryesorë.",
+        infoGrossNetTitle: "Paga Bruto vs. Paga Neto (Për Punëmarrësit)",
+        infoGrossNetText: "<strong>Paga Bruto</strong> është shuma totale për të cilën bini dakord me punëdhënësin përpara çdo zbritjeje. <strong>Paga Neto</strong> (ose 'në dorë') është shuma që merrni në llogarinë tuaj bankare pasi të jenë mbajtur kontributet dhe tatimet.",
+        infoContributionsTitle: "Kontributet Shoqërore dhe Shëndetësore",
+        infoContributionsText: "Këto janë pagesa të detyrueshme për të financuar pensionin tuaj dhe kujdesin shëndetësor publik. Si punonjës, ju paguani <strong>11.2%</strong> të pagës suaj (por jo më shumë se paga maksimale e vlerësueshme, 176,416 ALL). Punëdhënësi juaj paguan <strong>16.7%</strong> shtesë mbi pagën tuaj bruto. Kjo është arsyeja pse <strong>Kostoja Totale e Punëdhënësit</strong> është më e lartë se paga juaj bruto.",
+        infoTapTitle: "Tatimi mbi të Ardhurat Personale (TAP)",
+        infoTapText: "Ky është tatimi progresiv mbi pagën. Për vitin 2024, paga nën 40,000 ALL/muaj nuk tatohet. Pjesa e pagës mbi 30,000 ALL deri në 200,000 ALL tatohet me <strong>13%</strong>, dhe çdo shumë mbi 200,000 ALL tatohet me <strong>23%</strong>. Kjo pritet të ndryshojë në 2025.",
+        infoFreelancerTitle: "Profesionistët e Lirë & Influencerët",
+        infoFreelancerText: "Si profesionist i lirë apo influencer (person fizik me NIPT), ju jeni vetë përgjegjës për pagimin e kontributeve dhe tatimeve. Ju paguani vetë të dyja pjesët e kontributeve (<strong>27.9%</strong> e pagës minimale, ose më shumë). Tatimi mbi fitimin neto vjetor është aktualisht në një periudhë tranzicioni ligjor (shih paralajmërimin në kalkulator).",
+        faqTitle: "Pyetje të Shpeshta (FAQ)",
+        faq1Title: "Sa janë pushimet vjetore të paguara?",
+        faq1Text: "Sipas ndryshimit të fundit të Kodit të Punës (Gusht 2024), çdo punëmarrës ka të drejtën e një minimumi prej **22 ditë pune** pushim vjetor të paguar (më parë ishin 4 javë kalendarike).",
+        faq2Title: "Çfarë është baza maksimale e kontributeve?",
+        faq2Text: "Është kufiri i sipërm i pagës mbi të cilin llogariten kontributet. Për vitin 2024, kjo shumë është **176,416 ALL**. Nëse paga juaj bruto është 200,000 ALL, ju do të paguani kontribute vetëm për 176,416 ALL. Tatimi (TAP), megjithatë, llogaritet mbi të gjithë shumën bruto (200,000 ALL).",
+        faq3Title: "Çfarë po ndodh me taksën e profesionistëve të lirë/influencerëve?",
+        faq3Text: "Në Qershor 2024, Gjykata Kushtetuese shfuqizoi shkallën 15% të tatimit mbi fitimin neto (për të ardhura 0-14 milionë ALL/vit). Shkalla 23% për fitimin mbi 14 milionë ALL mbetet në fuqi. Aktualisht, ka një boshllëk ligjor dhe pritet një skemë e re nga qeveria për vitin 2025. Ky kalkulator supozon 0% tatim për shkallën e parë deri në miratimin e ligjit të ri.",
+        faq4Title: "A duhet të paguaj TVSH si profesionist i lirë/influencer?",
+        faq4Text: "Ju duhet të regjistroheni si përgjegjës i TVSH-së vetëm nëse xhiroja juaj vjetore i kalon **10,000,000 ALL**.",
+        faq5Title: "A duhet të lëshoj faturë për klientët e huaj?",
+        faq5Text: "Po. Të gjitha të ardhurat, pavarësisht nëse vijnë nga klientë vendas apo të huaj, duhet të deklarohen dhe të fiskalizohen. Ato janë pjesë e xhiros suaj vjetore dhe janë të tatueshme në Shqipëri.",
+        faq6Title: "Si tatohen pagesat në natyrë (barter) për influencerët?",
+        faq6Text: "Pagesat në natyrë (p.sh., produkte, shërbime, udhëtime) konsiderohen **e ardhur e tatueshme**. Vlera e tyre e tregut duhet të shtohet në xhiron tuaj bruto vjetore dhe të tatohet si e ardhur normale. Për shkak të vështirësisë së vlerësimit, konsultohuni me një kontabilist. Përdorimi i shpenzimeve të supozuara (30%) mund të thjeshtojë llogaritjen.",
+        newsTitle: "Përditësime zyrtare të tatimeve",
+        newsSubtitle: "Përditësohuni me njoftimet më të fundit nga institucionet fiskale shqiptare.",
+        newsLoading: "Duke ngarkuar përditësimet zyrtare...",
+        newsError: "Nuk mundëm të marrim përditësimet. Ju lutemi provoni sërish pas pak.",
+        newsRetry: "Provo përsëri",
+        newsEmpty: "Aktualisht nuk ka përditësime të reja. Rikthehuni më vonë.",
+        newsSourceLabel: "Burimi",
+        newsPublished: "Publikuar",
+        newsReadMore: "Lexo më shumë",
+        linksTitle: "Burime Zyrtare & Lidhje të Dobishme",
+        linksDpt: "Drejtoria e Përgjithshme e Tatimeve (DPT)",
+        linksQkb: "Qendra Kombëtare e Biznesit (QKB)",
+        linksKodiPunes: "Kodi i Punës (Tekst i plotë)",
+        linksSigurime: "Instituti i Sigurimeve Shoqërore (ISSH)",
+        footerCreatedBy: "Krijuar nga Kejsan Coku",
+        footerCopyright: "© 2025. Llogaritjet mund të përmbajnë pasaktësi ose të mos pasqyrojnë përditësimet e fundit ligjore. Konsultohuni me një kontabilist ose këshilltar ligjor përpara se të merrni vendime financiare.",
+    },
+    en: {
+        navEmployee: "Employee",
+        navFreelancer: "Freelancer",
+        navInfluencer: "Influencer",
+        navFreelancerGuide: "Freelancer Tax Guide",
+        navNews: "News & Updates",
+        navInfo: "How does it work?",
+        navFAQ: "Frequently Asked Questions (FAQ)",
+        navLinks: "Official Resources",
+        navContact: "Contact",
+        navTools: "Tools",
+        navResources: "Resources",
+        selectCurrency: "Currency",
+        gross: "Gross",
+        net: "Net",
+        employeeTitle: "Employee Salary Calculator",
+        tapWarning: "**2025 Warning:** The Payroll Tax (TAP) brackets will change in January 2025. This calculation uses the current 2024 rules.",
+        salaryInputMode: "Input mode",
+        modeGrossToNet: "Gross to Net",
+        modeNetToGross: "Net to Gross",
+        grossMonthlySalary: "Gross Monthly Salary",
+        netMonthlySalary: "Net Monthly Salary",
+        workingDays: "Working days per month",
+        grossSalary: "Gross Salary",
+        netSalary: "Net Salary (Take-Home)",
+        employeeDeductions: "Employee Deductions (Ins. + Tax)",
+        employerTotalCost: "Total Employer Cost",
+        dailyGross: "Daily Gross Salary",
+        dailyNet: "Daily Net Salary",
+        deductionBreakdown: "Deduction & Cost Breakdown",
+        employeeContributions: "1. Employee Contributions (11.2%)",
+        employeeTax: "2. Payroll Income Tax (TAP)",
+        employerContributionsLabel: "3. Employer Contributions (16.7%)",
+        employerSocial: "Social Ins. (15.0%)",
+        employerHealth: "Health Ins. (1.7%)",
+        maxContributionBase: "Max. Contribution Base",
+        freelancerTitle: "Freelancer Obligation Calculator",
+        legislativeWarning: "LEGISLATIVE WARNING (2024-2025):",
+        legislativeWarningText: "The 15% tax bracket (for net profit up to 14M ALL) was ruled **unconstitutional** in June 2024. The government is preparing a new scheme. This calculator reflects the latest data, but the 0-14M ALL tax rate remains uncertain.",
+        grossAnnualTurnover: "Gross Annual Turnover",
+        expenseMethod: "Expense Method",
+        presumedExpenses: "30% Presumed Expenses",
+        actualExpenses: "Actual Expenses (Bookkeeping)",
+        grossAnnualTurnoverCard: "Gross Annual Turnover",
+        netAnnualIncome: "Net Annual Income (After Obligations)",
+        obligationBreakdown: "Obligation Breakdown",
+        calculatedExpenses: "Calculated Expenses",
+        annualContributions: "Annual Contributions (27.9% on Min. Wage)",
+        taxableProfit: "Taxable Profit",
+        incomeTax: "Income Tax",
+        taxRateUsed: "Tax Rate Used",
+        taxStatusUncertain: "0% Tax (Status unclear after court ruling)",
+        taxStatusHigh: (threshold) => `23% Tax on net profit above ${threshold}`,
+        legalObligations: "Core Legal Obligations",
+        vatObligation: "VAT Obligation:",
+        vatYes: (threshold) => `YES (Over ${threshold} ALL)`,
+        vatNo: (threshold) => `NO (Under ${threshold} ALL)`,
+        divaObligation: "Annual Declaration (DIVA) Obligation:",
+        divaYes: (threshold) => `YES (Over ${threshold})`,
+        divaNo: "NO",
+        foreignClients: "Foreign Clients:",
+        foreignClientsText: "Income from foreign clients is **taxable** in Albania. You must issue a fiscalized invoice and include it in your annual turnover.",
+        freelancerGuide: {
+            title: "Freelancer Tax Guide (2025)",
+            intro: "Select your expected turnover and client profile to see which compliance steps apply in 2025.",
+            filtersTitle: "Key parameters",
+            revenueLabel: "Annual turnover",
+            revenueCaption: "Choose the range that best matches your last 12 months of signed work.",
+            clientMixLabel: "Client profile",
+            clientMixCaption: "How concentrated are your contracts and in which markets do you operate?",
+            mobileNarrativeSummary: "Show detailed recommendations",
+            narrativeHeading: "Key considerations",
+            actionsHeading: "Suggested actions",
+            warningsHeading: "Signals to keep in mind",
+            thresholds: {
+                vat: "10,000,000 ALL",
+                profit: "14,000,000 ALL"
+            },
+            revenueOptions: {
+                under5: "< 5M ALL · Early stage",
+                '5to10': "5M–10M ALL · Below VAT threshold",
+                '10to14': "10M–14M ALL · Near profit tax gate",
+                above14: "> 14M ALL · Full profit tax applies"
+            },
+            clientMixOptions: {
+                singleLocal: "One domestic anchor client",
+                localPortfolio: "2–5 recurring Albanian clients",
+                balanced: "Balanced local & international",
+                global: "Mostly foreign clients"
+            },
+            table: {
+                heading: "Compliance obligations overview",
+                obligation: "Obligation",
+                status: "Status",
+                notes: "What it means"
+            },
+            statuses: {
+                required: "Mandatory",
+                threshold: "Threshold watch",
+                recommended: "Recommended",
+                monitor: "Monitor updates",
+                caution: "Heightened caution"
+            },
+            statusDescriptions: {
+                required: "Must be satisfied immediately.",
+                threshold: "Activates as soon as you cross the relevant limit.",
+                recommended: "Helps you avoid penalties or audits.",
+                monitor: "Keep records and await regulatory clarity.",
+                caution: "Potential risk that requires extra documentation."
+            },
+            obligationsHeading: "Core obligations",
+            obligations: {
+                registerNipt: {
+                    label: "NIPT registration",
+                    note: "Register with the National Business Center before issuing invoices."
+                },
+                socialSecurity: {
+                    label: "Social & health contributions",
+                    note: "Pay 27.9% on the minimum wage or your chosen base each month."
+                },
+                incomeTax: {
+                    label: "Profit tax",
+                    note: "Business income tax depends on your annual net profit."
+                },
+                vat: {
+                    label: "VAT",
+                    note: "VAT registration becomes mandatory once you cross the statutory turnover."
+                },
+                diva: {
+                    label: "Annual DIVA return",
+                    note: "File the DIVA form by 31 March for the prior tax year."
+                },
+                invoicing: {
+                    label: "Electronic invoicing",
+                    note: "Issue electronic invoices for every payment under the e-invoicing rules."
+                },
+                accounting: {
+                    label: "Accounting & record keeping",
+                    note: "Maintain expense records and contracts to justify your deductions."
+                }
+            },
+            dynamicNotes: {
+                incomeTax: {
+                    under5: "Net profit up to 14M ALL currently carries 0% while we await new guidance.",
+                    '5to10': "Track net profit carefully; the 0–14M bracket could change mid-year.",
+                    '10to14': "Grey zone: set aside reserves in case a 15% rate is reinstated.",
+                    above14: "Net profit above 14M is taxed at 23%; schedule advance payments."
+                },
+                vat: {
+                    under5: "Well below the 10M ALL VAT threshold, but document turnover to prove volume.",
+                    '5to10': "Prepare the registration package as soon as forecasts show 10M ALL within 12 months.",
+                    '10to14': "You must register and submit monthly VAT returns within 15 days.",
+                    above14: "VAT is compulsory; monitor input credits on foreign supplier invoices."
+                },
+                accounting: {
+                    under5: "Simple bookkeeping software is enough at this stage.",
+                    '5to10': "Produce monthly expense summaries to defend your profit margin.",
+                    '10to14': "Hire an accountant to align VAT ledgers and monthly reports.",
+                    above14: "Work with a licensed accountant and prepare an annual financial statement."
+                }
+            },
+            clientNotes: {
+                invoicing: {
+                    singleLocal: "Service agreements and work logs help prove you are not a disguised employee.",
+                    localPortfolio: "Ensure every client signs a clear engagement and receives monthly invoices.",
+                    balanced: "Use the right currency and mark exported services as VAT zero-rated.",
+                    global: "Apply export service codes and store evidence of cross-border delivery."
+                },
+                accounting: {
+                    singleLocal: "Document independence (schedules, invoices, your own equipment) to defend your status.",
+                    localPortfolio: "Segment revenue per client to demonstrate diversification.",
+                    balanced: "Classify revenue by country for statistical and tax reporting.",
+                    global: "Track exchange rates used for ALL conversions when closing your books."
+                }
+            },
+            warnings: {
+                disguisedTitle: "Disguised employment risk",
+                disguisedBody: "A single domestic client may be treated as an employment relationship. Keep a service contract, flexible timelines, and proof of independence.",
+                vatTitle: "VAT threshold alert",
+                vatBody: "Crossing 10,000,000 ALL in any rolling 12 months triggers mandatory VAT registration within 15 days.",
+                profitTitle: "23% profit tax applies",
+                profitBody: "Net profit above 14,000,000 ALL is taxed at 23%. Plan quarterly installments and consult your accountant."
+            },
+            details: {
+                under5: {
+                    singleLocal: {
+                        title: "Starter with one domestic client",
+                        summary: "You are in an early phase with a single Albanian contract. Legal independence is the priority while you build a pipeline.",
+                        actions: [
+                            "Frame the contract as consultancy with clearly defined deliverables and flexible hours.",
+                            "Pay contributions every month to avoid late-payment interest.",
+                            "Invest time in prospecting to reduce reliance on one payer."
+                        ]
+                    },
+                    localPortfolio: {
+                        title: "Growing local freelancer",
+                        summary: "Managing several Albanian clients under 5M ALL. Focus on invoicing discipline and tidy records.",
+                        actions: [
+                            "Adopt a lightweight invoicing tool with automated e-fiscalization.",
+                            "Keep expense receipts to support your chosen deduction method.",
+                            "Plan a gradual increase of the contribution base after your first year."
+                        ]
+                    },
+                    balanced: {
+                        title: "Balanced mix in launch phase",
+                        summary: "A mix of domestic and foreign clients with low turnover. Track exported services and currency conversions.",
+                        actions: [
+                            "Invoice in the client currency and note 'exported service – VAT 0%'.",
+                            "Convert receipts to ALL using the official rate on the invoice date.",
+                            "Store translated contracts for potential tax inspections."
+                        ]
+                    },
+                    global: {
+                        title: "Early digital exporter",
+                        summary: "Mostly foreign clients at modest turnover. Emphasize export evidence and exchange-rate management.",
+                        actions: [
+                            "Archive international payment proofs (SWIFT, PayPal, Stripe).",
+                            "Use accurate methods to calculate profit in ALL.",
+                            "Monitor foreign currency expenses to protect your margin."
+                        ]
+                    }
+                },
+                '5to10': {
+                    singleLocal: {
+                        title: "Single contract near VAT threshold",
+                        summary: "Turnover is approaching 10M ALL with one client. Diversifying is crucial to mitigate disguised employment risk.",
+                        actions: [
+                            "Negotiate clauses that confirm independence and permit work for other clients.",
+                            "Track monthly turnover to predict the VAT registration date.",
+                            "Set aside 10–15% of revenue for unexpected tax liabilities."
+                        ]
+                    },
+                    localPortfolio: {
+                        title: "Local freelancer scaling up",
+                        summary: "Your domestic portfolio is growing toward 10M ALL. Discipline in billing and documentation is key.",
+                        actions: [
+                            "Automate turnover reports to calculate the rolling 12-month figure.",
+                            "Consider a dedicated business bank account for transparency.",
+                            "Prepare the VAT registration file (NIPT, contracts, turnover evidence)."
+                        ]
+                    },
+                    balanced: {
+                        title: "Mid-range mixed portfolio",
+                        summary: "Turnover of 5–10M ALL across domestic and foreign clients demands dual VAT and export tracking.",
+                        actions: [
+                            "Separate invoices that carry VAT from zero-rated export services.",
+                            "Review foreign contracts to avoid withholding tax abroad.",
+                            "Update pricing to cover the future cost of VAT compliance."
+                        ]
+                    },
+                    global: {
+                        title: "Steady exporter",
+                        summary: "Revenue of 5–10M ALL mainly from abroad. Focus on export documentation and converting taxes into ALL.",
+                        actions: [
+                            "Keep export proofs (contracts, correspondence, digital delivery logs).",
+                            "Manage currency flows using monthly average rates for filings.",
+                            "Check double-tax treaties to avoid foreign withholding taxes."
+                        ]
+                    }
+                },
+                '10to14': {
+                    singleLocal: {
+                        title: "Large domestic contract with VAT",
+                        summary: "Crossing 10M ALL with one Albanian client requires VAT registration and increases reclassification scrutiny.",
+                        actions: [
+                            "File monthly VAT returns and claim input credits where allowed.",
+                            "Document timelines, deliverables, and the tools you own.",
+                            "Ensure the client accepts VAT invoices and pays on schedule."
+                        ]
+                    },
+                    localPortfolio: {
+                        title: "Boutique freelance agency",
+                        summary: "Multiple domestic clients above 10M ALL need professional bookkeeping and profit monitoring.",
+                        actions: [
+                            "Set payment policies to manage output and input VAT.",
+                            "Forecast net profit to gauge a potential 15% tax reinstatement.",
+                            "Implement a digital archive for contracts and work evidence."
+                        ]
+                    },
+                    balanced: {
+                        title: "Mature mixed portfolio with VAT",
+                        summary: "Turnover of 10–14M ALL with mixed clients requires coordination between VAT invoices and exported services.",
+                        actions: [
+                            "Split sales ledgers between VATable and zero-rated invoices.",
+                            "Check foreign withholding taxes and apply treaty relief where possible.",
+                            "Plan cash flow for monthly VAT and contribution payments."
+                        ]
+                    },
+                    global: {
+                        title: "Advanced exporter",
+                        summary: "Turnover of 10–14M ALL from abroad. VAT on sales is zero, but reporting and profit tax must be airtight.",
+                        actions: [
+                            "Declare exports at 0% VAT and recover eligible local input VAT.",
+                            "Support net profit with properly documented expenses.",
+                            "Maintain a tax calendar for prepayments and cross-border filings."
+                        ]
+                    }
+                },
+                above14: {
+                    singleLocal: {
+                        title: "Single domestic contract under full tax",
+                        summary: "Above 14M ALL with one client triggers the 23% profit tax and likely employment audits.",
+                        actions: [
+                            "Pay quarterly profit-tax and VAT installments on time.",
+                            "Seek professional advice on the contract structure to avoid reclassification.",
+                            "Diversify revenue streams to reduce operational risk."
+                        ]
+                    },
+                    localPortfolio: {
+                        title: "High-volume domestic freelancer",
+                        summary: "A large Albanian client base above 14M ALL needs full accounting systems and cost control.",
+                        actions: [
+                            "Create monthly budgets to monitor post-tax margins.",
+                            "Update contracts with VAT clauses and late-payment penalties.",
+                            "Assess whether incorporating could provide tax efficiencies."
+                        ]
+                    },
+                    balanced: {
+                        title: "Seasoned international portfolio",
+                        summary: "Above 14M ALL across local and foreign clients demands integrated tax strategy and currency oversight.",
+                        actions: [
+                            "Produce separate reports for export and domestic revenue.",
+                            "Optimize deductible expenses to lower the 23% tax base.",
+                            "Work with a licensed accountant on the year-end close."
+                        ]
+                    },
+                    global: {
+                        title: "Premium exporter",
+                        summary: "Turnover above 14M ALL mainly from foreign clients calls for focus on double-tax treaties and FX risk.",
+                        actions: [
+                            "Check if client countries levy withholding tax and claim credits.",
+                            "Optimize foreign-currency spending to protect net profit.",
+                            "Plan cash flow for higher tax installments and contributions."
+                        ]
+                    }
+                }
+            }
+        },
+        influencerTitle: "Influencer Obligation Calculator",
+        influencerWarning: "NOTE FOR INFLUENCERS:",
+        influencerWarningText: "Your fiscal treatment is the same as a **Free Professional**. The main difference is in-kind payments (barter). It is recommended to use the **presumed expenses (30%)** method due to the complexity of valuing products or services received as payment.",
+        infoTitle: "How does the Calculator work?",
+        infoIntro: "This tool helps you understand the tax system in Albania, whether as an employee, freelancer, or influencer. Below is a simple explanation of the key terms.",
+        infoGrossNetTitle: "Gross Salary vs. Net Salary (For Employees)",
+        infoGrossNetText: "<strong>Gross Salary</strong> is the total amount agreed upon with your employer before any deductions. <strong>Net Salary</strong> (or 'take-home' pay) is the amount you receive in your bank account after contributions and taxes are withheld.",
+        infoContributionsTitle: "Social and Health Contributions",
+        infoContributionsText: "These are mandatory payments to fund your pension and public healthcare. As an employee, you pay <strong>11.2%</strong> of your salary (up to the maximum assessable wage, 176,416 ALL). Your employer pays an additional <strong>16.7%</strong> on top of your gross salary. This is why the <strong>Total Employer Cost</strong> is higher than your gross salary.",
+        infoTapTitle: "Personal Income Tax (TAP)",
+        infoTapText: "This is the progressive tax on your salary. For 2024, income below 40,000 ALL/month is not taxed. The portion of salary from 30,000 ALL to 200,000 ALL is taxed at <strong>13%</strong>, and any amount over 200,000 ALL is taxed at <strong>23%</strong>. This is expected to change in 2025.",
+        infoFreelancerTitle: "Free Professionals & Influencers",
+        infoFreelancerText: "As a freelancer or influencer (physical person with a NIPT), you are responsible for paying your own contributions and taxes. You pay both parts of the contributions (<strong>27.9%</strong> of the minimum wage, or more). The tax on annual net profit is currently in a legal transition period (see warning on the calculator).",
+        faqTitle: "Frequently Asked Questions (FAQ)",
+        faq1Title: "How much paid annual leave do I get?",
+        faq1Text: "According to the latest change in the Labor Code (August 2024), every employee is entitled to a minimum of **22 working days** of paid annual leave (it was previously 4 calendar weeks).",
+        faq2Title: "What is the maximum contribution base?",
+        faq2Text: "It's the upper limit of salary on which contributions are calculated. For 2024, this amount is **176,416 ALL**. If your gross salary is 200,000 ALL, you will only pay contributions on 176,416 ALL. The Income Tax (TAP), however, is calculated on the full gross amount (200,000 ALL).",
+        faq3Title: "What is happening with the freelancer/influencer tax?",
+        faq3Text: "In June 2024, the Constitutional Court repealed the 15% tax rate on net profit (for income 0-14 million ALL/year). The 23% rate for profit over 14 million ALL remains in effect. There is currently a legal vacuum, and a new scheme is expected from the government for 2025. This calculator assumes a 0% tax for the first bracket until the new law is passed.",
+        faq4Title: "Do I have to register for VAT as a freelancer/influencer?",
+        faq4Text: "You only need to register for VAT (TVSH) if your annual turnover exceeds **10,000,000 ALL**.",
+        faq5Title: "Do I have to invoice foreign clients?",
+        faq5Text: "Yes. All income, whether from local or foreign clients, must be declared and fiscalized. It is part of your annual turnover and is taxable in Albania.",
+        faq6Title: "How are in-kind (barter) payments taxed for influencers?",
+        faq6Text: "In-kind payments (e.g., products, services, trips) are considered **taxable income**. Their market value must be added to your gross annual turnover and taxed as normal income. Due to the difficulty of valuation, consult an accountant. Using presumed expenses (30%) can simplify the calculation.",
+        newsTitle: "Official fiscal updates",
+        newsSubtitle: "Stay on top of the latest announcements from Albanian tax institutions.",
+        newsLoading: "Loading official updates...",
+        newsError: "We couldn’t fetch the latest updates. Please try again shortly.",
+        newsRetry: "Try again",
+        newsEmpty: "No new updates are available at the moment. Please check back soon.",
+        newsSourceLabel: "Source",
+        newsPublished: "Published",
+        newsReadMore: "Read more",
+        linksTitle: "Official Resources & Useful Links",
+        linksDpt: "General Directorate of Taxes (DPT)",
+        linksQkb: "National Business Center (QKB)",
+        linksKodiPunes: "Labor Code (Full Text)",
+        linksSigurime: "Social Insurance Institute (ISSH)",
+        footerCreatedBy: "Created by Kejsan Coku",
+        footerCopyright: "© 2025. Calculations may include inaccuracies or omit recent legal updates. Seek advice from a certified accountant or legal professional before making financial decisions.",
+    },
+    it: {
+        navEmployee: "Dipendente",
+        navFreelancer: "Freelancer",
+        navInfluencer: "Influencer",
+        navFreelancerGuide: "Guida Fiscale Freelancer",
+        navNews: "Notizie & Aggiornamenti",
+        navInfo: "Come funziona?",
+        navFAQ: "Domande Frequenti (FAQ)",
+        navLinks: "Risorse Ufficiali",
+        navContact: "Contatti",
+        navTools: "Strumenti",
+        navResources: "Risorse",
+        selectCurrency: "Valuta",
+        gross: "Lordo",
+        net: "Netto",
+        employeeTitle: "Calcolatore Stipendio Dipendente",
+        tapWarning: "**Avviso 2025:** Le aliquote dell'imposta sul reddito (TAP) cambieranno a gennaio 2025. Questo calcolo utilizza le regole attuali del 2024.",
+        salaryInputMode: "Modalità di input",
+        modeGrossToNet: "Lordo a Netto",
+        modeNetToGross: "Netto a Lordo",
+        grossMonthlySalary: "Stipendio Lordo Mensile",
+        netMonthlySalary: "Stipendio Netto Mensile",
+        workingDays: "Giorni lavorativi al mese",
+        grossSalary: "Stipendio Lordo",
+        netSalary: "Stipendio Netto (In tasca)",
+        employeeDeductions: "Trattenute Dipendente (Contr. + Tasse)",
+        employerTotalCost: "Costo Totale Datore di Lavoro",
+        dailyGross: "Stipendio Lordo Giornaliero",
+        dailyNet: "Stipendio Netto Giornaliero",
+        deductionBreakdown: "Dettaglio Trattenute e Costi",
+        employeeContributions: "1. Contributi Dipendente (11.2%)",
+        employeeTax: "2. Imposta sul Reddito (TAP)",
+        employerContributionsLabel: "3. Contributi Datore di Lavoro (16.7%)",
+        employerSocial: "Contr. Sociali (15.0%)",
+        employerHealth: "Contr. Sanitari (1.7%)",
+        maxContributionBase: "Base Contributiva Massima",
+        freelancerTitle: "Calcolatore Obblighi (Libero Professionista)",
+        legislativeWarning: "AVVISO LEGISLATIVO (2024-2025):",
+        legislativeWarningText: "L'aliquota fiscale del 15% (per profitti netti fino a 14M ALL) è stata dichiarata **incostituzionale** a giugno 2024. Il governo sta preparando un nuovo schema. Questo calcolatore riflette i dati più recenti, ma l'aliquota 0-14M ALL rimane incerta.",
+        grossAnnualTurnover: "Fatturato Lordo Annuo",
+        expenseMethod: "Metodo di Spesa",
+        presumedExpenses: "30% Spese Forfettarie",
+        actualExpenses: "Spese Effettive (Contabilità)",
+        grossAnnualTurnoverCard: "Fatturato Lordo Annuo",
+        netAnnualIncome: "Reddito Netto (Dopo Obblighi)",
+        obligationBreakdown: "Dettaglio Obblighi",
+        calculatedExpenses: "Spese Calcolate",
+        annualContributions: "Contributi Annuali (27.9% su Sal. Min.)",
+        taxableProfit: "Utile Imponibile",
+        incomeTax: "Imposta sul Reddito",
+        taxRateUsed: "Aliquota Fiscale Utilizzata",
+        taxStatusUncertain: "0% Tasse (Status incerto post-sentenza)",
+        taxStatusHigh: (threshold) => `23% Tasse sull'utile netto sopra ${threshold}`,
+        legalObligations: "Obblighi Legali Fondamentali",
+        vatObligation: "Obbligo IVA (TVSH):",
+        vatYes: (threshold) => `SÌ (Sopra ${threshold} ALL)`,
+        vatNo: (threshold) => `NO (Sotto ${threshold} ALL)`,
+        divaObligation: "Obbligo Dichiarazione Annuale (DIVA):",
+        divaYes: (threshold) => `SÌ (Sopra ${threshold})`,
+        divaNo: "NO",
+        foreignClients: "Clienti Esteri:",
+        foreignClientsText: "I redditi da clienti esteri sono **tassabili** in Albania. È necessario emettere una fattura fiscalizzata e includerla nel fatturato annuale.",
+        freelancerGuide: {
+            title: "Guida Fiscale Freelancer (2025)",
+            intro: "Seleziona il fatturato atteso e il profilo clienti per vedere quali adempimenti valgono nel 2025.",
+            filtersTitle: "Parametri chiave",
+            revenueLabel: "Fatturato annuo",
+            revenueCaption: "Scegli l'intervallo che riflette meglio gli ultimi 12 mesi di contratti.",
+            clientMixLabel: "Profilo clienti",
+            clientMixCaption: "Quanto sono concentrate le tue commesse e su quali mercati lavori?",
+            mobileNarrativeSummary: "Mostra le raccomandazioni dettagliate",
+            narrativeHeading: "Cosa considerare",
+            actionsHeading: "Azioni consigliate",
+            warningsHeading: "Segnali da ricordare",
+            thresholds: {
+                vat: "10,000,000 ALL",
+                profit: "14,000,000 ALL"
+            },
+            revenueOptions: {
+                under5: "< 5M ALL · Fase iniziale",
+                '5to10': "5M–10M ALL · Sotto soglia IVA",
+                '10to14': "10M–14M ALL · Vicino all'imposta sugli utili",
+                above14: "> 14M ALL · Aliquota piena sugli utili"
+            },
+            clientMixOptions: {
+                singleLocal: "Un solo cliente domestico principale",
+                localPortfolio: "2–5 clienti albanesi ricorrenti",
+                balanced: "Mix locale e internazionale",
+                global: "Prevalenza clienti esteri"
+            },
+            table: {
+                heading: "Panoramica obblighi fiscali",
+                obligation: "Obbligo",
+                status: "Stato",
+                notes: "Significato"
+            },
+            statuses: {
+                required: "Obbligatorio",
+                threshold: "Soglia da monitorare",
+                recommended: "Raccomandato",
+                monitor: "Monitorare aggiornamenti",
+                caution: "Attenzione elevata"
+            },
+            statusDescriptions: {
+                required: "Da adempiere immediatamente.",
+                threshold: "Si attiva appena superi il limite previsto.",
+                recommended: "Aiuta a evitare sanzioni o verifiche.",
+                monitor: "Conserva la documentazione in attesa di chiarimenti.",
+                caution: "Rischio potenziale che richiede ulteriore documentazione."
+            },
+            obligationsHeading: "Obblighi principali",
+            obligations: {
+                registerNipt: {
+                    label: "Registrazione NIPT",
+                    note: "Registrati presso il Centro Nazionale delle Imprese prima di emettere fatture."
+                },
+                socialSecurity: {
+                    label: "Contributi previdenziali e sanitari",
+                    note: "Versa il 27,9% sul salario minimo o sulla base scelta ogni mese."
+                },
+                incomeTax: {
+                    label: "Imposta sugli utili",
+                    note: "L'imposta sul reddito d'impresa dipende dall'utile netto annuale."
+                },
+                vat: {
+                    label: "IVA",
+                    note: "L'iscrizione IVA diventa obbligatoria una volta superata la soglia di fatturato."
+                },
+                diva: {
+                    label: "Dichiarazione annuale DIVA",
+                    note: "Presenta il modello DIVA entro il 31 marzo per l'anno precedente."
+                },
+                invoicing: {
+                    label: "Fatturazione elettronica",
+                    note: "Emetti fatture elettroniche per ogni pagamento secondo le regole di fiscalizzazione."
+                },
+                accounting: {
+                    label: "Contabilità e archiviazione",
+                    note: "Conserva spese e contratti per giustificare le deduzioni."
+                }
+            },
+            dynamicNotes: {
+                incomeTax: {
+                    under5: "Attualmente l'utile fino a 14M ALL è al 0%, in attesa di nuove istruzioni.",
+                    '5to10': "Monitora attentamente l'utile: la fascia 0–14M ALL potrebbe cambiare in corso d'anno.",
+                    '10to14': "Zona grigia: accantona riserve nel caso torni l'aliquota del 15%.",
+                    above14: "L'utile sopra 14M è tassato al 23%; pianifica i versamenti in acconto."
+                },
+                vat: {
+                    under5: "Ben al di sotto della soglia IVA di 10M ALL, ma documenta il fatturato per provarne il volume.",
+                    '5to10': "Prepara la pratica di iscrizione non appena prevedi di superare 10M ALL in 12 mesi.",
+                    '10to14': "Devi iscriverti e presentare le liquidazioni IVA mensili entro 15 giorni.",
+                    above14: "L'IVA è obbligatoria; controlla i crediti IVA sugli acquisti esteri."
+                },
+                accounting: {
+                    under5: "È sufficiente una contabilità semplificata o un software base.",
+                    '5to10': "Produci riepiloghi mensili delle spese per difendere il margine.",
+                    '10to14': "Coinvolgi un commercialista per allineare registri IVA e comunicazioni mensili.",
+                    above14: "Lavora con un commercialista abilitato e prepara un bilancio annuale."
+                }
+            },
+            clientNotes: {
+                invoicing: {
+                    singleLocal: "Contratti di servizio e report di lavoro aiutano a dimostrare che non sei un dipendente mascherato.",
+                    localPortfolio: "Assicurati che ogni cliente firmi un incarico chiaro e riceva fattura mensile.",
+                    balanced: "Usa la valuta corretta e indica i servizi esportati come IVA zero.",
+                    global: "Applica i codici per servizi esportati e conserva le prove della consegna transfrontaliera."
+                },
+                accounting: {
+                    singleLocal: "Documenta l'autonomia (scadenze, fatture, attrezzatura propria) per difendere lo status.",
+                    localPortfolio: "Segmenta i ricavi per cliente per dimostrare la diversificazione.",
+                    balanced: "Classifica i ricavi per paese ai fini statistici e fiscali.",
+                    global: "Traccia i cambi utilizzati per convertire in ALL a fine esercizio."
+                }
+            },
+            warnings: {
+                disguisedTitle: "Rischio di lavoro subordinato",
+                disguisedBody: "Un unico cliente domestico può essere considerato rapporto di lavoro. Mantieni contratto di servizio, scadenze flessibili e prove di autonomia.",
+                vatTitle: "Allerta soglia IVA",
+                vatBody: "Il superamento di 10,000,000 ALL in 12 mesi mobili impone l'iscrizione IVA entro 15 giorni.",
+                profitTitle: "Aliquota 23% sugli utili",
+                profitBody: "L'utile netto oltre 14,000,000 ALL è tassato al 23%. Pianifica acconti trimestrali e consulta il commercialista."
+            },
+            details: {
+                under5: {
+                    singleLocal: {
+                        title: "Avvio con un cliente domestico",
+                        summary: "Sei nella fase iniziale con un solo contratto albanese. L'autonomia legale è prioritaria mentre costruisci il portafoglio.",
+                        actions: [
+                            "Imposta il contratto come consulenza con deliverable chiari e orari flessibili.",
+                            "Versa i contributi ogni mese per evitare interessi di mora.",
+                            "Dedica tempo alla ricerca di nuovi clienti per ridurre la dipendenza da uno solo."
+                        ]
+                    },
+                    localPortfolio: {
+                        title: "Freelancer locale in crescita",
+                        summary: "Gestisci diversi clienti albanesi sotto 5M ALL. Concentrati su fatturazione e archiviazione ordinata.",
+                        actions: [
+                            "Adotta un gestionale leggero con fiscalizzazione automatica.",
+                            "Conserva le spese con fattura per sostenere il metodo di deduzione scelto.",
+                            "Pianifica un aumento graduale della base contributiva dopo il primo anno."
+                        ]
+                    },
+                    balanced: {
+                        title: "Mix bilanciato in fase di lancio",
+                        summary: "Un mix di clienti locali e esteri con fatturato contenuto. Traccia i servizi esportati e le conversioni di valuta.",
+                        actions: [
+                            "Fattura nella valuta del cliente indicando 'servizio esportato – IVA 0%'.",
+                            "Converti gli incassi in ALL con il cambio ufficiale della data fattura.",
+                            "Archivia contratti tradotti per eventuali verifiche fiscali."
+                        ]
+                    },
+                    global: {
+                        title: "Esportatore digitale alle prime armi",
+                        summary: "Prevalenza clienti esteri con fatturato modesto. Cura le prove di export e la gestione dei cambi.",
+                        actions: [
+                            "Archivia le prove di pagamento internazionali (SWIFT, PayPal, Stripe).",
+                            "Usa metodi accurati per calcolare l'utile in ALL.",
+                            "Monitora le spese in valuta per proteggere il margine."
+                        ]
+                    }
+                },
+                '5to10': {
+                    singleLocal: {
+                        title: "Contratto unico vicino alla soglia IVA",
+                        summary: "Il fatturato si avvicina a 10M ALL con un solo cliente. Diversificare è essenziale per evitare il rischio di lavoro subordinato.",
+                        actions: [
+                            "Negozia clausole che confermino l'autonomia e permettano altri incarichi.",
+                            "Controlla il fatturato mensile per prevedere la data di iscrizione IVA.",
+                            "Accantona il 10–15% dei ricavi per eventuali imposte impreviste."
+                        ]
+                    },
+                    localPortfolio: {
+                        title: "Freelancer locale in espansione",
+                        summary: "Il portafoglio domestico cresce verso 10M ALL. Servono disciplina in fatturazione e documentazione.",
+                        actions: [
+                            "Automatizza i report di fatturato per calcolare i 12 mesi mobili.",
+                            "Valuta un conto bancario dedicato all'attività per maggiore trasparenza.",
+                            "Prepara la pratica IVA (NIPT, contratti, evidenze di fatturato)."
+                        ]
+                    },
+                    balanced: {
+                        title: "Portafoglio misto di fascia media",
+                        summary: "Fatturato 5–10M ALL tra clienti locali ed esteri richiede doppio monitoraggio IVA/export.",
+                        actions: [
+                            "Separa le fatture con IVA da quelle a zero per export.",
+                            "Rivedi i contratti esteri per evitare ritenute alla fonte all'estero.",
+                            "Aggiorna il listino per coprire i futuri costi di compliance IVA."
+                        ]
+                    },
+                    global: {
+                        title: "Esportatore costante",
+                        summary: "Ricavi 5–10M ALL soprattutto dall'estero. Concentrati su prove d'export e conversione fiscale in ALL.",
+                        actions: [
+                            "Conserva prove di export (contratti, corrispondenza, log di consegna digitale).",
+                            "Gestisci i flussi valutari usando cambi medi mensili per le dichiarazioni.",
+                            "Verifica le convenzioni contro la doppia imposizione per evitare ritenute estere."
+                        ]
+                    }
+                },
+                '10to14': {
+                    singleLocal: {
+                        title: "Grande contratto domestico con IVA",
+                        summary: "Superare 10M ALL con un solo cliente albanese richiede iscrizione IVA e aumenta il rischio di riclassificazione.",
+                        actions: [
+                            "Presenta le liquidazioni IVA mensili e recupera i crediti ammessi.",
+                            "Documenta tempistiche, deliverable e strumenti di tua proprietà.",
+                            "Assicurati che il cliente accetti fatture con IVA e paghi puntualmente."
+                        ]
+                    },
+                    localPortfolio: {
+                        title: "Mini agenzia freelance",
+                        summary: "Più clienti domestici oltre 10M ALL richiedono contabilità professionale e controllo dell'utile.",
+                        actions: [
+                            "Definisci politiche di incasso per gestire IVA a debito e a credito.",
+                            "Prevedi l'utile netto per valutare un possibile ritorno dell'aliquota 15%.",
+                            "Implementa un archivio digitale per contratti e report di lavoro."
+                        ]
+                    },
+                    balanced: {
+                        title: "Portafoglio maturo con IVA",
+                        summary: "Fatturato 10–14M ALL misto richiede coordinamento tra fatture IVA e servizi esportati.",
+                        actions: [
+                            "Dividi i registri vendite tra operazioni imponibili e a zero.",
+                            "Controlla le ritenute estere e applica eventuali convenzioni.",
+                            "Pianifica il cash flow per IVA mensile e contributi."
+                        ]
+                    },
+                    global: {
+                        title: "Esportatore avanzato",
+                        summary: "Fatturato 10–14M ALL dall'estero. Le vendite sono a IVA zero ma reportistica e imposta sugli utili devono essere impeccabili.",
+                        actions: [
+                            "Dichiara gli export a IVA 0% e recupera l'IVA sugli acquisti locali ammessi.",
+                            "Sostieni l'utile netto con spese documentate in modo rigoroso.",
+                            "Mantieni un calendario fiscale per acconti e adempimenti transfrontalieri."
+                        ]
+                    }
+                },
+                above14: {
+                    singleLocal: {
+                        title: "Contratto domestico con tassazione piena",
+                        summary: "Oltre 14M ALL con un solo cliente attiva l'aliquota 23% e probabili verifiche sul rapporto di lavoro.",
+                        actions: [
+                            "Versa puntualmente acconti trimestrali di imposta sugli utili e IVA.",
+                            "Richiedi consulenza professionale sulla struttura contrattuale per evitare riclassificazioni.",
+                            "Diversifica le entrate per ridurre il rischio operativo."
+                        ]
+                    },
+                    localPortfolio: {
+                        title: "Freelancer domestico ad alto volume",
+                        summary: "Un ampio portafoglio albanese sopra 14M ALL necessita di sistemi contabili completi e controllo dei costi.",
+                        actions: [
+                            "Predisponi budget mensili per monitorare il margine post imposte.",
+                            "Aggiorna i contratti con clausole IVA e penali per ritardi.",
+                            "Valuta se aprire una società può offrire vantaggi fiscali."
+                        ]
+                    },
+                    balanced: {
+                        title: "Portafoglio internazionale maturo",
+                        summary: "Oltre 14M ALL tra clienti locali ed esteri richiede strategia fiscale integrata e gestione delle valute.",
+                        actions: [
+                            "Produci report separati per ricavi export e domestici.",
+                            "Ottimizza le spese deducibili per ridurre la base imponibile al 23%.",
+                            "Collabora con un commercialista abilitato per la chiusura annuale."
+                        ]
+                    },
+                    global: {
+                        title: "Esportatore premium",
+                        summary: "Fatturato oltre 14M ALL prevalentemente estero impone attenzione alle convenzioni contro la doppia imposizione e al rischio cambio.",
+                        actions: [
+                            "Verifica eventuali ritenute nei paesi dei clienti e richiedi i crediti d'imposta.",
+                            "Ottimizza le spese in valuta per proteggere l'utile netto.",
+                            "Pianifica il cash flow per acconti e contributi più elevati."
+                        ]
+                    }
+                }
+            }
+        },
+        influencerTitle: "Calcolatore Obblighi (Influencer)",
+        influencerWarning: "NOTA PER INFLUENCER:",
+        influencerWarningText: "Il tuo trattamento fiscale è identico a quello di un **Libero Professionista**. La differenza principale sono i pagamenti in natura (barter). Si raccomanda di utilizzare il metodo delle **spese forfettarie (30%)** a causa della complessità nella valutazione dei prodotti o servizi ricevuti come pagamento.",
+        infoTitle: "Come funziona il Calcolatore?",
+        infoIntro: "Questo strumento ti aiuta a capire il sistema fiscale albanese, sia come dipendente, libero professionista o influencer. Di seguito una semplice spiegazione dei termini chiave.",
+        infoGrossNetTitle: "Stipendio Lordo vs. Stipendio Netto (Per Dipendenti)",
+        infoGrossNetText: "Lo <strong>Stipendio Lordo</strong> è l'importo totale concordato con il datore di lavoro prima di qualsiasi detrazione. Lo <strong>Stipendio Netto</strong> (o 'in tasca') è l'importo che ricevi sul tuo conto bancario dopo che sono stati trattenuti contributi e tasse.",
+        infoContributionsTitle: "Contributi Sociali e Sanitari",
+        infoContributionsText: "Questi sono pagamenti obbligatori per finanziare la tua pensione e l'assistenza sanitaria pubblica. Come dipendente, paghi l'<strong>11.2%</strong> del tuo stipendio (fino al massimale imponibile di 176,416 ALL). Il tuo datore di lavoro paga un ulteriore <strong>16.7%</strong> in aggiunta al tuo stipendio lordo. Questo è il motivo per cui il <strong>Costo Totale del Datore di Lavoro</strong> è superiore al tuo stipendio lordo.",
+        infoTapTitle: "Imposta sul Reddito delle Persone Fisiche (TAP)",
+        infoTapText: "Questa è l'imposta progressiva sul tuo stipendio. Per il 2024, il reddito inferiore a 40,000 ALL/mese non è tassato. La porzione di stipendio da 30,000 ALL a 200,000 ALL è tassata al <strong>13%</strong>, e qualsiasi importo superiore a 200,000 ALL è tassato al <strong>23%</strong>. Si prevede che questo cambi nel 2025.",
+        infoFreelancerTitle: "Liberi Professionisti & Influencer",
+        infoFreelancerText: "Come libero professionista o influencer (persona fisica con NIPT), sei responsabile del pagamento dei tuoi contributi e tasse. Paghi entrambe le parti dei contributi (<strong>27.9%</strong> del salario minimo, o più). L'imposta sul profitto netto annuale è attualmente in un periodo di transizione legale (vedi avviso sul calcolatore).",
+        faqTitle: "Domande Frequenti (FAQ)",
+        faq1Title: "Quanti giorni di ferie annuali pagate mi spettano?",
+        faq1Text: "Secondo l'ultima modifica al Codice del Lavoro (Agosto 2024), ogni dipendente ha diritto a un minimo di **22 giorni lavorativi** di ferie annuali pagate (in precedenza erano 4 settimane di calendario).",
+        faq2Title: "Cos'è la base contributiva massima?",
+        faq2Text: "È il limite superiore dello stipendio su cui vengono calcolati i contributi. Per il 2024, questo importo è **176,416 ALL**. Se il tuo stipendio lordo è 200,000 ALL, pagherai i contributi solo su 176,416 ALL. L'Imposta sul Reddito (TAP), tuttavia, è calcolata sull'intero importo lordo (200,000 ALL).",
+        faq3Title: "Cosa sta succedendo con la tassa per i liberi professionisti/influencer?",
+        faq3Text: "Nel giugno 2024, la Corte Costituzionale ha abrogato l'aliquota fiscale del 15% sull'utile netto (per redditi 0-14 milioni ALL/anno). L'aliquota del 23% per profitti superiori a 14 milioni ALL rimane in vigore. Attualmente c'è un vuoto legislativo e si attende un nuovo schema dal governo per il 2025. Questo calcolatore assume un'imposta dello 0% per la prima fascia fino all'approvazione della nuova legge.",
+        faq4Title: "Devo registrarmi per l'IVA (TVSH) come libero professionista/influencer?",
+        faq4Text: "Devi registrarti ai fini IVA solo se il tuo fatturato annuo supera i **10,000,000 ALL**.",
+        faq5Title: "Devo fatturare ai clienti stranieri?",
+        faq5Text: "Sì. Tutti i redditi, sia da clienti locali che stranieri, devono essere dichiarati e fiscalizzati. Fanno parte del tuo fatturato annuo e sono tassabili in Albania.",
+        faq6Title: "Come vengono tassati i pagamenti in natura (barter) per gli influencer?",
+        faq6Text: "I pagamenti in natura (es. prodotti, servizi, viaggi) sono considerati **reddito imponibile**. Il loro valore di mercato deve essere aggiunto al tuo fatturato lordo annuo e tassato come reddito normale. A causa della difficoltà di valutazione, consulta un commercialista. L'utilizzo delle spese forfettarie (30%) può semplificare il calcolo.",
+        newsTitle: "Aggiornamenti fiscali ufficiali",
+        newsSubtitle: "Rimani aggiornato con gli ultimi annunci degli enti fiscali albanesi.",
+        newsLoading: "Caricamento degli aggiornamenti ufficiali...",
+        newsError: "Impossibile recuperare gli aggiornamenti. Riprova tra poco.",
+        newsRetry: "Riprova",
+        newsEmpty: "Al momento non ci sono nuovi aggiornamenti. Controlla più tardi.",
+        newsSourceLabel: "Fonte",
+        newsPublished: "Pubblicato",
+        newsReadMore: "Scopri di più",
+        linksTitle: "Risorse Ufficiali e Link Utili",
+        linksDpt: "Direzione Generale delle Tasse (DPT)",
+        linksQkb: "Centro Nazionale delle Imprese (QKB)",
+        linksKodiPunes: "Codice del Lavoro (Testo completo)",
+        linksSigurime: "Istituto delle Assicurazioni Sociali (ISSH)",
+        footerCreatedBy: "Creato da Kejsan Coku",
+        footerCopyright: "© 2025. I calcoli possono contenere imprecisioni o non riflettere gli ultimi aggiornamenti normativi. Confrontati con un consulente fiscale o legale prima di prendere decisioni finanziarie.",
+    }
+};
