@@ -115,6 +115,7 @@ public/build/
 # Vite build output
 dist
 dist-ssr
+.vite
 
 # FuseBox cache
 .fusebox/
