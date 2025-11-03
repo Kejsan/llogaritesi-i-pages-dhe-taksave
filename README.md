@@ -2,6 +2,8 @@
 
 Ky mjet ju ndihmon të kuptoni sistemin e taksave në Shqipëri, qoftë si punëmarrës, profesionist i lirë apo influencer.
 
+> ℹ️  Pas klonimit të projektit, ekzekutoni `npm install` për të rikthyer varësitë lokale, sepse dosja `node_modules/` përjashtohet nga kontrolli i burimit.
+
 ## Zhvillimi lokal
 
 1. Sigurohuni që keni [Node.js](https://nodejs.org/) të instaluar.
