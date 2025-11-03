@@ -13,6 +13,8 @@ Ky mjet ju ndihmon të kuptoni sistemin e taksave në Shqipëri, qoftë si punë
 
 ## Ndërtimi për prodhim
 
-Ekzekutoni `npm run build` për të gjeneruar versionin prodhues në dosjen `dist/`. Shërbejeni ose publikojeni këtë direktori (jo rrënjën e repos) në hostin tuaj, në mënyrë që `<script>` në `dist/index.html` të referojë asetet e bundluara (`./assets/index-*.js` dhe `./assets/index-*.css`).
+1. Ekzekutoni `npm run build` për të gjeneruar versionin prodhues në dosjen `dist/`.
+2. Kryeni një kontroll lokal të paketimit me `npm run preview` për të shërbyer në mënyrë lokale përmbajtjen e gjeneruar dhe për t'u siguruar që `<script>` në `dist/index.html` referon asetet e bundluara (`./assets/index-*.js` dhe `./assets/index-*.css`).
+3. Shërbejeni ose publikojeni **vetëm** përmbajtjen e `dist/` (jo rrënjën e repos) në hostin tuaj.
 
-Nëse përdorni një pipeline publikimi automatike, sigurohuni që ajo të marrë përmbajtjen e `dist/` pas komandës `npm run build`. Përmes ngarkimit manual, kopjoni vetëm skedarët e `dist/` tek hosti i zgjedhur.
+Nëse përdorni një pipeline publikimi automatike (p.sh. GitHub Pages), sigurohuni që ajo të ekzekutojë `npm run build` dhe të publikojë artefaktet e dosjes `dist/`. Përmes ngarkimit manual, kopjoni vetëm skedarët e `dist/` tek hosti i zgjedhur pas verifikimit lokal me `npm run preview`.
