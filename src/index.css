@@ -13,14 +13,74 @@
 
 body {
     font-family: 'Inter', sans-serif;
-    background-color: #f3f4f6; /* Tailwind 'gray-100' */
     color: var(--brand-navy);
+    background: radial-gradient(circle at 15% 15%, rgba(251, 97, 99, 0.12), transparent 45%),
+                radial-gradient(circle at 85% 10%, rgba(84, 160, 155, 0.18), transparent 50%),
+                linear-gradient(135deg, rgba(0, 0, 128, 0.92) 0%, rgba(84, 160, 155, 0.2) 60%, rgba(255, 255, 255, 0.95) 100%);
+    min-height: 100vh;
+}
+
+.page-shell {
+    position: relative;
+}
+
+.page-shell::before,
+.page-shell::after {
+    content: '';
+    position: fixed;
+    width: 360px;
+    height: 360px;
+    border-radius: 40px;
+    filter: blur(120px);
+    opacity: 0.28;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.page-shell::before {
+    background: #54a09b;
+    top: 12vh;
+    left: 6vw;
+}
+
+.page-shell::after {
+    background: #fb6163;
+    bottom: 8vh;
+    right: 10vw;
 }
 
 .glassmorphism {
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.floating-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.88);
+  border-radius: 24px;
+  box-shadow: 0 24px 45px rgba(0, 0, 0, 0.12);
+  border: 1px solid rgba(0, 0, 128, 0.08);
+  overflow: visible;
+  isolation: isolate;
+}
+
+.floating-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(84, 160, 155, 0.18), rgba(0, 0, 128, 0.12));
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.floating-card:hover::before {
+  opacity: 1;
+}
+
+.floating-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 28px 50px rgba(0, 0, 0, 0.18);
 }
 
 .btn-3d {
@@ -43,27 +103,44 @@ body {
   box-shadow: 0 0 0 3px rgba(84, 160, 155, 0.3);
 }
 
-.group:hover > div:first-child {
+.flip-card {
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s ease;
+}
+
+.flip-card:hover {
   transform: rotateY(180deg);
 }
 
-.group:hover > div:last-child {
-  transform: rotateY(0deg);
+.flip-card-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.flip-card-back {
+  transform: rotateY(180deg);
 }
 
 /* Stili për scrollbar-in */
 ::-webkit-scrollbar {
-    width: 8px;
+    width: 10px;
+    height: 10px;
 }
 ::-webkit-scrollbar-track {
-    background: #f1f1f1;
+    background: rgba(255, 255, 255, 0.4);
 }
 ::-webkit-scrollbar-thumb {
-    background: #54a09b; /* brand-cyan */
-    border-radius: 10px;
+    background: linear-gradient(180deg, #000080 0%, #54a09b 100%);
+    border-radius: 12px;
 }
 ::-webkit-scrollbar-thumb:hover {
-    background: #4a8c87;
+    background: linear-gradient(180deg, #fb6163 0%, #000080 100%);
 }
 
 /* Bën që footeri të qëndrojë poshtë */

@@ -88,9 +88,9 @@ export const FreelancerTaxGuide = ({ t }) => {
     );
 
     return (
-        <div className="bg-white p-6 rounded-xl shadow-lg">
+        <div className="space-y-8">
             <SectionTitle icon={IconSettings} title={guide.title} />
-            <p className="text-gray-600 mt-2">{guide.intro}</p>
+            <p className="mt-2 text-brand-navy/70">{guide.intro}</p>
 
             <div className="mt-6 space-y-6">
                 <div>
@@ -134,74 +134,77 @@ export const FreelancerTaxGuide = ({ t }) => {
                         </div>
                     </div>
                 </div>
-
-                <div className="grid gap-6 lg:grid-cols-5">
-                    <div className="lg:col-span-3 space-y-4">
-                        <div className="hidden lg:block rounded-2xl border border-brand-cyan/20 bg-gradient-to-br from-brand-white to-brand-cyan/5 p-6 shadow-inner">
-                            {narrativeContent}
-                        </div>
-
-                        <details className="lg:hidden rounded-xl border border-gray-200 bg-white shadow-sm group">
-                            <summary className="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-semibold text-brand-navy [&::-webkit-details-marker]:hidden">
-                                <span>{guide.mobileNarrativeSummary}</span>
-                                <span className="transition-transform group-open:rotate-180">
-                                    <IconChevronDown />
-                                </span>
-                            </summary>
-                            <div className="border-t border-gray-100 px-4 py-4 text-sm text-gray-700">
+                <div className="space-y-6">
+                    <div className="grid gap-6 lg:grid-cols-[1.35fr_minmax(0,1fr)] lg:items-start">
+                        <div className="space-y-4">
+                            <div className="hidden lg:block rounded-2xl border border-brand-cyan/35 bg-gradient-to-br from-brand-white to-brand-cyan/15 p-6 shadow-inner">
                                 {narrativeContent}
                             </div>
-                        </details>
-                    </div>
 
-                    <div className="lg:col-span-2 space-y-4">
-                        {warnings.length > 0 && (
-                            <div className="space-y-3">
-                                <h4 className="text-sm font-semibold uppercase tracking-wide text-gray-500">{guide.warningsHeading}</h4>
-                                {warnings.map((warning, index) => (
+                            <details className="group lg:hidden rounded-2xl border border-brand-cyan/35 bg-white/85 shadow-sm backdrop-blur">
+                                <summary className="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-semibold text-brand-navy [&::-webkit-details-marker]:hidden">
+                                    <span>{guide.mobileNarrativeSummary}</span>
+                                    <span className="transition-transform group-open:rotate-180">
+                                        <IconChevronDown />
+                                    </span>
+                                </summary>
+                                <div className="border-t border-gray-100 px-4 py-4 text-sm text-gray-700">
+                                    {narrativeContent}
+                                </div>
+                            </details>
+                        </div>
+
+                        <div className="space-y-3">
+                            <h4 className="text-sm font-semibold uppercase tracking-wide text-gray-500">{guide.warningsHeading}</h4>
+                            {warnings.length > 0 ? (
+                                warnings.map((warning, index) => (
                                     <InfoAlert key={`${warning.title}-${index}`} title={warning.title} type={warning.type}>
                                         {warning.body}
                                     </InfoAlert>
-                                ))}
-                            </div>
-                        )}
+                                ))
+                            ) : (
+                                <div className="rounded-2xl border border-brand-cyan/25 bg-brand-cyan/10 p-4 text-sm text-brand-navy/80">
+                                    {guide.noWarningsFallback || 'Mbani dokumentet bazë të përditësuara për të ruajtur pajtueshmërinë.'}
+                                </div>
+                            )}
+                        </div>
+                    </div>
 
-                        <div className="rounded-xl border border-gray-200 overflow-hidden bg-white">
-                            <div className="bg-brand-navy px-4 py-3 text-sm font-semibold text-white">{guide.table.heading}</div>
-                            <div className="overflow-x-auto">
-                                <table className="min-w-full divide-y divide-gray-200 text-sm">
-                                    <thead className="bg-gray-50">
-                                        <tr>
-                                            <th scope="col" className="px-4 py-3 text-left font-semibold text-gray-700">{guide.table.obligation}</th>
-                                            <th scope="col" className="px-4 py-3 text-left font-semibold text-gray-700">{guide.table.status}</th>
-                                            <th scope="col" className="px-4 py-3 text-left font-semibold text-gray-700">{guide.table.notes}</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody className="divide-y divide-gray-100">
-                                        {obligationsOrder.map((obligationId) => {
-                                            const label = guide.obligations?.[obligationId]?.label || obligationId;
-                                            const status = determineStatus(obligationId);
-                                            const note = buildNote(obligationId);
-                                            const statusLabel = guide.statuses?.[status] || status;
-                                            const statusDescription = guide.statusDescriptions?.[status] || '';
-                                            return (
-                                                <tr key={obligationId} className="align-top">
-                                                    <td className="px-4 py-3 font-medium text-gray-800">{label}</td>
-                                                    <td className="px-4 py-3">
-                                                        <span
-                                                            className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold ${statusStyles[status] || ''}`}
-                                                            title={statusDescription}
-                                                        >
-                                                            {statusLabel}
-                                                        </span>
-                                                    </td>
-                                                    <td className="px-4 py-3 text-gray-600">{note}</td>
-                                                </tr>
-                                            );
-                                        })}
-                                    </tbody>
-                                </table>
-                            </div>
+                    <div className="rounded-2xl border border-brand-cyan/30 overflow-hidden bg-white/85 shadow-xl backdrop-blur">
+                        <div className="bg-brand-navy px-4 py-3 text-base font-semibold text-white">{guide.table.heading}</div>
+                        <div className="overflow-x-auto">
+                            <table className="min-w-full divide-y divide-brand-navy/10 text-sm">
+                                <thead className="bg-brand-cyan/10 text-brand-navy">
+                                    <tr>
+                                        <th scope="col" className="px-4 py-3 text-left font-semibold">{guide.table.obligation}</th>
+                                        <th scope="col" className="px-4 py-3 text-left font-semibold">{guide.table.status}</th>
+                                        <th scope="col" className="px-4 py-3 text-left font-semibold">{guide.table.notes}</th>
+                                    </tr>
+                                </thead>
+                                <tbody className="divide-y divide-gray-100">
+                                    {obligationsOrder.map((obligationId) => {
+                                        const label = guide.obligations?.[obligationId]?.label || obligationId;
+                                        const status = determineStatus(obligationId);
+                                        const note = buildNote(obligationId);
+                                        const statusLabel = guide.statuses?.[status] || status;
+                                        const statusDescription = guide.statusDescriptions?.[status] || '';
+                                        return (
+                                            <tr key={obligationId} className="align-top">
+                                                <td className="px-4 py-4 font-semibold text-gray-800">{label}</td>
+                                                <td className="px-4 py-4">
+                                                    <span
+                                                        className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold ${statusStyles[status] || ''}`}
+                                                        title={statusDescription}
+                                                    >
+                                                        {statusLabel}
+                                                    </span>
+                                                </td>
+                                                <td className="px-4 py-4 text-gray-600 leading-relaxed">{note}</td>
+                                            </tr>
+                                        );
+                                    })}
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>

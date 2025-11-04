@@ -3,27 +3,43 @@ import { formatCurrency } from '../utils';
 import { IconInfo, IconAlertTriangle } from './Icons';
 
 export const ResultCard = ({ title, value, currency, rates, isNet = false }) => (
-    <div className="[transform-style:preserve-3d] transition-transform duration-500 [perspective:1000px] w-full h-24 group">
-        <div className="absolute w-full h-full [backface-visibility:hidden] rounded-xl shadow-lg bg-gradient-to-br from-brand-navy to-blue-900 text-white p-5 flex flex-col justify-between">
-            <div className="text-sm font-medium opacity-90">{title}</div>
-            <div className="text-3xl font-bold mt-1 text-right">
-                {formatCurrency(value, currency, rates)}
+    <div className="[perspective:1400px] h-44 group relative">
+        <div className="flip-card h-full w-full">
+            <div className="flip-card-face bg-gradient-to-br from-brand-navy to-[#02027a] text-white p-6 shadow-xl">
+                <div className="text-sm uppercase tracking-wide text-white/70">{title}</div>
+                <div className="mt-3 text-right font-black leading-tight tracking-tight text-white text-[clamp(1.9rem,2.1vw,2.7rem)] drop-shadow-sm">
+                    {formatCurrency(value, currency, rates)}
+                </div>
+                <div className="flex justify-between items-center text-xs text-white/70">
+                    <span className="tracking-wide">{isNet ? 'after contributions' : 'before deductions'}</span>
+                    <span className="inline-flex items-center gap-1 rounded-full bg-white/20 px-3 py-1 font-semibold uppercase">
+                        Flip me
+                    </span>
+                </div>
             </div>
-        </div>
-        <div className="absolute w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] rounded-xl shadow-lg bg-gradient-to-br from-brand-cyan to-teal-500 text-white p-5 flex flex-col justify-between items-center">
-            <p className="text-lg font-semibold">{isNet ? 'Net Income' : 'Gross Income'}</p>
-            <p className="text-2xl">Flip for details</p>
+            <div className="flip-card-face flip-card-back bg-gradient-to-br from-brand-cyan to-brand-red text-white p-6 shadow-xl">
+                <p className="text-lg font-semibold">
+                    {isNet ? 'Shuma që merrni në dorë pas TAP' : 'Totali i llogaritur nga paga bruto'}
+                </p>
+                <p className="text-sm text-white/85 leading-relaxed">
+                    Kur kaloni mbi sekcionet e mëposhtme, vlerat rifreskohen automatikisht sipas inputit të përzgjedhur.
+                </p>
+                <div className="text-xs uppercase tracking-wide text-white/70">Përditësuar në kohë reale</div>
+            </div>
         </div>
     </div>
 );
 
 export const SectionTitle = ({ icon: Icon, title }) => (
-    <h2 className="text-3xl font-bold text-brand-navy mb-8 flex items-center">
-        <div className="p-2 bg-brand-cyan/10 rounded-lg mr-4">
-            <Icon className="w-8 h-8 text-brand-cyan" />
+    <div className="flex items-center gap-4 mb-8">
+        <div className="relative">
+            <div className="absolute inset-0 blur-xl bg-brand-cyan/40 rounded-full" aria-hidden="true"></div>
+            <div className="relative flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-cyan to-brand-navy text-white shadow-lg shadow-brand-cyan/40">
+                <Icon className="h-7 w-7" />
+            </div>
         </div>
-        {title}
-    </h2>
+        <h2 className="text-3xl font-bold text-brand-navy drop-shadow-sm">{title}</h2>
+    </div>
 );
 
 export const InfoAlert = ({ title, children, type = 'info' }) => {
@@ -49,7 +65,8 @@ export const InfoAlert = ({ title, children, type = 'info' }) => {
     }[type];
 
     return (
-        <div className={`p-4 mb-6 rounded-xl border-l-4 ${colors.border} ${colors.bg}`}>
+        <div className={`p-5 mb-6 rounded-2xl border ${colors.border} ${colors.bg} shadow-inner`}
+            role={type === 'warning' || type === 'danger' ? 'alert' : undefined}>
             <div className="flex">
                 <div className="flex-shrink-0">
                     <colors.IconComp className={`w-5 h-5 ${colors.icon}`} />
@@ -87,7 +104,7 @@ export const InputGroup = ({ label, value, onChange, placeholder, currency, clas
 
 export const DetailRow = ({ label, value, currency, rates, isConstant = false, isHeader = false, isTotal = false }) => (
     <div className={`flex justify-between items-center py-2 ${isTotal ? 'text-base' : 'text-sm'}`}>
-        <span className={`${isConstant ? 'text-gray-500' : isHeader ? 'font-medium text-brand-navy' : 'text-gray-700'}`}>
+        <span className={`${isConstant ? 'text-gray-500' : isHeader ? 'font-semibold text-brand-navy' : 'text-gray-700'}`}>
             {label}
         </span>
         <span className={`font-bold ${isConstant ? 'text-gray-500' : isTotal ? 'text-brand-navy text-lg' : 'text-brand-cyan'}`}>
