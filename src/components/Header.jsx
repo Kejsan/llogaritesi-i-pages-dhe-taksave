@@ -120,9 +120,9 @@ export const Header = ({ lang, setLang, currency, setCurrency, t }) => {
     }, []);
 
     return (
-        <header className={`sticky top-0 z-30 transition-shadow ${isScrolled ? 'shadow-2xl shadow-brand-navy/20' : ''}`}>
-            <div className="relative overflow-hidden bg-gradient-to-br from-brand-navy via-[#03035f] to-brand-cyan/40">
-                <div className="absolute inset-0 opacity-40 mix-blend-screen" style={{ backgroundImage: 'radial-gradient(circle at 20% 20%, rgba(251,97,99,0.35), transparent 55%)' }} aria-hidden="true"></div>
+        <header className={`sticky top-0 z-40 transition-shadow ${isScrolled ? 'shadow-2xl shadow-brand-navy/20' : ''}`}>
+            <div className="relative overflow-visible bg-gradient-to-br from-brand-navy via-[#03035f] to-brand-cyan/40">
+                <div className="absolute inset-0 opacity-40 mix-blend-screen pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 20% 20%, rgba(251,97,99,0.35), transparent 55%)' }} aria-hidden="true"></div>
                 <div className="max-w-7xl mx-auto flex flex-col gap-4 px-4 py-4 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:py-5">
                     <div className="flex items-center gap-4">
                         <a href="/" className="flex items-center gap-3 rounded-2xl border border-white/20 bg-white/10 px-3 py-2 backdrop-blur transition hover:border-white/40" aria-label="Shko në faqen kryesore">

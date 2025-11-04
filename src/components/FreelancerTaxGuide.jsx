@@ -96,41 +96,45 @@ export const FreelancerTaxGuide = ({ t }) => {
                 <div>
                     <h3 className="text-xs font-semibold uppercase tracking-wide text-gray-500">{guide.filtersTitle}</h3>
                     <div className="mt-4 grid gap-5 md:grid-cols-2">
-                        <div>
+                        <div className="space-y-2">
                             <label htmlFor="freelancer-guide-revenue" className="block text-sm font-semibold text-gray-700">
                                 {guide.revenueLabel}
                             </label>
                             <p className="text-xs text-gray-500 mt-1">{guide.revenueCaption}</p>
-                            <select
-                                id="freelancer-guide-revenue"
-                                value={revenueTier}
-                                onChange={(event) => setRevenueTier(event.target.value)}
-                                className="mt-2 w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-sm font-medium text-gray-800 focus:border-brand-cyan focus:ring-2 focus:ring-brand-cyan"
-                            >
-                                {Object.entries(guide.revenueOptions).map(([value, label]) => (
-                                    <option key={value} value={value}>
-                                        {label}
-                                    </option>
-                                ))}
-                            </select>
+                            <div className="relative">
+                                <select
+                                    id="freelancer-guide-revenue"
+                                    value={revenueTier}
+                                    onChange={(event) => setRevenueTier(event.target.value)}
+                                    className="mt-2 w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-sm font-medium text-gray-800 focus:border-brand-cyan focus:ring-2 focus:ring-brand-cyan relative z-10"
+                                >
+                                    {Object.entries(guide.revenueOptions).map(([value, label]) => (
+                                        <option key={value} value={value}>
+                                            {label}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
                         </div>
-                        <div>
+                        <div className="space-y-2">
                             <label htmlFor="freelancer-guide-client" className="block text-sm font-semibold text-gray-700">
                                 {guide.clientMixLabel}
                             </label>
                             <p className="text-xs text-gray-500 mt-1">{guide.clientMixCaption}</p>
-                            <select
-                                id="freelancer-guide-client"
-                                value={clientMix}
-                                onChange={(event) => setClientMix(event.target.value)}
-                                className="mt-2 w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-sm font-medium text-gray-800 focus:border-brand-cyan focus:ring-2 focus:ring-brand-cyan"
-                            >
-                                {Object.entries(guide.clientMixOptions).map(([value, label]) => (
-                                    <option key={value} value={value}>
-                                        {label}
-                                    </option>
-                                ))}
-                            </select>
+                            <div className="relative">
+                                <select
+                                    id="freelancer-guide-client"
+                                    value={clientMix}
+                                    onChange={(event) => setClientMix(event.target.value)}
+                                    className="mt-2 w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-sm font-medium text-gray-800 focus:border-brand-cyan focus:ring-2 focus:ring-brand-cyan relative z-10"
+                                >
+                                    {Object.entries(guide.clientMixOptions).map(([value, label]) => (
+                                        <option key={value} value={value}>
+                                            {label}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -190,7 +194,7 @@ export const FreelancerTaxGuide = ({ t }) => {
                                         const statusDescription = guide.statusDescriptions?.[status] || '';
                                         return (
                                             <tr key={obligationId} className="align-top">
-                                                <td className="px-4 py-4 font-semibold text-gray-800">{label}</td>
+                                                <td className="px-4 py-4 font-semibold text-gray-800 break-words leading-snug">{label}</td>
                                                 <td className="px-4 py-4">
                                                     <span
                                                         className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold ${statusStyles[status] || ''}`}
@@ -199,7 +203,7 @@ export const FreelancerTaxGuide = ({ t }) => {
                                                         {statusLabel}
                                                     </span>
                                                 </td>
-                                                <td className="px-4 py-4 text-gray-600 leading-relaxed">{note}</td>
+                                                <td className="px-4 py-4 text-gray-600 leading-relaxed break-words">{note}</td>
                                             </tr>
                                         );
                                     })}

@@ -1,34 +1,65 @@
-import React from 'react';
+import React, { useId, useState } from 'react';
 import { formatCurrency } from '../utils';
 import { IconInfo, IconAlertTriangle } from './Icons';
 
-export const ResultCard = ({ title, value, currency, rates, isNet = false }) => (
-    <div className="[perspective:1400px] h-44 group relative">
-        <div className="flip-card h-full w-full">
-            <div className="flip-card-face bg-gradient-to-br from-brand-navy to-[#02027a] text-white p-6 shadow-xl">
-                <div className="text-sm uppercase tracking-wide text-white/70">{title}</div>
-                <div className="mt-3 text-right font-black leading-tight tracking-tight text-white text-[clamp(1.9rem,2.1vw,2.7rem)] drop-shadow-sm">
-                    {formatCurrency(value, currency, rates)}
+export const ResultCard = ({ title, value, currency, rates, isNet = false }) => {
+    const [isFlipped, setIsFlipped] = useState(false);
+    const descriptionId = useId();
+
+    const toggleFlip = () => setIsFlipped((prev) => !prev);
+
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            toggleFlip();
+        }
+    };
+
+    return (
+        <div className="[perspective:1400px] h-48 relative">
+            <div
+                role="button"
+                tabIndex={0}
+                aria-pressed={isFlipped}
+                aria-describedby={descriptionId}
+                onClick={toggleFlip}
+                onKeyDown={handleKeyDown}
+                aria-label={isNet ? 'Karta e rezultatit neto' : 'Karta e rezultatit bruto'}
+                className={`flip-card h-full w-full cursor-pointer focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-cyan focus-visible:ring-opacity-40 ${
+                    isFlipped ? 'is-flipped' : ''
+                }`}
+            >
+                <div className="flip-card-face bg-gradient-to-br from-brand-navy to-[#02027a] text-white p-6 shadow-xl">
+                    <div className="flex h-full flex-col justify-between gap-4">
+                        <div>
+                            <div className="text-sm uppercase tracking-wide text-white/70">{title}</div>
+                            <div className="mt-2 text-right font-black leading-tight tracking-tight text-white text-[clamp(1.65rem,2vw,2.35rem)] drop-shadow-sm">
+                                {formatCurrency(value, currency, rates)}
+                            </div>
+                        </div>
+                        <div className="flex justify-between items-center text-xs text-white/70">
+                            <span className="tracking-wide">{isNet ? 'pas kontributeve' : 'para zbritjeve'}</span>
+                            <span className="inline-flex items-center gap-1 rounded-full bg-white/20 px-3 py-1 font-semibold uppercase">
+                                {isFlipped ? 'Mbyll' : 'Shfaq detaje'}
+                            </span>
+                        </div>
+                    </div>
                 </div>
-                <div className="flex justify-between items-center text-xs text-white/70">
-                    <span className="tracking-wide">{isNet ? 'after contributions' : 'before deductions'}</span>
-                    <span className="inline-flex items-center gap-1 rounded-full bg-white/20 px-3 py-1 font-semibold uppercase">
-                        Flip me
-                    </span>
+                <div className="flip-card-face flip-card-back bg-gradient-to-br from-brand-cyan to-brand-red text-white p-6 shadow-xl">
+                    <div className="flex h-full flex-col justify-between gap-3" id={descriptionId}>
+                        <p className="text-base font-semibold leading-snug">
+                            {isNet ? 'Shuma që merrni në dorë pas TAP' : 'Totali i llogaritur nga paga bruto'}
+                        </p>
+                        <p className="text-sm text-white/85 leading-relaxed">
+                            Kur prekni ose klikoni kartën, shfaqen sqarimet shtesë. Vlerat rifreskohen automatikisht sipas inputit të përzgjedhur.
+                        </p>
+                        <div className="text-xs uppercase tracking-wide text-white/80">Përditësuar në kohë reale</div>
+                    </div>
                 </div>
-            </div>
-            <div className="flip-card-face flip-card-back bg-gradient-to-br from-brand-cyan to-brand-red text-white p-6 shadow-xl">
-                <p className="text-lg font-semibold">
-                    {isNet ? 'Shuma që merrni në dorë pas TAP' : 'Totali i llogaritur nga paga bruto'}
-                </p>
-                <p className="text-sm text-white/85 leading-relaxed">
-                    Kur kaloni mbi sekcionet e mëposhtme, vlerat rifreskohen automatikisht sipas inputit të përzgjedhur.
-                </p>
-                <div className="text-xs uppercase tracking-wide text-white/70">Përditësuar në kohë reale</div>
             </div>
         </div>
-    </div>
-);
+    );
+};
 
 export const SectionTitle = ({ icon: Icon, title }) => (
     <div className="flex items-center gap-4 mb-8">
