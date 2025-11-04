@@ -17,6 +17,28 @@ const App = () => {
     const [language, setLanguage] = useState('sq');
     const [currency, setCurrency] = useState('ALL');
     const [rates, setRates] = useState({ 'ALL': 1, 'EUR': 107.53, 'USD': 102.04 }); // Fallback values
+    const [theme, setTheme] = useState(() => {
+        if (typeof window === 'undefined') {
+            return 'light';
+        }
+
+        const savedTheme = window.localStorage.getItem('theme');
+        let initialTheme;
+
+        if (savedTheme === 'light' || savedTheme === 'dark') {
+            initialTheme = savedTheme;
+        } else {
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            initialTheme = prefersDark ? 'dark' : 'light';
+        }
+
+        document.documentElement.setAttribute('data-theme', initialTheme);
+        if (document.body) {
+            document.body.setAttribute('data-theme', initialTheme);
+        }
+
+        return initialTheme;
+    });
 
     const t = useMemo(() => translations[language], [language]);
 
@@ -48,6 +70,25 @@ const App = () => {
     useEffect(() => {
         document.documentElement.lang = language;
     }, [language]);
+
+    useEffect(() => {
+        if (typeof window === 'undefined') {
+            return;
+        }
+
+        window.localStorage.setItem('theme', theme);
+        document.documentElement.setAttribute('data-theme', theme);
+        document.body.setAttribute('data-theme', theme);
+    }, [theme]);
+
+    const handleThemeChange = useCallback((nextTheme) => {
+        setTheme((current) => {
+            if (nextTheme === 'light' || nextTheme === 'dark') {
+                return nextTheme;
+            }
+            return current === 'light' ? 'dark' : 'light';
+        });
+    }, []);
 
     const activeMeta = useMemo(() => ({
         employee: {
@@ -129,6 +170,8 @@ const App = () => {
                 currency={currency}
                 setCurrency={setCurrency}
                 t={t}
+                theme={theme}
+                setTheme={handleThemeChange}
             />
 
             <section className="bg-white/5 backdrop-blur-sm border border-white/10 shadow-2xl mx-4 mt-6 rounded-3xl">
