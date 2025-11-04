@@ -88,9 +88,9 @@ export const FreelancerTaxGuide = ({ t }) => {
     );
 
     return (
-        <div className="bg-white p-6 rounded-xl shadow-lg">
+        <div className="space-y-8">
             <SectionTitle icon={IconSettings} title={guide.title} />
-            <p className="text-gray-600 mt-2">{guide.intro}</p>
+            <p className="mt-2 text-brand-navy/70">{guide.intro}</p>
 
             <div className="mt-6 space-y-6">
                 <div>
@@ -137,11 +137,11 @@ export const FreelancerTaxGuide = ({ t }) => {
 
                 <div className="grid gap-6 lg:grid-cols-5">
                     <div className="lg:col-span-3 space-y-4">
-                        <div className="hidden lg:block rounded-2xl border border-brand-cyan/20 bg-gradient-to-br from-brand-white to-brand-cyan/5 p-6 shadow-inner">
+                        <div className="hidden lg:block rounded-2xl border border-brand-cyan/30 bg-gradient-to-br from-brand-white to-brand-cyan/15 p-6 shadow-inner">
                             {narrativeContent}
                         </div>
 
-                        <details className="lg:hidden rounded-xl border border-gray-200 bg-white shadow-sm group">
+                        <details className="lg:hidden rounded-xl border border-brand-cyan/30 bg-white/80 shadow-sm backdrop-blur group">
                             <summary className="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-semibold text-brand-navy [&::-webkit-details-marker]:hidden">
                                 <span>{guide.mobileNarrativeSummary}</span>
                                 <span className="transition-transform group-open:rotate-180">
@@ -166,15 +166,15 @@ export const FreelancerTaxGuide = ({ t }) => {
                             </div>
                         )}
 
-                        <div className="rounded-xl border border-gray-200 overflow-hidden bg-white">
+                        <div className="rounded-xl border border-brand-cyan/30 overflow-hidden bg-white/80 backdrop-blur">
                             <div className="bg-brand-navy px-4 py-3 text-sm font-semibold text-white">{guide.table.heading}</div>
                             <div className="overflow-x-auto">
-                                <table className="min-w-full divide-y divide-gray-200 text-sm">
-                                    <thead className="bg-gray-50">
+                                <table className="min-w-full divide-y divide-brand-navy/10 text-sm">
+                                    <thead className="bg-brand-cyan/10 text-brand-navy">
                                         <tr>
-                                            <th scope="col" className="px-4 py-3 text-left font-semibold text-gray-700">{guide.table.obligation}</th>
-                                            <th scope="col" className="px-4 py-3 text-left font-semibold text-gray-700">{guide.table.status}</th>
-                                            <th scope="col" className="px-4 py-3 text-left font-semibold text-gray-700">{guide.table.notes}</th>
+                                            <th scope="col" className="px-4 py-3 text-left font-semibold">{guide.table.obligation}</th>
+                                            <th scope="col" className="px-4 py-3 text-left font-semibold">{guide.table.status}</th>
+                                            <th scope="col" className="px-4 py-3 text-left font-semibold">{guide.table.notes}</th>
                                         </tr>
                                     </thead>
                                     <tbody className="divide-y divide-gray-100">
