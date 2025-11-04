@@ -49,6 +49,45 @@ const App = () => {
         document.documentElement.lang = language;
     }, [language]);
 
+    const activeMeta = useMemo(() => ({
+        employee: {
+            label: t.navEmployee,
+            description: t.employeeTitle,
+        },
+        freelancer: {
+            label: t.navFreelancer,
+            description: t.freelancerTitle,
+        },
+        influencer: {
+            label: t.navInfluencer,
+            description: t.influencerTitle,
+        },
+        'freelancer-guide': {
+            label: t.navFreelancerGuide,
+            description: t.freelancerGuide?.title || t.navFreelancerGuide,
+        },
+        news: {
+            label: t.navNews,
+            description: t.newsTitle,
+        },
+        info: {
+            label: t.navInfo,
+            description: t.infoTitle,
+        },
+        faq: {
+            label: t.navFAQ,
+            description: t.faqTitle,
+        },
+        links: {
+            label: t.navLinks,
+            description: t.linksTitle,
+        },
+        contact: {
+            label: t.navContact,
+            description: t.navContact,
+        },
+    }[activePage] || { label: t.navEmployee, description: t.employeeTitle }), [activePage, t]);
+
     let ActiveComponent;
     switch (activePage) {
         case 'employee':
@@ -83,7 +122,7 @@ const App = () => {
     }
 
     return (
-        <React.Fragment>
+        <div className="page-shell">
             <Header
                 lang={language}
                 setLang={setLanguage}
@@ -91,14 +130,50 @@ const App = () => {
                 setCurrency={setCurrency}
                 t={t}
             />
-            <div className="main-layout max-w-7xl mx-auto w-full flex flex-col lg:flex-row gap-8 py-8 px-4">
+
+            <section className="bg-white/5 backdrop-blur-sm border border-white/10 shadow-2xl mx-4 mt-6 rounded-3xl">
+                <div className="max-w-7xl mx-auto px-6 py-6 lg:py-10 flex flex-col gap-6 lg:flex-row lg:items-center">
+                    <div className="flex-1 space-y-3 text-white">
+                        <p className="text-xs uppercase tracking-[0.4em] text-white/70">{t.navTools}</p>
+                        <h1 className="text-3xl lg:text-4xl font-extrabold drop-shadow-sm">{activeMeta.label}</h1>
+                        <p className="text-white/80 max-w-2xl text-sm lg:text-base leading-relaxed">{activeMeta.description}</p>
+                    </div>
+                    <div className="flex flex-wrap gap-3 justify-start lg:justify-end">
+                        {['employee', 'freelancer', 'influencer', 'freelancer-guide'].map((item) => (
+                            <button
+                                key={item}
+                                type="button"
+                                onClick={() => setActivePage(item)}
+                                className={`rounded-full px-4 py-2 text-sm font-semibold transition-all duration-300 border backdrop-blur-sm ${
+                                    activePage === item
+                                        ? 'bg-brand-white text-brand-navy border-brand-white shadow-lg shadow-brand-white/40'
+                                        : 'bg-white/10 text-white border-white/20 hover:bg-white/20'
+                                }`}
+                            >
+                                {(
+                                    {
+                                        employee: t.navEmployee,
+                                        freelancer: t.navFreelancer,
+                                        influencer: t.navInfluencer,
+                                        'freelancer-guide': t.navFreelancerGuide,
+                                    }[item]
+                                )}
+                            </button>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            <div className="main-layout max-w-7xl mx-auto w-full flex flex-col lg:flex-row gap-10 py-10 px-4 lg:px-6">
                 <Sidebar activePage={activePage} setActivePage={setActivePage} t={t} />
-                <main className="flex-1 min-w-0">
-                    {ActiveComponent}
+                <main className="flex-1 min-w-0 space-y-8">
+                    <div className="floating-card p-6 sm:p-8">
+                        {ActiveComponent}
+                    </div>
                 </main>
             </div>
             <Footer t={t} />
-        </React.Fragment>
+        </div>
     );
 };
 

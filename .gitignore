@@ -103,7 +103,8 @@ dist
 .cache/
 # Add storybook build output directory here
 .storybook
-public
+public/*
+!public/*.svg
 
 # SvelteKit build output
 .svelte-kit
