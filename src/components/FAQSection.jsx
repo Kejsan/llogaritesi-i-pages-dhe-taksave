@@ -11,7 +11,7 @@ const AccordionItem = ({ title, children }) => {
             <button
                 type="button"
                 onClick={() => setIsOpen(!isOpen)}
-                className="flex w-full items-center justify-between text-left text-lg font-semibold text-brand-navy"
+                className="flex w-full items-center justify-between rounded-xl px-1 text-left text-lg font-semibold text-brand-navy focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-cyan focus-visible:ring-opacity-40"
                 aria-expanded={isOpen}
                 aria-controls={panelId}
                 id={buttonId}

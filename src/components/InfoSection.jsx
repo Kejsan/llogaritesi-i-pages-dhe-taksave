@@ -3,11 +3,12 @@ import { SectionTitle } from './Shared';
 import { IconInfo } from './Icons';
 
 const InfoBlock = ({ title, content }) => (
-    <details className="group rounded-2xl border border-brand-navy/10 bg-white/70 transition hover:border-brand-cyan/40">
-        <summary className="flex cursor-pointer items-center justify-between gap-3 px-5 py-4 text-lg font-semibold text-brand-navy">
-            <span>{title}</span>
+    <details className="group rounded-2xl border border-brand-navy/10 bg-white/75 transition focus-within:border-brand-cyan/50 hover:border-brand-cyan/40">
+        <summary className="flex cursor-pointer items-center justify-between gap-3 px-5 py-4 text-lg font-semibold text-brand-navy focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-cyan focus-visible:ring-opacity-40 [&::-webkit-details-marker]:hidden">
+            <span className="leading-snug">{title}</span>
             <span className="rounded-full bg-brand-cyan/15 px-3 py-1 text-xs font-semibold text-brand-cyan transition group-open:bg-brand-cyan group-open:text-white">
-                Hape
+                <span className="group-open:hidden">Hape</span>
+                <span className="hidden group-open:inline">Mbyll</span>
             </span>
         </summary>
         <div className="px-5 pb-5 text-sm leading-relaxed text-brand-navy/80" dangerouslySetInnerHTML={{ __html: content }} />
