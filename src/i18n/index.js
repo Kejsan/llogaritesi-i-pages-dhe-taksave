@@ -73,6 +73,7 @@ export const translations = {
             narrativeHeading: "Çfarë duhet të kesh parasysh",
             actionsHeading: "Hapat që sugjerojmë",
             warningsHeading: "Sinjale për t'u mbajtur mend",
+            noWarningsFallback: "Nuk ka paralajmërime të menjëhershme për këtë konfigurim. Mbani dokumentet dhe evidencat mujore të përditësuara.",
             thresholds: {
                 vat: "10,000,000 ALL",
                 profit: "14,000,000 ALL"
@@ -454,6 +455,7 @@ export const translations = {
             narrativeHeading: "Key considerations",
             actionsHeading: "Suggested actions",
             warningsHeading: "Signals to keep in mind",
+            noWarningsFallback: "No immediate alerts for this setup. Keep your monthly records and compliance documents up to date.",
             thresholds: {
                 vat: "10,000,000 ALL",
                 profit: "14,000,000 ALL"
@@ -835,6 +837,7 @@ export const translations = {
             narrativeHeading: "Cosa considerare",
             actionsHeading: "Azioni consigliate",
             warningsHeading: "Segnali da ricordare",
+            noWarningsFallback: "Nessun avviso immediato per questa configurazione. Mantieni aggiornati registri mensili e documentazione di conformità.",
             thresholds: {
                 vat: "10,000,000 ALL",
                 profit: "14,000,000 ALL"

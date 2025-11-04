@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 const LanguageSelector = ({ lang, setLang }) => {
     const languages = [
@@ -10,6 +10,7 @@ const LanguageSelector = ({ lang, setLang }) => {
         <div className="flex items-center gap-2 rounded-full border border-white/20 bg-white/10 p-1 backdrop-blur">
             {languages.map((l) => (
                 <button
+                    type="button"
                     key={l.code}
                     onClick={() => setLang(l.code)}
                     className={`flex items-center gap-1 rounded-full px-3 py-2 text-xs font-semibold uppercase tracking-wide transition ${
@@ -29,14 +30,41 @@ const LanguageSelector = ({ lang, setLang }) => {
 const CurrencySelector = ({ currency, setCurrency, t }) => {
     const currencies = ['ALL', 'EUR', 'USD'];
     const [open, setOpen] = useState(false);
+    const menuRef = useRef(null);
+
+    useEffect(() => {
+        if (!open) return;
+
+        const handleClickOutside = (event) => {
+            if (menuRef.current && !menuRef.current.contains(event.target)) {
+                setOpen(false);
+            }
+        };
+
+        const handleKeyDown = (event) => {
+            if (event.key === 'Escape') {
+                setOpen(false);
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        document.addEventListener('keydown', handleKeyDown);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+            document.removeEventListener('keydown', handleKeyDown);
+        };
+    }, [open]);
     return (
-        <div className="relative">
+        <div className="relative" ref={menuRef}>
             <label htmlFor="currency" className="sr-only">{t.selectCurrency}</label>
             <button
                 id="currency"
                 type="button"
                 onClick={() => setOpen((prev) => !prev)}
                 className="flex items-center gap-2 rounded-full border border-white/30 bg-white/20 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-white transition hover:bg-white/30"
+                aria-haspopup="listbox"
+                aria-expanded={open}
+                aria-controls="currency-selector-menu"
             >
                 <span>{currency}</span>
                 <svg className={`h-4 w-4 transition ${open ? 'rotate-180' : ''}`} viewBox="0 0 20 20" fill="none">
@@ -44,7 +72,7 @@ const CurrencySelector = ({ currency, setCurrency, t }) => {
                 </svg>
             </button>
             {open && (
-                <div className="absolute right-0 z-30 mt-3 w-40 rounded-2xl border border-white/40 bg-white/95 p-2 shadow-xl">
+                <div className="absolute right-0 z-50 mt-3 w-40 rounded-2xl border border-white/40 bg-white/95 p-2 shadow-xl" id="currency-selector-menu" role="listbox">
                     <ul className="space-y-1 text-sm font-semibold text-brand-navy">
                         {currencies.map((c) => (
                             <li key={c}>

@@ -16,6 +16,7 @@ const SectionToggle = ({ title, isOpen, onToggle }) => (
         type="button"
         onClick={onToggle}
         className="flex w-full items-center justify-between rounded-2xl border border-brand-navy/10 bg-white/60 px-4 py-3 text-sm font-semibold uppercase tracking-wide text-brand-navy transition hover:bg-white/80"
+        aria-expanded={isOpen}
     >
         <span>{title}</span>
         <svg className={`h-4 w-4 transition ${isOpen ? 'rotate-180' : ''}`} viewBox="0 0 20 20" fill="none">
@@ -26,6 +27,7 @@ const SectionToggle = ({ title, isOpen, onToggle }) => (
 
 const NavButton = ({ item, isActive, onClick }) => (
     <button
+        type="button"
         onClick={onClick}
         className={`group relative flex w-full items-center justify-between overflow-hidden rounded-2xl border px-4 py-3 text-left transition-all duration-300 ${
             isActive

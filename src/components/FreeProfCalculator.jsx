@@ -135,6 +135,7 @@ export const FreeProfCalculator = ({ t, currency, rates, isInfluencer = false })
                         <h3 className="text-sm font-semibold uppercase tracking-[0.3em] text-brand-navy/60">{t.expenseMethod}</h3>
                         <div className="mt-3 inline-flex gap-2 rounded-full bg-brand-cyan/10 p-1">
                             <button
+                                type="button"
                                 onClick={() => setExpenseMethod('presumed')}
                                 className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
                                     expenseMethod === 'presumed'
@@ -145,6 +146,7 @@ export const FreeProfCalculator = ({ t, currency, rates, isInfluencer = false })
                                 {t.presumedExpenses}
                             </button>
                             <button
+                                type="button"
                                 onClick={() => setExpenseMethod('actual')}
                                 className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
                                     expenseMethod === 'actual'

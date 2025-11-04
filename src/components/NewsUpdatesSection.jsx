@@ -91,6 +91,7 @@ export const NewsUpdatesSection = ({ t, language }) => {
                         <p className="mt-2 text-sm text-brand-red/80">{error.message}</p>
                     )}
                     <button
+                        type="button"
                         onClick={handleRetry}
                         className="mt-4 inline-flex items-center gap-2 rounded-full bg-brand-navy px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-cyan"
                     >

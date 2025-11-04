@@ -1,21 +1,32 @@
-import React, { useState } from 'react';
+import React, { useId, useState } from 'react';
 import { SectionTitle } from './Shared';
 import { IconHelp, IconChevronDown } from './Icons';
 
 const AccordionItem = ({ title, children }) => {
     const [isOpen, setIsOpen] = useState(false);
+    const buttonId = useId();
+    const panelId = useId();
     return (
         <div className="rounded-2xl border border-brand-navy/10 bg-white/70 p-4 shadow-sm">
             <button
+                type="button"
                 onClick={() => setIsOpen(!isOpen)}
                 className="flex w-full items-center justify-between text-left text-lg font-semibold text-brand-navy"
+                aria-expanded={isOpen}
+                aria-controls={panelId}
+                id={buttonId}
             >
                 <span>{title}</span>
                 <span className={`rounded-full border border-brand-cyan/40 p-2 text-brand-cyan transition ${isOpen ? 'rotate-180 bg-brand-cyan text-white' : ''}`}>
                     <IconChevronDown className="h-4 w-4" />
                 </span>
             </button>
-            <div className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-[400px] mt-3' : 'max-h-0'}`}>
+            <div
+                id={panelId}
+                className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-[400px] mt-3' : 'max-h-0'}`}
+                aria-labelledby={buttonId}
+                role="region"
+            >
                 <div className="text-sm leading-relaxed text-brand-navy/80" dangerouslySetInnerHTML={{ __html: children }} />
             </div>
         </div>

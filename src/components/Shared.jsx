@@ -3,16 +3,16 @@ import { formatCurrency } from '../utils';
 import { IconInfo, IconAlertTriangle } from './Icons';
 
 export const ResultCard = ({ title, value, currency, rates, isNet = false }) => (
-    <div className="[perspective:1400px] h-40 group relative">
+    <div className="[perspective:1400px] h-44 group relative">
         <div className="flip-card h-full w-full">
             <div className="flip-card-face bg-gradient-to-br from-brand-navy to-[#02027a] text-white p-6 shadow-xl">
                 <div className="text-sm uppercase tracking-wide text-white/70">{title}</div>
-                <div className="text-4xl font-black mt-3 text-right drop-shadow-sm">
+                <div className="mt-3 text-right font-black leading-tight tracking-tight text-white text-[clamp(1.9rem,2.1vw,2.7rem)] drop-shadow-sm">
                     {formatCurrency(value, currency, rates)}
                 </div>
-                <div className="flex justify-between items-center text-xs text-white/60">
-                    <span>{isNet ? 'after contributions' : 'before deductions'}</span>
-                    <span className="inline-flex items-center gap-1 rounded-full bg-white/15 px-3 py-1 font-semibold uppercase">
+                <div className="flex justify-between items-center text-xs text-white/70">
+                    <span className="tracking-wide">{isNet ? 'after contributions' : 'before deductions'}</span>
+                    <span className="inline-flex items-center gap-1 rounded-full bg-white/20 px-3 py-1 font-semibold uppercase">
                         Flip me
                     </span>
                 </div>
