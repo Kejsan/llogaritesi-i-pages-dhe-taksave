@@ -309,3 +309,5 @@ export const fetchNewsUpdates = async ({ forceRefresh = false } = {}) => {
     newsCache.promise = request;
     return request;
 };
+
+export { calculateFreelancerTaxes } from "./freelancer";
