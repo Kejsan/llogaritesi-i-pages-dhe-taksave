@@ -2,7 +2,7 @@ import React, { useState, useMemo, useCallback } from 'react';
 import { CORE_CONSTANTS, TAP_BRACKETS_2024 } from '../constants';
 import { formatCurrency } from '../utils';
 import { ResultCard, SectionTitle, InfoAlert, InputGroup, DetailRow } from './Shared';
-import { IconUser, IconAlertTriangle, IconX, IconUsers } from './Icons';
+import { IconUser, IconAlertTriangle, IconX, IconUsers, IconTrendingUp, IconTrendingDown } from './Icons';
 
 // Calculation logic specific to the employee
 const calculateEmployeeTax = (grossMonthlySalary) => {
@@ -149,7 +149,7 @@ export const EmployeeCalculator = ({ t, currency, rates }) => {
     const dailyNet = calculation.netSalary / workingDays;
 
     return (
-        <div className="bg-white p-6 rounded-xl shadow-lg">
+        <div className="glassmorphism p-6 rounded-xl shadow-lg">
             <SectionTitle icon={IconUser} title={t.employeeTitle} />
 
             {showAlert && (
@@ -164,41 +164,14 @@ export const EmployeeCalculator = ({ t, currency, rates }) => {
                 </div>
             )}
 
-            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-4">
-                <span className="text-sm font-semibold text-gray-700">{t.salaryInputMode}</span>
-                <div className="inline-flex bg-gray-100 p-1 rounded-lg">
-                    <button
-                        type="button"
-                        onClick={() => handleModeChange('gross')}
-                        className={`px-3 py-1.5 text-sm font-semibold rounded-md transition-colors ${
-                            inputMode === 'gross'
-                                ? 'bg-brand-cyan text-white shadow'
-                                : 'text-gray-600 hover:text-brand-navy'
-                        }`}
-                    >
-                        {t.modeGrossToNet}
-                    </button>
-                    <button
-                        type="button"
-                        onClick={() => handleModeChange('net')}
-                        className={`ml-1 px-3 py-1.5 text-sm font-semibold rounded-md transition-colors ${
-                            inputMode === 'net'
-                                ? 'bg-brand-cyan text-white shadow'
-                                : 'text-gray-600 hover:text-brand-navy'
-                        }`}
-                    >
-                        {t.modeNetToGross}
-                    </button>
-                </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                 <InputGroup
                     label={inputMode === 'gross' ? t.grossMonthlySalary : t.netMonthlySalary}
                     value={displayValue}
                     onChange={handleSalaryChange}
                     placeholder="P.sh. 74010"
                     currency={currency}
+                    className="input-focus-effect"
                 />
                 <div className="mb-5">
                     <label className="block text-sm font-medium text-gray-700 mb-1.5">
@@ -210,58 +183,85 @@ export const EmployeeCalculator = ({ t, currency, rates }) => {
                         max="31"
                         value={workingDays}
                         onChange={handleDaysChange}
-                        className="w-full pl-4 py-3 border border-gray-300 rounded-lg focus:ring-brand-cyan focus:border-brand-cyan text-xl"
+                        className="w-full pl-4 py-3 border border-gray-300 rounded-lg focus:ring-brand-cyan focus:border-brand-cyan text-xl input-focus-effect"
                     />
                 </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 my-8">
+            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-center gap-4 mb-8">
+                <div className="inline-flex bg-gray-100 p-1 rounded-lg btn-3d">
+                    <button
+                        type="button"
+                        onClick={() => handleModeChange('gross')}
+                        className={`px-4 py-2 text-sm font-semibold rounded-md transition-colors flex items-center ${
+                            inputMode === 'gross'
+                                ? 'bg-brand-cyan text-white shadow'
+                                : 'text-gray-600 hover:text-brand-navy'
+                        }`}
+                    >
+                        <IconTrendingDown className="w-5 h-5 mr-2" />
+                        {t.modeGrossToNet}
+                    </button>
+                    <button
+                        type="button"
+                        onClick={() => handleModeChange('net')}
+                        className={`ml-1 px-4 py-2 text-sm font-semibold rounded-md transition-colors flex items-center ${
+                            inputMode === 'net'
+                                ? 'bg-brand-cyan text-white shadow'
+                                : 'text-gray-600 hover:text-brand-navy'
+                        }`}
+                    >
+                        <IconTrendingUp className="w-5 h-5 mr-2" />
+                        {t.modeNetToGross}
+                    </button>
+                </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 my-8 [perspective:1000px]">
                 <ResultCard title={t.grossSalary} value={calculation.grossSalary} currency={currency} rates={rates} />
                 <ResultCard title={t.netSalary} value={calculation.netSalary} currency={currency} rates={rates} isNet={true} />
                 <ResultCard title={t.employerTotalCost} value={calculation.totalEmployerCost} currency={currency} rates={rates} />
             </div>
 
-            <h3 className="text-xl font-bold text-brand-navy mb-4">{t.deductionBreakdown}</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="p-5 border rounded-xl shadow-sm bg-gray-50/50">
-                    <h4 className="font-semibold text-lg text-gray-800 flex items-center mb-3">
-                        <IconUser className="w-5 h-5 mr-2 text-brand-cyan" />
-                        Punonjësi
-                    </h4>
-                    <DetailRow label={t.employeeContributions} value={calculation.totalEmployeeContributions} currency={currency} rates={rates} isHeader={true}/>
-                    <DetailRow label={t.employeeTax} value={calculation.taxAmount} currency={currency} rates={rates} isHeader={true}/>
-                    <div className="border-t pt-3 mt-3">
-                        <DetailRow label={t.employeeDeductions} value={calculation.totalEmployeeDeductions} currency={currency} rates={rates} isTotal={true}/>
+            <div className="bg-white/50 p-6 rounded-xl mt-8">
+                <h3 className="text-xl font-bold text-brand-navy mb-4">{t.deductionBreakdown}</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="p-5 border rounded-xl shadow-sm bg-gray-50/50">
+                        <h4 className="font-semibold text-lg text-gray-800 flex items-center mb-3">
+                            <IconUser className="w-5 h-5 mr-2 text-brand-cyan" />
+                            Punonjësi
+                        </h4>
+                        <DetailRow label={t.employeeContributions} value={calculation.totalEmployeeContributions} currency={currency} rates={rates} isHeader={true}/>
+                        <DetailRow label={t.employeeTax} value={calculation.taxAmount} currency={currency} rates={rates} isHeader={true}/>
+                        <div className="border-t pt-3 mt-3">
+                            <DetailRow label={t.employeeDeductions} value={calculation.totalEmployeeDeductions} currency={currency} rates={rates} isTotal={true}/>
+                        </div>
                     </div>
-                </div>
 
-                <div className="p-5 border rounded-xl shadow-sm bg-gray-50/50">
-                    <h4 className="font-semibold text-lg text-gray-800 flex items-center mb-3">
-                        <IconUsers className="w-5 h-5 mr-2 text-brand-cyan" />
-                        Punëdhënësi
-                    </h4>
-                    <DetailRow label={t.employerContributionsLabel} value={calculation.totalEmployerContributions} currency={currency} rates={rates} isHeader={true}/>
-                    <div className="pl-4 text-sm space-y-1 mt-2">
-                        <DetailRow label={t.employerSocial} value={calculation.employerSocial} currency={currency} rates={rates} />
-                        <DetailRow label={t.employerHealth} value={calculation.employerHealth} currency={currency} rates={rates} />
+                    <div className="p-5 border rounded-xl shadow-sm bg-gray-50/50">
+                        <h4 className="font-semibold text-lg text-gray-800 flex items-center mb-3">
+                            <IconUsers className="w-5 h-5 mr-2 text-brand-cyan" />
+                            Punëdhënësi
+                        </h4>
+                        <DetailRow label={t.employerContributionsLabel} value={calculation.totalEmployerContributions} currency={currency} rates={rates} isHeader={true}/>
+                        <div className="pl-4 text-sm space-y-1 mt-2">
+                            <DetailRow label={t.employerSocial} value={calculation.employerSocial} currency={currency} rates={rates} />
+                            <DetailRow label={t.employerHealth} value={calculation.employerHealth} currency={currency} rates={rates} />
+                        </div>
+                        <div className="border-t pt-3 mt-3">
+                            <DetailRow label={t.employerTotalCost} value={calculation.totalEmployerCost} currency={currency} rates={rates} isTotal={true}/>
+                        </div>
                     </div>
-                    <div className="border-t pt-3 mt-3">
-                        <DetailRow label={t.employerTotalCost} value={calculation.totalEmployerCost} currency={currency} rates={rates} isTotal={true}/>
-                    </div>
-                </div>
 
-                <div className="md:col-span-2 p-5 border rounded-xl shadow-sm bg-gray-50/50">
-                    <h4 className="font-semibold text-lg text-gray-800 flex items-center mb-3">
-                        Paga Ditore (Bazuar në {workingDays} ditë)
-                    </h4>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <DetailRow label={t.dailyGross} value={dailyGross} currency={currency} rates={rates} />
-                        <DetailRow label={t.dailyNet} value={dailyNet} currency={currency} rates={rates} />
+                    <div className="md:col-span-2 p-5 border rounded-xl shadow-sm bg-gray-50/50">
+                        <h4 className="font-semibold text-lg text-gray-800 flex items-center mb-3">
+                            Paga Ditore (Bazuar në {workingDays} ditë)
+                        </h4>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <DetailRow label={t.dailyGross} value={dailyGross} currency={currency} rates={rates} />
+                            <DetailRow label={t.dailyNet} value={dailyNet} currency={currency} rates={rates} />
+                        </div>
                     </div>
-                </div>
-
-                <div className="md:col-span-2 border-t pt-4 mt-4 text-center">
-                    <DetailRow label={t.maxContributionBase} value={CORE_CONSTANTS.PagaMaksimale} currency={currency} rates={rates} isConstant={true} />
                 </div>
             </div>
         </div>
