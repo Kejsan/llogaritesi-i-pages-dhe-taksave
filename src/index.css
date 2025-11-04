@@ -4,9 +4,51 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --brand-cyan: #54a09b;
+  --brand-navy: #000080;
+  --brand-red: #fb6163;
+  --brand-white: #ffffff;
+}
+
 body {
     font-family: 'Inter', sans-serif;
     background-color: #f3f4f6; /* Tailwind 'gray-100' */
+    color: var(--brand-navy);
+}
+
+.glassmorphism {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.btn-3d {
+  transition: all 0.15s ease-out;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-3d:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.input-focus-effect {
+  transition: all 0.3s;
+  border-color: #d1d5db; /* gray-300 */
+}
+
+.input-focus-effect:focus {
+  border-color: var(--brand-cyan);
+  box-shadow: 0 0 0 3px rgba(84, 160, 155, 0.3);
+}
+
+.group:hover > div:first-child {
+  transform: rotateY(180deg);
+}
+
+.group:hover > div:last-child {
+  transform: rotateY(0deg);
 }
 
 /* Stili për scrollbar-in */

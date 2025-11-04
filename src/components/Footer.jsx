@@ -1,14 +1,14 @@
 import React from 'react';
 
 export const Footer = ({ t }) => (
-    <footer className="bg-gray-900 text-gray-400 p-8 mt-auto">
-        <div className="max-w-7xl mx-auto grid gap-8 md:grid-cols-3 text-sm">
-            <div className="md:col-span-1">
-                <h3 className="font-bold text-lg text-white mb-2">Llogaritësi.al</h3>
-                <p className="leading-relaxed">{t.footerCopyright}</p>
+    <footer className="bg-brand-navy text-white p-8 mt-auto">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center text-center md:text-left">
+            <div className="mb-4 md:mb-0">
+                <p className="text-lg font-semibold">Llogaritësi.al</p>
+                <p className="text-sm text-gray-400">{t.footerCopyright}</p>
             </div>
-            <div className="md:col-span-2 flex justify-end items-end">
-                <p>
+            <div>
+                <p className="text-sm text-gray-400">
                     {t.footerCreatedBy} - <a
                         href="https://kejsan-coku.netlify.app/"
                         target="_blank"

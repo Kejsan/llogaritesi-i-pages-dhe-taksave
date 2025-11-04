@@ -1,5 +1,4 @@
 import React from 'react';
-import { IconCalculator } from './Icons';
 
 const LanguageSelector = ({ lang, setLang }) => {
     const languages = [
@@ -48,13 +47,10 @@ const CurrencySelector = ({ currency, setCurrency, t }) => {
 
 export const Header = ({ lang, setLang, currency, setCurrency, t }) => {
     return (
-        <header className="bg-white/70 backdrop-blur-lg text-brand-navy shadow-sm p-4 sticky top-0 z-20">
+        <header className="bg-brand-navy text-white shadow-lg p-4 sticky top-0 z-20">
             <div className="max-w-7xl mx-auto flex justify-between items-center">
                 <div className="flex items-center space-x-3">
-                    <div className="bg-brand-cyan p-2 rounded-lg shadow-md">
-                        <IconCalculator />
-                    </div>
-                    <span className="text-xl font-bold">Llogaritësi.al</span>
+                    <img src="/logo-header.png" alt="Llogaritësi.al" className="h-10" />
                 </div>
 
                 <div className="flex items-center space-x-4">

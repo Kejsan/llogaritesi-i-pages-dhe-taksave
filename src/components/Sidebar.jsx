@@ -28,12 +28,12 @@ export const Sidebar = ({ activePage, setActivePage, t }) => {
     ];
 
     const NavButton = ({ item, isActive, onClick }) => (
-         <button
+        <button
             onClick={onClick}
-            className={`flex items-center w-full space-x-3 p-3 rounded-lg transition-all duration-200 ${
+            className={`flex items-center w-full space-x-3 p-3 rounded-lg transition-all duration-300 transform btn-3d ${
                 isActive
-                ? 'bg-gradient-to-r from-brand-cyan to-cyan-600 text-white shadow-lg'
-                : 'text-gray-700 hover:bg-gray-100 hover:text-brand-navy'
+                ? 'bg-gradient-to-r from-brand-cyan to-cyan-500 text-white shadow-lg scale-105'
+                : 'text-brand-navy hover:bg-brand-cyan/10 hover:text-brand-cyan'
             }`}
         >
             <item.icon className={`w-6 h-6 ${isActive ? 'text-white' : 'text-brand-cyan'}`} />
@@ -42,9 +42,9 @@ export const Sidebar = ({ activePage, setActivePage, t }) => {
     );
 
     return (
-         <aside className="w-full lg:w-72 bg-white/70 backdrop-blur-lg p-6 flex-shrink-0 lg:sticky lg:top-[88px] lg:self-start lg:max-h-[calc(100vh-88px)] lg:overflow-y-auto rounded-xl shadow-sm">
+        <aside className="w-full lg:w-72 glassmorphism p-6 flex-shrink-0 lg:sticky lg:top-[104px] lg:self-start lg:max-h-[calc(100vh-120px)] lg:overflow-y-auto rounded-xl shadow-lg">
             <nav className="flex-grow">
-                <h3 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3">{t.navTools}</h3>
+                <h3 className="text-sm font-bold text-brand-navy uppercase tracking-wider mb-3">{t.navTools}</h3>
                 <ul className="space-y-2">
                     {navItems.map(item => (
                         <li key={item.id}>
@@ -57,7 +57,7 @@ export const Sidebar = ({ activePage, setActivePage, t }) => {
                     ))}
                 </ul>
 
-                <h3 className="text-xs font-bold text-gray-500 uppercase tracking-wider mt-8 mb-3">{t.navResources}</h3>
+                <h3 className="text-sm font-bold text-brand-navy uppercase tracking-wider mt-8 mb-3">{t.navResources}</h3>
                  <ul className="space-y-2">
                     {infoItems.map(item => (
                         <li key={item.id}>

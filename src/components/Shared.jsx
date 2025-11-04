@@ -3,17 +3,25 @@ import { formatCurrency } from '../utils';
 import { IconInfo, IconAlertTriangle } from './Icons';
 
 export const ResultCard = ({ title, value, currency, rates, isNet = false }) => (
-    <div className={`p-5 rounded-xl shadow-lg ${isNet ? 'bg-brand-cyan' : 'bg-brand-navy'} text-white`}>
-        <div className="text-sm font-medium opacity-90">{title}</div>
-        <div className={`text-3xl font-bold mt-1`}>
-            {formatCurrency(value, currency, rates)}
+    <div className="[transform-style:preserve-3d] transition-transform duration-500 [perspective:1000px] w-full h-24 group">
+        <div className="absolute w-full h-full [backface-visibility:hidden] rounded-xl shadow-lg bg-gradient-to-br from-brand-navy to-blue-900 text-white p-5 flex flex-col justify-between">
+            <div className="text-sm font-medium opacity-90">{title}</div>
+            <div className="text-3xl font-bold mt-1 text-right">
+                {formatCurrency(value, currency, rates)}
+            </div>
+        </div>
+        <div className="absolute w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] rounded-xl shadow-lg bg-gradient-to-br from-brand-cyan to-teal-500 text-white p-5 flex flex-col justify-between items-center">
+            <p className="text-lg font-semibold">{isNet ? 'Net Income' : 'Gross Income'}</p>
+            <p className="text-2xl">Flip for details</p>
         </div>
     </div>
 );
 
 export const SectionTitle = ({ icon: Icon, title }) => (
-    <h2 className="text-2xl font-bold text-brand-navy mb-6 flex items-center">
-        <Icon className="w-7 h-7 mr-3 text-brand-cyan" />
+    <h2 className="text-3xl font-bold text-brand-navy mb-8 flex items-center">
+        <div className="p-2 bg-brand-cyan/10 rounded-lg mr-4">
+            <Icon className="w-8 h-8 text-brand-cyan" />
+        </div>
         {title}
     </h2>
 );
@@ -55,9 +63,9 @@ export const InfoAlert = ({ title, children, type = 'info' }) => {
     );
 };
 
-export const InputGroup = ({ label, value, onChange, placeholder, currency }) => (
+export const InputGroup = ({ label, value, onChange, placeholder, currency, className = '' }) => (
     <div className="mb-5">
-        <label className="block text-sm font-medium text-gray-700 mb-1.5">
+        <label className="block text-sm font-medium text-brand-navy mb-1.5">
             {label}
         </label>
         <div className="relative rounded-lg shadow-sm">
@@ -68,7 +76,7 @@ export const InputGroup = ({ label, value, onChange, placeholder, currency }) =>
                 value={value}
                 onChange={onChange}
                 placeholder={placeholder}
-                className="w-full pl-4 pr-16 py-3 border border-gray-300 rounded-lg focus:ring-brand-cyan focus:border-brand-cyan text-xl"
+                className={`w-full pl-4 pr-16 py-3 border border-gray-300 rounded-lg text-xl input-focus-effect ${className}`}
             />
             <div className="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none">
                 <span className="text-gray-500 sm:text-base font-semibold">{currency}</span>
@@ -78,11 +86,11 @@ export const InputGroup = ({ label, value, onChange, placeholder, currency }) =>
 );
 
 export const DetailRow = ({ label, value, currency, rates, isConstant = false, isHeader = false, isTotal = false }) => (
-    <div className={`flex justify-between items-center py-1.5 ${isTotal ? 'text-base' : 'text-sm'}`}>
-        <span className={`${isConstant ? 'text-gray-500' : isHeader ? 'font-medium text-gray-800' : 'text-gray-700'}`}>
+    <div className={`flex justify-between items-center py-2 ${isTotal ? 'text-base' : 'text-sm'}`}>
+        <span className={`${isConstant ? 'text-gray-500' : isHeader ? 'font-medium text-brand-navy' : 'text-gray-700'}`}>
             {label}
         </span>
-        <span className={`font-semibold ${isConstant ? 'text-gray-500' : isTotal ? 'text-brand-navy text-lg' : 'text-brand-cyan'}`}>
+        <span className={`font-bold ${isConstant ? 'text-gray-500' : isTotal ? 'text-brand-navy text-lg' : 'text-brand-cyan'}`}>
             {formatCurrency(value, currency, rates)}
         </span>
     </div>
