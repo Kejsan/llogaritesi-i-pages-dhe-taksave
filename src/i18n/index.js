@@ -128,6 +128,93 @@ export const translations = {
         divaNo: "JO",
         foreignClients: "Klientët e Huaj:",
         foreignClientsText: "Të ardhurat nga klientët e huaj janë **të tatueshme** në Shqipëri. Ju duhet të lëshoni faturë të fiskalizuar dhe t'i përfshini në xhiron tuaj vjetore.",
+        freelancerCalculator: {
+            inputs: {
+                heading: "Të dhënat kryesore",
+                annualIncome: "Xhiroja e deklaruar (vjetore)",
+                currency: "Monedha e inputit",
+                localSplitHint: "Përcakto sa e përqendruar është xhiroja tek klientët vendas për të identifikuar rrezikun e punësimit të maskuar.",
+                localSplit: "Klientë vendas (%)",
+                topClient: "Klienti kryesor vendas (%)",
+                topTwoClients: "2 klientët kryesorë vendas (%)",
+                percentSuffix: "% e të ardhurave",
+            },
+            validation: {
+                topClientExceedsLocal: "Klienti kryesor vendas nuk mund të kalojë përqindjen totale të klientëve vendas.",
+                topTwoClientsExceedsLocal: "Dy klientët kryesorë vendas nuk mund të kalojnë përqindjen totale të klientëve vendas.",
+            },
+            vatBadges: {
+                under: "Nën 10 M ALL – Pa TVSH",
+                monitor: "Afër pragut 10 M ALL – Monitoro",
+                over: "Mbi 10 M ALL – Regjistrim i detyrueshëm",
+            },
+            vatDescriptions: {
+                under: "Je poshtë pragut ligjor për regjistrim në TVSH, por ruaj evidencat mujore.",
+                monitor: "Je brenda 75%-100% të pragut të TVSH-së. Monitoro xhiron çdo muaj për të shmangur penalitetet.",
+                over: "Ke kaluar pragun vjetor 10 M ALL. Regjistrimi në TVSH është i detyrueshëm.",
+            },
+            warnings: {
+                title: "Paralajmërime për punësim të maskuar",
+                singleClient: {
+                    title: "Mbi 80% nga një klient vendas",
+                    body: "Kur mbi 80% e të ardhurave vjetore burojnë nga një klient vendas, administrata tatimore mund të kërkojë rishikim si marrëdhënie punësimi.",
+                },
+                dualClient: {
+                    title: "Dy klientë vendas > 90% e xhiros",
+                    body: "Mbi 90% e xhiros nga dy klientë vendas sinjalizon rrezik për punësim të maskuar. Diversifiko kontratat ose formalizo marrëdhënien.",
+                },
+            },
+            summary: {
+                heading: "Pamje e shpejtë",
+                vatLabel: "Statusi i TVSH-së",
+                contributionsLabel: "Kontributet SH/SI (23% + 3.4%)",
+                profitTaxLabel: "Tatimi mbi fitimin",
+                netLabel: "Të ardhurat neto pas tatimit",
+                mixLabel: "Shpërndarja e klientëve",
+                local: "Vendas",
+                foreign: "I huaj",
+            },
+            explanations: {
+                contributions: (minWageALL) => 'Llogaritur me 23% + 3.4% mbi pagën minimale ' + minWageALL + ' çdo muaj, për 12 muaj.',
+                profitTax: (thresholdALL) => 'Tatimi 23% aplikohet vetëm mbi fitimin neto që kalon ' + thresholdALL + ' pas kontributeve.',
+                vat: (thresholdALL) => 'Pragu ligjor aktual i TVSH-së është ' + thresholdALL + '.',
+            },
+            profitBands: {
+                heading: "Kllapat e tatimit mbi fitimin",
+                zeroRate: "0% mbi fitimin e tatueshëm deri në 14 M ALL (pas kontributeve).",
+                highRate: "23% mbi pjesën e fitimit neto që kalon 14 M ALL.",
+                rangeLabel: (minALL, maxALL) => (maxALL === '∞' ? `Mbi ${minALL}` : `${minALL} – ${maxALL}`),
+                rateLabel: (ratePercent) => `Norma ${ratePercent}`,
+                amountLabel: "Bazë",
+                taxLabel: "Tatimi",
+            },
+            table: {
+                heading: "Tabela e detyrimeve vjetore",
+                columns: {
+                    obligation: "Detyrimi",
+                    amount: "Shuma (monedha e zgjedhur)",
+                    notes: "Shpjegimi",
+                },
+                rows: {
+                    gross: {
+                        label: "Xhiro bruto",
+                        note: "Shuma e deklaruar sipas inputit të mësipërm.",
+                    },
+                    contributions: {
+                        label: "Kontributet shoqërore & shëndetësore",
+                        note: (minWageALL) => 'Baza ligjore: paga minimale ' + minWageALL + ' × 12 muaj.',
+                    },
+                    profitTax: {
+                        label: "Tatimi mbi fitimin",
+                        note: (thresholdALL) => '0% deri në ' + thresholdALL + ', 23% mbi shumën e mbetur.',
+                    },
+                    net: {
+                        label: "Neto pas tatimit",
+                        note: "Xhiro minus kontributet e detyrueshme dhe tatimin mbi fitimin.",
+                    },
+                },
+            },
+        },
         freelancerGuide: {
             title: "Udhëzuesi Tatimor për Freelancer (2025)",
             intro: "Përzgjidh xhiron e pritshme dhe profilin e klientëve për të parë çfarë kërkon ligji dhe si të planifikosh tatimin për vitin 2025.",
@@ -577,6 +664,93 @@ export const translations = {
         divaNo: "NO",
         foreignClients: "Foreign Clients:",
         foreignClientsText: "Income from foreign clients is **taxable** in Albania. You must issue a fiscalized invoice and include it in your annual turnover.",
+        freelancerCalculator: {
+            inputs: {
+                heading: "Key inputs",
+                annualIncome: "Declared turnover (annual)",
+                currency: "Input currency",
+                localSplitHint: "Measure how concentrated your Albanian client revenue is to detect disguised-employment risk.",
+                localSplit: "Domestic clients (%)",
+                topClient: "Top domestic client (%)",
+                topTwoClients: "Top 2 domestic clients (%)",
+                percentSuffix: "% of revenue",
+            },
+            validation: {
+                topClientExceedsLocal: "The top domestic client share cannot exceed the domestic client percentage.",
+                topTwoClientsExceedsLocal: "The top two domestic clients cannot exceed the domestic client percentage.",
+            },
+            vatBadges: {
+                under: "Under 10M ALL – No VAT",
+                monitor: "Near 10M ALL – Monitor",
+                over: "Above 10M ALL – VAT required",
+            },
+            vatDescriptions: {
+                under: "You are below the statutory VAT registration limit. Keep monthly records up to date.",
+                monitor: "You sit within 75%-100% of the VAT threshold. Track turnover monthly to avoid penalties.",
+                over: "You exceeded the 10M ALL annual threshold. VAT registration is mandatory.",
+            },
+            warnings: {
+                title: "Disguised employment alerts",
+                singleClient: {
+                    title: ">80% from one domestic client",
+                    body: "If more than 80% of annual revenue comes from a single Albanian client, the tax authority may reclassify the relationship as employment.",
+                },
+                dualClient: {
+                    title: ">90% from two domestic clients",
+                    body: "When over 90% of turnover is earned from two Albanian clients, diversify contracts or formalize the engagement to avoid penalties.",
+                },
+            },
+            summary: {
+                heading: "Snapshot",
+                vatLabel: "VAT status",
+                contributionsLabel: "SH/SI contributions (23% + 3.4%)",
+                profitTaxLabel: "Profit tax",
+                netLabel: "Net income after tax",
+                mixLabel: "Client mix",
+                local: "Domestic",
+                foreign: "Foreign",
+            },
+            explanations: {
+                contributions: (minWageALL) => 'Calculated at 23% + 3.4% on the minimum wage ' + minWageALL + ' per month, across 12 months.',
+                profitTax: (thresholdALL) => 'The 23% band applies only to net profit above ' + thresholdALL + ' after contributions.',
+                vat: (thresholdALL) => 'The current VAT registration limit is ' + thresholdALL + '.',
+            },
+            profitBands: {
+                heading: "Profit tax bands",
+                zeroRate: "0% on taxable profit up to 14M ALL (after contributions).",
+                highRate: "23% on net profit exceeding 14M ALL.",
+                rangeLabel: (minALL, maxALL) => (maxALL === '∞' ? 'Above ' + minALL : minALL + ' – ' + maxALL),
+                rateLabel: (ratePercent) => ratePercent + ' rate',
+                amountLabel: "Base",
+                taxLabel: "Tax",
+            },
+            table: {
+                heading: "Annual tax outcomes",
+                columns: {
+                    obligation: "Obligation",
+                    amount: "Amount (converted)",
+                    notes: "Explanation",
+                },
+                rows: {
+                    gross: {
+                        label: "Gross turnover",
+                        note: "The amount you entered above.",
+                    },
+                    contributions: {
+                        label: "Social & health contributions",
+                        note: (minWageALL) => 'Legal base: minimum wage ' + minWageALL + ' × 12 months.',
+                    },
+                    profitTax: {
+                        label: "Profit tax",
+                        note: (thresholdALL) => '0% up to ' + thresholdALL + ', then 23% on the remaining portion.',
+                    },
+                    net: {
+                        label: "Net after tax",
+                        note: "Turnover minus mandatory contributions and profit tax.",
+                    },
+                },
+            },
+        },
         freelancerGuide: {
             title: "Freelancer Tax Guide (2025)",
             intro: "Select your expected turnover and client profile to see which compliance steps apply in 2025.",
