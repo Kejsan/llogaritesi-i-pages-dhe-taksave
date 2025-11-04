@@ -305,6 +305,99 @@ const convertFromALLForDisplay = (valueALL, currency, rate) => {
     return String(parseFloat((valueALL / rate).toFixed(2)));
 };
 
+const getJobMeta = (t) => ({
+    [JOB_TYPES.PRIMARY]: {
+        title: t.jobCards.primary.title,
+        badge: t.jobCards.primary.badge,
+        accent: 'from-brand-navy via-[#020272] to-brand-cyan/60',
+        icon: IconUser,
+    },
+    [JOB_TYPES.SECONDARY]: {
+        title: t.jobCards.secondary.title,
+        badge: t.jobCards.secondary.badge,
+        accent: 'from-brand-cyan/70 via-brand-cyan to-brand-red/40',
+        icon: IconUsers,
+    },
+    [JOB_TYPES.TERTIARY]: {
+        title: t.jobCards.tertiary.title,
+        badge: t.jobCards.tertiary.badge,
+        accent: 'from-brand-red/70 via-brand-red to-brand-cyan/40',
+        icon: IconUsers,
+    },
+});
+
+const presetConfigs = (t) => ([
+    {
+        key: 'single-family',
+        label: t.examples.presets.singleFamily.label,
+        description: t.examples.presets.singleFamily.description,
+        setup: {
+            jobLayout: 'single',
+            tertiary: false,
+            dependents: 2,
+            voluntaryPension: 25000,
+            jobs: {
+                [JOB_TYPES.PRIMARY]: {
+                    mode: 'gross',
+                    valueALL: 95000,
+                    workingDays: 22,
+                },
+            },
+        },
+    },
+    {
+        key: 'dual-creative',
+        label: t.examples.presets.dualCreative.label,
+        description: t.examples.presets.dualCreative.description,
+        setup: {
+            jobLayout: 'multi',
+            tertiary: false,
+            dependents: 0,
+            voluntaryPension: 0,
+            jobs: {
+                [JOB_TYPES.PRIMARY]: {
+                    mode: 'gross',
+                    valueALL: 120000,
+                    workingDays: 21,
+                },
+                [JOB_TYPES.SECONDARY]: {
+                    mode: 'net',
+                    valueALL: 60000,
+                    workingDays: 8,
+                },
+            },
+        },
+    },
+    {
+        key: 'triple-team',
+        label: t.examples.presets.tripleTeam.label,
+        description: t.examples.presets.tripleTeam.description,
+        setup: {
+            jobLayout: 'multi',
+            tertiary: true,
+            dependents: 1,
+            voluntaryPension: 40000,
+            jobs: {
+                [JOB_TYPES.PRIMARY]: {
+                    mode: 'gross',
+                    valueALL: 150000,
+                    workingDays: 22,
+                },
+                [JOB_TYPES.SECONDARY]: {
+                    mode: 'gross',
+                    valueALL: 45000,
+                    workingDays: 12,
+                },
+                [JOB_TYPES.TERTIARY]: {
+                    mode: 'net',
+                    valueALL: 30000,
+                    workingDays: 6,
+                },
+            },
+        },
+    },
+]);
+
 export const EmployeeCalculator = ({ t, currency, rates }) => {
     const [jobMode, setJobMode] = useState('single');
     const [jobs, setJobs] = useState(DEFAULT_JOBS);
@@ -312,6 +405,8 @@ export const EmployeeCalculator = ({ t, currency, rates }) => {
     const [voluntaryPensionValue, setVoluntaryPensionValue] = useState('0');
 
     const rate = useMemo(() => rates[currency] || 1, [rates, currency]);
+    const jobMeta = useMemo(() => getJobMeta(t), [t]);
+    const presets = useMemo(() => presetConfigs(t), [t]);
 
     const childDeductionALL = useMemo(() => {
         const numeric = parseNumber(childDeductionValue);
