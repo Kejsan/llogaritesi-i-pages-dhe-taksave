@@ -496,15 +496,74 @@ export const translations = {
         influencerWarning: "VËREJTJE PËR INFLUENCERËT:",
         influencerWarningText: "Trajtimi juaj fiskal është i njëjtë me atë të një **Profesionisti të Lirë**. Dallimi kryesor është tek pagesat në natyrë (barter). Rekomandohet përdorimi i metodës së **shpenzimeve të supozuara (30%)** për shkak të kompleksitetit të vlerësimit të produkteve ose shërbimeve të marra si pagesë.",
         infoTitle: "Si funksionon Kalkulatori?",
-        infoIntro: "Ky mjet ju ndihmon të kuptoni sistemin e taksave në Shqipëri, qoftë si punëmarrës, profesionist i lirë apo influencer. Më poshtë gjeni një shpjegim të thjeshtë të termave kryesorë.",
-        infoGrossNetTitle: "Paga Bruto vs. Paga Neto (Për Punëmarrësit)",
-        infoGrossNetText: "<strong>Paga Bruto</strong> është shuma totale për të cilën bini dakord me punëdhënësin përpara çdo zbritjeje. <strong>Paga Neto</strong> (ose 'në dorë') është shuma që merrni në llogarinë tuaj bankare pasi të jenë mbajtur kontributet dhe tatimet.",
-        infoContributionsTitle: "Kontributet Shoqërore dhe Shëndetësore",
-        infoContributionsText: "Këto janë pagesa të detyrueshme për të financuar pensionin tuaj dhe kujdesin shëndetësor publik. Si punonjës, ju paguani <strong>11.2%</strong> të pagës suaj (por jo më shumë se paga maksimale e vlerësueshme, 176,416 ALL). Punëdhënësi juaj paguan <strong>16.7%</strong> shtesë mbi pagën tuaj bruto. Kjo është arsyeja pse <strong>Kostoja Totale e Punëdhënësit</strong> është më e lartë se paga juaj bruto.",
-        infoTapTitle: "Tatimi mbi të Ardhurat Personale (TAP)",
-        infoTapText: "Ky është tatimi progresiv mbi pagën. Për vitin 2024, paga nën 40,000 ALL/muaj nuk tatohet. Pjesa e pagës mbi 30,000 ALL deri në 200,000 ALL tatohet me <strong>13%</strong>, dhe çdo shumë mbi 200,000 ALL tatohet me <strong>23%</strong>. Kjo pritet të ndryshojë në 2025.",
-        infoFreelancerTitle: "Profesionistët e Lirë & Influencerët",
-        infoFreelancerText: "Si profesionist i lirë apo influencer (person fizik me NIPT), ju jeni vetë përgjegjës për pagimin e kontributeve dhe tatimeve. Ju paguani vetë të dyja pjesët e kontributeve (<strong>27.9%</strong> e pagës minimale, ose më shumë). Tatimi mbi fitimin neto vjetor është aktualisht në një periudhë tranzicioni ligjor (shih paralajmërimin në kalkulator).",
+        infoIntro: "Ky seksion përmbledh si tatohet paga, cilat janë ndryshimet kryesore për 2025 dhe çfarë detyrimesh shtesë duhet të njihni si punëmarrës ose kontribuues i lirë.",
+        infoTopics: [
+            {
+                title: "Shpërndarja e tatimeve në pagë (2024)",
+                content: `
+<p>Paga bruto ndahet në tre blloqe kryesore:</p>
+<ul>
+<li><strong>Kontributet e punonjësit (11.2%)</strong> llogariten mbi pagën bruto deri në bazën maksimale 176,416 ALL.</li>
+<li><strong>Tatimi progresiv TAP</strong>: 0% për 30,000 ALL të para, 13% për segmentin nga 30,001 deri në 200,000 ALL, dhe 23% për pjesën mbi 200,000 ALL.</li>
+<li><strong>Paga neto</strong> është diferenca pasi zbriten kontributet dhe TAP.</li>
+</ul>
+<p><strong>Shembull:</strong> Paga bruto 120,000 ALL prodhon kontribute 13,440 ALL dhe TAP 9,953 ALL, duke lënë paga neto rreth 96,607 ALL.</p>
+`
+            },
+            {
+                title: "Çfarë ndryshon gjatë 2024–2025",
+                content: `
+<p>Pakoja fiskale 2025 sjell rregulla të reja që duhen monitoruar:</p>
+<ul>
+<li><strong>Gjatë 2024</strong> mbeten në fuqi kllapat aktuale TAP 0% / 13% / 23%.</li>
+<li><strong>Janar 2025</strong>: futen zbritje familjare për fëmijët në ngarkim dhe pritet rishikim i pragjeve mujore të TAP. Versionet provuese të kalkulatorit i ofrojnë këto opsione për planifikim.</li>
+<li><strong>Pensionet vullnetare</strong> do të raportohen në e-Albania me format të unifikuar mujor.</li>
+</ul>
+<p>Këshillohet të kontrolloni shpesh burimet zyrtare të DPT-së pasi aktet nënligjore mund të ndryshojnë.</p>
+`
+            },
+            {
+                title: "Nga neto në bruto: si funksionon llogaritja",
+                content: `
+<p>Për të kthyer një pagë neto në bruto ndiqen këto hapa:</p>
+<ol>
+<li>Shtoni kontributet e punonjësit (11.2%) mbi shumën bruto të panjohur.</li>
+<li>Përllogarit TAP mbi bazën tatimore (bruto – kontributet).</li>
+<li>Rregullo shumën bruto derisa neto të barazohet me shumën e dëshiruar.</li>
+</ol>
+<p><strong>Shembull praktik:</strong> Për të marrë 90,000 ALL neto nevojiten rreth 111,448 ALL bruto. Kontributet janë ~12,482 ALL dhe TAP rreth 8,966 ALL.</p>
+`
+            },
+            {
+                title: "Pensioni vullnetar: rregullat dhe përfitimet",
+                content: `
+<p>Kontributet vullnetare lejohen deri në 50,000 ALL në muaj për kontratën primare dhe zbriten nga baza tatimore.</p>
+<table>
+<thead>
+<tr><th>Kontribut mujor</th><th>Zbritje vjetore</th><th>Kursim TAP (13%)</th></tr>
+</thead>
+<tbody>
+<tr><td>10,000 ALL</td><td>120,000 ALL</td><td>15,600 ALL</td></tr>
+<tr><td>25,000 ALL</td><td>300,000 ALL</td><td>39,000 ALL</td></tr>
+<tr><td>50,000 ALL</td><td>600,000 ALL</td><td>78,000 ALL</td></tr>
+</tbody>
+</table>
+<p>Përfitimi fiskal merret vetëm nëse pagesat kryhen përmes një fondi të licencuar dhe raportohen në DPT.</p>
+`
+            },
+            {
+                title: "Detyrimi vjetor DIVA",
+                content: `
+<p>DIVA (Deklarata Individuale Vjetore e të Ardhurave) duhet dorëzuar deri më 30 Prill të vitit pasardhës nëse:</p>
+<ul>
+<li>Të ardhurat bruto nga paga kalojnë 1.2 milion ALL në vit, edhe nëse vjen nga një punë e vetme.</li>
+<li>Keni të ardhura nga më shumë se një punëdhënës ose burim (p.sh. paga + honorare).</li>
+<li>Keni të ardhura nga qira, dividentë ose aktivitete të tjera të tatueshme.</li>
+</ul>
+<p>Mosdorëzimi sjell gjoba. Ruani listëpagesat dhe vërtetimet e tatimit për ta plotësuar me saktësi.</p>
+`
+            }
+        ],
         faqTitle: "Pyetje të Shpeshta (FAQ)",
         faq1Title: "Sa janë pushimet vjetore të paguara?",
         faq1Text: "Sipas ndryshimit të fundit të Kodit të Punës (Gusht 2024), çdo punëmarrës ka të drejtën e një minimumi prej **22 ditë pune** pushim vjetor të paguar (më parë ishin 4 javë kalendarike).",
@@ -1032,15 +1091,74 @@ export const translations = {
         influencerWarning: "NOTE FOR INFLUENCERS:",
         influencerWarningText: "Your fiscal treatment is the same as a **Free Professional**. The main difference is in-kind payments (barter). It is recommended to use the **presumed expenses (30%)** method due to the complexity of valuing products or services received as payment.",
         infoTitle: "How does the Calculator work?",
-        infoIntro: "This tool helps you understand the tax system in Albania, whether as an employee, freelancer, or influencer. Below is a simple explanation of the key terms.",
-        infoGrossNetTitle: "Gross Salary vs. Net Salary (For Employees)",
-        infoGrossNetText: "<strong>Gross Salary</strong> is the total amount agreed upon with your employer before any deductions. <strong>Net Salary</strong> (or 'take-home' pay) is the amount you receive in your bank account after contributions and taxes are withheld.",
-        infoContributionsTitle: "Social and Health Contributions",
-        infoContributionsText: "These are mandatory payments to fund your pension and public healthcare. As an employee, you pay <strong>11.2%</strong> of your salary (up to the maximum assessable wage, 176,416 ALL). Your employer pays an additional <strong>16.7%</strong> on top of your gross salary. This is why the <strong>Total Employer Cost</strong> is higher than your gross salary.",
-        infoTapTitle: "Personal Income Tax (TAP)",
-        infoTapText: "This is the progressive tax on your salary. For 2024, income below 40,000 ALL/month is not taxed. The portion of salary from 30,000 ALL to 200,000 ALL is taxed at <strong>13%</strong>, and any amount over 200,000 ALL is taxed at <strong>23%</strong>. This is expected to change in 2025.",
-        infoFreelancerTitle: "Free Professionals & Influencers",
-        infoFreelancerText: "As a freelancer or influencer (physical person with a NIPT), you are responsible for paying your own contributions and taxes. You pay both parts of the contributions (<strong>27.9%</strong> of the minimum wage, or more). The tax on annual net profit is currently in a legal transition period (see warning on the calculator).",
+        infoIntro: "This section summarises how salaries are taxed in Albania, highlights the announced 2025 reforms, and lists follow-up obligations for employees and contractors.",
+        infoTopics: [
+            {
+                title: "Salary tax breakdown (2024)",
+                content: `
+<p>Your gross salary is split across three main components:</p>
+<ul>
+<li><strong>Employee social & health contributions (11.2%)</strong> are calculated on the gross salary up to the maximum base of 176,416 ALL.</li>
+<li><strong>Progressive payroll tax (TAP)</strong>: 0% on the first 30,000 ALL, 13% on the slice between 30,001 and 200,000 ALL, and 23% on anything above 200,000 ALL.</li>
+<li><strong>Net salary</strong> is what remains after contributions and TAP are deducted.</li>
+</ul>
+<p><strong>Example:</strong> A 120,000 ALL gross salary results in 13,440 ALL contributions and 9,953 ALL TAP, leaving a net salary of about 96,607 ALL.</p>
+`
+            },
+            {
+                title: "What changes in 2024–2025",
+                content: `
+<p>The 2025 fiscal package introduces rules you should keep on your radar:</p>
+<ul>
+<li><strong>During 2024</strong> the existing TAP brackets of 0% / 13% / 23% remain in force.</li>
+<li><strong>From January 2025</strong>: family allowances for dependent children reduce the taxable base and the monthly TAP thresholds are expected to be refreshed. Preview modes in this calculator let you model these scenarios.</li>
+<li><strong>Voluntary pension plans</strong> move to a unified monthly reporting format on e-Albania.</li>
+</ul>
+<p>Always double-check official DPT announcements because secondary legislation can shift timelines.</p>
+`
+            },
+            {
+                title: "Net to gross: step-by-step",
+                content: `
+<p>To convert a target net salary into a gross amount you:</p>
+<ol>
+<li>Add the employee contributions (11.2%) on top of the unknown gross amount.</li>
+<li>Apply TAP on the taxable base (gross – contributions) according to the brackets.</li>
+<li>Iterate the gross amount until the net result matches the desired figure.</li>
+</ol>
+<p><strong>Worked example:</strong> To take home 90,000 ALL you need roughly 111,448 ALL gross. Contributions are about 12,482 ALL and TAP is approximately 8,966 ALL.</p>
+`
+            },
+            {
+                title: "Voluntary pension rules and benefits",
+                content: `
+<p>Voluntary pension contributions of up to 50,000 ALL per month on the primary contract are deductible from the taxable base.</p>
+<table>
+<thead>
+<tr><th>Monthly contribution</th><th>Annual deductible amount</th><th>TAP saving (13%)</th></tr>
+</thead>
+<tbody>
+<tr><td>10,000 ALL</td><td>120,000 ALL</td><td>15,600 ALL</td></tr>
+<tr><td>25,000 ALL</td><td>300,000 ALL</td><td>39,000 ALL</td></tr>
+<tr><td>50,000 ALL</td><td>600,000 ALL</td><td>78,000 ALL</td></tr>
+</tbody>
+</table>
+<p>The tax benefit applies only when payments go through a licensed fund and are reported to the tax administration.</p>
+`
+            },
+            {
+                title: "Annual DIVA filing",
+                content: `
+<p>The DIVA (annual personal income declaration) must be filed by 30 April of the following year if:</p>
+<ul>
+<li>Your annual employment income exceeds 1.2 million ALL, even from a single employer.</li>
+<li>You earn income from more than one payer (e.g. salary plus service fees).</li>
+<li>You receive other taxable income such as rent, dividends or capital gains.</li>
+</ul>
+<p>Missing the deadline triggers fines, so keep your payslips and withholding certificates ready for the submission.</p>
+`
+            }
+        ],
         faqTitle: "Frequently Asked Questions (FAQ)",
         faq1Title: "How much paid annual leave do I get?",
         faq1Text: "According to the latest change in the Labor Code (August 2024), every employee is entitled to a minimum of **22 working days** of paid annual leave (it was previously 4 calendar weeks).",
@@ -1481,15 +1599,74 @@ export const translations = {
         influencerWarning: "NOTA PER INFLUENCER:",
         influencerWarningText: "Il tuo trattamento fiscale è identico a quello di un **Libero Professionista**. La differenza principale sono i pagamenti in natura (barter). Si raccomanda di utilizzare il metodo delle **spese forfettarie (30%)** a causa della complessità nella valutazione dei prodotti o servizi ricevuti come pagamento.",
         infoTitle: "Come funziona il Calcolatore?",
-        infoIntro: "Questo strumento ti aiuta a capire il sistema fiscale albanese, sia come dipendente, libero professionista o influencer. Di seguito una semplice spiegazione dei termini chiave.",
-        infoGrossNetTitle: "Stipendio Lordo vs. Stipendio Netto (Per Dipendenti)",
-        infoGrossNetText: "Lo <strong>Stipendio Lordo</strong> è l'importo totale concordato con il datore di lavoro prima di qualsiasi detrazione. Lo <strong>Stipendio Netto</strong> (o 'in tasca') è l'importo che ricevi sul tuo conto bancario dopo che sono stati trattenuti contributi e tasse.",
-        infoContributionsTitle: "Contributi Sociali e Sanitari",
-        infoContributionsText: "Questi sono pagamenti obbligatori per finanziare la tua pensione e l'assistenza sanitaria pubblica. Come dipendente, paghi l'<strong>11.2%</strong> del tuo stipendio (fino al massimale imponibile di 176,416 ALL). Il tuo datore di lavoro paga un ulteriore <strong>16.7%</strong> in aggiunta al tuo stipendio lordo. Questo è il motivo per cui il <strong>Costo Totale del Datore di Lavoro</strong> è superiore al tuo stipendio lordo.",
-        infoTapTitle: "Imposta sul Reddito delle Persone Fisiche (TAP)",
-        infoTapText: "Questa è l'imposta progressiva sul tuo stipendio. Per il 2024, il reddito inferiore a 40,000 ALL/mese non è tassato. La porzione di stipendio da 30,000 ALL a 200,000 ALL è tassata al <strong>13%</strong>, e qualsiasi importo superiore a 200,000 ALL è tassato al <strong>23%</strong>. Si prevede che questo cambi nel 2025.",
-        infoFreelancerTitle: "Liberi Professionisti & Influencer",
-        infoFreelancerText: "Come libero professionista o influencer (persona fisica con NIPT), sei responsabile del pagamento dei tuoi contributi e tasse. Paghi entrambe le parti dei contributi (<strong>27.9%</strong> del salario minimo, o più). L'imposta sul profitto netto annuale è attualmente in un periodo di transizione legale (vedi avviso sul calcolatore).",
+        infoIntro: "Questa sezione riassume la tassazione dello stipendio in Albania, le novità annunciate per il 2025 e gli adempimenti annuali da non dimenticare.",
+        infoTopics: [
+            {
+                title: "Ripartizione fiscale dello stipendio (2024)",
+                content: `
+<p>Lo stipendio lordo si divide in tre componenti principali:</p>
+<ul>
+<li><strong>Contributi a carico del dipendente (11,2%)</strong> calcolati sul lordo fino al massimale di 176.416 ALL.</li>
+<li><strong>Imposta progressiva TAP</strong>: 0% sui primi 30.000 ALL, 13% sulla fascia tra 30.001 e 200.000 ALL e 23% oltre 200.000 ALL.</li>
+<li><strong>Stipendio netto</strong> è quanto resta dopo contributi e TAP.</li>
+</ul>
+<p><strong>Esempio:</strong> Uno stipendio lordo di 120.000 ALL genera contributi pari a 13.440 ALL e TAP di 9.953 ALL, lasciando un netto di circa 96.607 ALL.</p>
+`
+            },
+            {
+                title: "Cosa cambia nel 2024–2025",
+                content: `
+<p>Il pacchetto fiscale 2025 introduce diverse novità:</p>
+<ul>
+<li><strong>Per tutto il 2024</strong> restano in vigore le aliquote TAP attuali 0% / 13% / 23%.</li>
+<li><strong>Da gennaio 2025</strong>: le detrazioni familiari per i figli a carico ridurranno la base imponibile e le soglie mensili della TAP verranno aggiornate. Le modalità "anteprima" del calcolatore ti permettono di simularle.</li>
+<li><strong>Pensioni volontarie</strong> confluiranno in un modello di rendicontazione mensile unico su e-Albania.</li>
+</ul>
+<p>Consulta sempre gli avvisi ufficiali della DPT: i regolamenti attuativi possono modificare scadenze e modalità.</p>
+`
+            },
+            {
+                title: "Dal netto al lordo: guida pratica",
+                content: `
+<p>Per risalire dal netto desiderato allo stipendio lordo si procede così:</p>
+<ol>
+<li>Si aggiungono i contributi del dipendente (11,2%) sull'importo lordo incognito.</li>
+<li>Si applica la TAP sulla base imponibile (lordo – contributi) seguendo gli scaglioni.</li>
+<li>Si corregge il lordo finché il risultato netto non corrisponde all'obiettivo.</li>
+</ol>
+<p><strong>Esempio pratico:</strong> Per ricevere 90.000 ALL netti servono circa 111.448 ALL lordi. I contributi ammontano a ~12.482 ALL e la TAP a circa 8.966 ALL.</p>
+`
+            },
+            {
+                title: "Pensione volontaria: regole e benefici",
+                content: `
+<p>I contributi volontari fino a 50.000 ALL al mese sul contratto primario sono deducibili dalla base imponibile.</p>
+<table>
+<thead>
+<tr><th>Contributo mensile</th><th>Deduzione annuale</th><th>Risparmio TAP (13%)</th></tr>
+</thead>
+<tbody>
+<tr><td>10.000 ALL</td><td>120.000 ALL</td><td>15.600 ALL</td></tr>
+<tr><td>25.000 ALL</td><td>300.000 ALL</td><td>39.000 ALL</td></tr>
+<tr><td>50.000 ALL</td><td>600.000 ALL</td><td>78.000 ALL</td></tr>
+</tbody>
+</table>
+<p>Il vantaggio fiscale è riconosciuto solo se i versamenti avvengono tramite un fondo autorizzato e vengono comunicati all'amministrazione fiscale.</p>
+`
+            },
+            {
+                title: "Dichiarazione annuale DIVA",
+                content: `
+<p>La DIVA (dichiarazione individuale annuale dei redditi) va presentata entro il 30 aprile dell'anno successivo se:</p>
+<ul>
+<li>I redditi da lavoro dipendente superano 1,2 milioni ALL annui, anche con un solo datore.</li>
+<li>Percepisci redditi da più datori di lavoro o da collaborazioni (es. stipendio + compensi).</li>
+<li>Hai altri redditi imponibili come locazioni, dividendi o plusvalenze.</li>
+</ul>
+<p>Le sanzioni per omessa presentazione sono salate: conserva buste paga e certificazioni delle ritenute per compilare la dichiarazione correttamente.</p>
+`
+            }
+        ],
         faqTitle: "Domande Frequenti (FAQ)",
         faq1Title: "Quanti giorni di ferie annuali pagate mi spettano?",
         faq1Text: "Secondo l'ultima modifica al Codice del Lavoro (Agosto 2024), ogni dipendente ha diritto a un minimo di **22 giorni lavorativi** di ferie annuali pagate (in precedenza erano 4 settimane di calendario).",
