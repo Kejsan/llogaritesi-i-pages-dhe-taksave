@@ -188,7 +188,7 @@ export const Header = ({ lang, setLang, currency, setCurrency, t, theme, setThem
                             className="flex items-center gap-3 rounded-2xl border border-white/20 bg-white/10 px-3 py-2 backdrop-blur transition hover:border-white/40"
                             aria-label="Shko në faqen kryesore"
                         >
-                            <img src="/Llogaritësi i Pagës dhe Taksave.png" alt="Llogaritësi i Pagës dhe Taksave" className="h-40 w-auto" />
+                            <img src="/Llogaritësi i Pagës dhe Taksave.png" alt="Llogaritësi i Pagës dhe Taksave" className="h-10 w-auto" />
                         </Link>
                         <div className="hidden sm:flex flex-col text-white">
                             <span className="text-xs uppercase tracking-[0.35em] text-white/70">Llogaritësi.al</span>
