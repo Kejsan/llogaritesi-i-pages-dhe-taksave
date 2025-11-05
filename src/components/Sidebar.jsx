@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import {
     IconUser,
     IconBriefcase,
@@ -25,42 +26,56 @@ const SectionToggle = ({ title, isOpen, onToggle }) => (
     </button>
 );
 
-const NavButton = ({ item, isActive, onClick }) => (
-    <button
-        type="button"
-        onClick={onClick}
-        className={`group relative flex w-full items-center justify-between overflow-hidden rounded-2xl border px-4 py-3 text-left transition-all duration-300 ${
-            isActive
-                ? 'border-brand-cyan bg-gradient-to-r from-brand-cyan/90 to-brand-navy/90 text-white shadow-xl'
-                : 'border-transparent bg-white/70 text-brand-navy hover:border-brand-cyan/40 hover:bg-white'
-        }`}
+const NavButton = ({ item }) => (
+    <NavLink
+        to={item.to}
+        end
+        className={({ isActive }) =>
+            `group relative flex w-full items-center justify-between overflow-hidden rounded-2xl border px-4 py-3 text-left transition-all duration-300 ${
+                isActive
+                    ? 'border-brand-cyan bg-gradient-to-r from-brand-cyan/90 to-brand-navy/90 text-white shadow-xl'
+                    : 'border-transparent bg-white/70 text-brand-navy hover:border-brand-cyan/40 hover:bg-white'
+            }`
+        }
     >
-        <div className="flex items-center gap-3">
-            <span className={`rounded-xl bg-brand-cyan/15 p-2 text-brand-cyan transition ${isActive ? 'bg-white/20 text-white' : ''}`}>
-                <item.icon className="h-5 w-5" />
-            </span>
-            <span className="font-semibold">{item.label}</span>
-        </div>
-        <span className={`text-xs font-semibold uppercase tracking-wide ${isActive ? 'text-white/80' : 'text-brand-navy/40'}`}>
-            {isActive ? 'Aktive' : 'Shiko'}
-        </span>
-    </button>
+        {({ isActive }) => (
+            <>
+                <div className="flex items-center gap-3">
+                    <span
+                        className={`rounded-xl bg-brand-cyan/15 p-2 text-brand-cyan transition ${
+                            isActive ? 'bg-white/20 text-white' : ''
+                        }`}
+                    >
+                        <item.icon className="h-5 w-5" />
+                    </span>
+                    <span className="font-semibold">{item.label}</span>
+                </div>
+                <span
+                    className={`text-xs font-semibold uppercase tracking-wide ${
+                        isActive ? 'text-white/80' : 'text-brand-navy/40'
+                    }`}
+                >
+                    {isActive ? 'Aktive' : 'Shiko'}
+                </span>
+            </>
+        )}
+    </NavLink>
 );
 
-export const Sidebar = ({ activePage, setActivePage, t }) => {
+export const Sidebar = ({ t }) => {
     const navItems = [
-        { id: 'employee', label: t.navEmployee, icon: IconUser },
-        { id: 'freelancer', label: t.navFreelancer, icon: IconBriefcase },
-        { id: 'influencer', label: t.navInfluencer, icon: IconCamera },
-        { id: 'freelancer-guide', label: t.navFreelancerGuide, icon: IconSettings },
+        { to: '/employee', label: t.navEmployee, icon: IconUser },
+        { to: '/freelancer', label: t.navFreelancer, icon: IconBriefcase },
+        { to: '/influencer', label: t.navInfluencer, icon: IconCamera },
+        { to: '/freelancer-guide', label: t.navFreelancerGuide, icon: IconSettings },
     ];
 
     const infoItems = [
-        { id: 'news', label: t.navNews, icon: IconNewspaper },
-        { id: 'info', label: t.navInfo, icon: IconInfo },
-        { id: 'faq', label: t.navFAQ, icon: IconHelp },
-        { id: 'links', label: t.navLinks, icon: IconLink },
-        { id: 'contact', label: t.navContact, icon: IconMail },
+        { to: '/news', label: t.navNews, icon: IconNewspaper },
+        { to: '/info', label: t.navInfo, icon: IconInfo },
+        { to: '/faq', label: t.navFAQ, icon: IconHelp },
+        { to: '/links', label: t.navLinks, icon: IconLink },
+        { to: '/contact', label: t.navContact, icon: IconMail },
     ];
 
     const [toolsOpen, setToolsOpen] = useState(true);
@@ -83,12 +98,8 @@ export const Sidebar = ({ activePage, setActivePage, t }) => {
                         {toolsOpen && (
                             <ul className="mt-3 space-y-3">
                                 {navItems.map((item) => (
-                                    <li key={item.id}>
-                                        <NavButton
-                                            item={item}
-                                            isActive={activePage === item.id}
-                                            onClick={() => setActivePage(item.id)}
-                                        />
+                                    <li key={item.to}>
+                                        <NavButton item={item} />
                                     </li>
                                 ))}
                             </ul>
@@ -100,12 +111,8 @@ export const Sidebar = ({ activePage, setActivePage, t }) => {
                         {resourcesOpen && (
                             <ul className="mt-3 space-y-3">
                                 {infoItems.map((item) => (
-                                    <li key={item.id}>
-                                        <NavButton
-                                            item={item}
-                                            isActive={activePage === item.id}
-                                            onClick={() => setActivePage(item.id)}
-                                        />
+                                    <li key={item.to}>
+                                        <NavButton item={item} />
                                     </li>
                                 ))}
                             </ul>

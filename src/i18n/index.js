@@ -11,6 +11,68 @@ export const translations = {
         navContact: "Kontakt",
         navTools: "Mjetet",
         navResources: "Burimet",
+        home: {
+            heroBadge: "Platformë inteligjente",
+            heroTitle: "Llogarit pagën, taksat dhe kontributet në pak sekonda",
+            heroSubtitle: "Zgjidh kalkulatorin që të duhet për 2025 dhe krahaso skenarët pa spreadsheet.",
+            heroPrimaryCta: "Hap kalkulatorin e pagës",
+            heroSecondaryCta: "Shiko mjetet për profesionistë",
+            calculatorsTitle: "Zgjidh kalkulatorin e duhur",
+            calculatorsSubtitle: "Çdo modul është i përditësuar sipas paketës fiskale 2024-2025 dhe mbështet kombinime të ndryshme kontratash.",
+            cards: {
+                employee: {
+                    title: "Kalkulatori i pagës për punëmarrës",
+                    description: "Simulo bruto/neto, kontrata të shumëfishta dhe zbritje familjare.",
+                },
+                freelancer: {
+                    title: "Detyrimet e profesionistit të lirë",
+                    description: "Analizo fitimin neto dhe pragjet e TVSH-së sipas xhiros vjetore.",
+                },
+                influencer: {
+                    title: "Modelimi për krijues & influencer",
+                    description: "Krahaso skenarët bruto/neto për të ardhurat nga platformat digjitale.",
+                },
+                guide: {
+                    title: "Udhëzuesi tatimor 2025",
+                    description: "Nenet kryesore, afatet dhe dokumentet e nevojshme të përmbledhura.",
+                },
+            },
+            benefitsTitle: "Çfarë fiton me llogaritësi.al",
+            benefitsSubtitle: "Një platformë e vetme për planifikim financiar, pa Excel dhe pa paqartësi ligjore.",
+            benefits: [
+                {
+                    title: "Modelim sipas ligjeve 2025",
+                    description: "Algoritmet tona përditësohen me TAP-in e ri, kontributet dhe pensionet minimale/maksimale.",
+                },
+                {
+                    title: "Konvertime automatike të monedhës",
+                    description: "Shih rezultatet në ALL, EUR ose USD me kurse të rifreskuara automatikisht.",
+                },
+                {
+                    title: "Analiza të thelluara",
+                    description: "Seksionet e burimeve shpjegojnë nenet ligjore, shembujt praktikë dhe skenarët e biznesit.",
+                },
+            ],
+            resourcesTitle: "Burime dhe analiza të fundit",
+            resourcesSubtitle: "Lexo përditësimet fiskale, shpjegimet praktike dhe pyetjet më të shpeshta.",
+            resources: {
+                news: {
+                    eyebrow: "Përditësime",
+                    title: "Lajmet më të fundit fiskale",
+                    description: "Monitorojmë njoftimet zyrtare dhe i përkthejmë në hapa praktikë për profesionistët.",
+                },
+                info: {
+                    eyebrow: "Guidë",
+                    title: "Si funksionojnë kontributet",
+                    description: "Shpjegojmë rregullat e reja për sigurimet shoqërore, TAP-in dhe deklarimet mujore.",
+                },
+                faq: {
+                    eyebrow: "FAQ",
+                    title: "Pyetjet më të shpeshta",
+                    description: "Gjej përgjigje të shpejta për skenarë të zakonshëm të punës dhe freelancing-ut.",
+                },
+            },
+        },
         selectCurrency: "Monedha",
         gross: "Bruto",
         net: "Neto",
@@ -606,6 +668,68 @@ export const translations = {
         navContact: "Contact",
         navTools: "Tools",
         navResources: "Resources",
+        home: {
+            heroBadge: "Smart finance hub",
+            heroTitle: "Calculate salary, taxes, and contributions in seconds",
+            heroSubtitle: "Pick the calculator you need for 2025 and compare scenarios without spreadsheets.",
+            heroPrimaryCta: "Open the salary calculator",
+            heroSecondaryCta: "Browse freelancer tools",
+            calculatorsTitle: "Choose your calculator",
+            calculatorsSubtitle: "Every module is tuned to Albania's 2024-2025 fiscal changes and supports multi-contract setups.",
+            cards: {
+                employee: {
+                    title: "Employee salary calculator",
+                    description: "Simulate gross/net salary, multiple contracts, and family deductions.",
+                },
+                freelancer: {
+                    title: "Freelancer tax obligations",
+                    description: "Project net profit, VAT thresholds, and contribution duties for annual turnover.",
+                },
+                influencer: {
+                    title: "Creator & influencer modeling",
+                    description: "Compare gross/net outcomes for digital platform income streams.",
+                },
+                guide: {
+                    title: "2025 tax guide",
+                    description: "Key articles, deadlines, and paperwork explained in plain language.",
+                },
+            },
+            benefitsTitle: "Why people trust llogaritësi.al",
+            benefitsSubtitle: "Plan with confidence using a single source of truth—no Excel, no guesswork.",
+            benefits: [
+                {
+                    title: "Updated for 2025 reforms",
+                    description: "We reflect the latest TAP brackets, contribution caps, and pension thresholds.",
+                },
+                {
+                    title: "Automatic currency conversion",
+                    description: "Switch between ALL, EUR, or USD while we keep exchange rates fresh.",
+                },
+                {
+                    title: "Context-rich explanations",
+                    description: "Resource sections unpack legal references, worked examples, and compliance tips.",
+                },
+            ],
+            resourcesTitle: "Insights & resources",
+            resourcesSubtitle: "Deep dives, explainers, and FAQs curated for Albanian professionals.",
+            resources: {
+                news: {
+                    eyebrow: "Updates",
+                    title: "Track fiscal news",
+                    description: "Follow government announcements and turn them into actionable next steps.",
+                },
+                info: {
+                    eyebrow: "Guide",
+                    title: "Understand contributions",
+                    description: "Breakdowns of social security, TAP, and monthly filing obligations.",
+                },
+                faq: {
+                    eyebrow: "FAQ",
+                    title: "Most common questions",
+                    description: "Quick answers for employment, freelancing, and mixed-income scenarios.",
+                },
+            },
+        },
         selectCurrency: "Currency",
         gross: "Gross",
         net: "Net",
@@ -1201,6 +1325,68 @@ export const translations = {
         navContact: "Contatti",
         navTools: "Strumenti",
         navResources: "Risorse",
+        home: {
+            heroBadge: "Hub finanziario smart",
+            heroTitle: "Calcola stipendi, tasse e contributi in pochi secondi",
+            heroSubtitle: "Scegli lo strumento che ti serve per il 2025 e confronta gli scenari senza fogli Excel.",
+            heroPrimaryCta: "Apri il calcolatore stipendio",
+            heroSecondaryCta: "Esplora gli strumenti per freelancer",
+            calculatorsTitle: "Scegli il calcolatore giusto",
+            calculatorsSubtitle: "Ogni modulo è aggiornato alla riforma fiscale 2024-2025 dell'Albania e supporta contratti multipli.",
+            cards: {
+                employee: {
+                    title: "Calcolatore stipendio dipendente",
+                    description: "Simula lordo/netto, contratti multipli e detrazioni familiari.",
+                },
+                freelancer: {
+                    title: "Obblighi fiscali del freelancer",
+                    description: "Analizza l'utile netto, le soglie IVA e i contributi in base al fatturato annuale.",
+                },
+                influencer: {
+                    title: "Modelli per creator e influencer",
+                    description: "Confronta scenari lordo/netto per entrate da piattaforme digitali.",
+                },
+                guide: {
+                    title: "Guida fiscale 2025",
+                    description: "Articoli chiave, scadenze e documenti spiegati in modo semplice.",
+                },
+            },
+            benefitsTitle: "Perché fidarsi di llogaritësi.al",
+            benefitsSubtitle: "Pianifica con una sola fonte affidabile, senza stime manuali o incertezze normative.",
+            benefits: [
+                {
+                    title: "Aggiornato alle riforme 2025",
+                    description: "Recepiamo le nuove aliquote TAP, i massimali contributivi e le soglie pensionistiche.",
+                },
+                {
+                    title: "Conversione valuta automatica",
+                    description: "Passa tra ALL, EUR o USD mantenendo tassi di cambio sempre aggiornati.",
+                },
+                {
+                    title: "Spiegazioni ricche di contesto",
+                    description: "Le sezioni informative includono riferimenti legali, esempi pratici e consigli di compliance.",
+                },
+            ],
+            resourcesTitle: "Approfondimenti & risorse",
+            resourcesSubtitle: "Analisi, guide e FAQ curate per professionisti in Albania.",
+            resources: {
+                news: {
+                    eyebrow: "Aggiornamenti",
+                    title: "Segui le notizie fiscali",
+                    description: "Monitoriamo i comunicati governativi e li traduciamo in azioni concrete.",
+                },
+                info: {
+                    eyebrow: "Guida",
+                    title: "Comprendere i contributi",
+                    description: "Spieghiamo previdenza sociale, TAP e adempimenti mensili.",
+                },
+                faq: {
+                    eyebrow: "FAQ",
+                    title: "Domande più frequenti",
+                    description: "Risposte rapide per lavoro dipendente, freelancing e redditi misti.",
+                },
+            },
+        },
         selectCurrency: "Valuta",
         gross: "Lordo",
         net: "Netto",
