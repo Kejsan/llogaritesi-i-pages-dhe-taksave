@@ -20,7 +20,7 @@ export const Footer = ({ t }) => (
         <div className="relative max-w-7xl mx-auto flex flex-col gap-10 px-6 py-10 lg:flex-row lg:items-center lg:justify-between">
             <div>
                 <div className="flex items-center gap-3">
-                    <img src="/logo-mark.svg" alt="Llogaritësi" className="h-14 w-14" />
+                    <img src="/Llogaritësi i Pagës dhe Taksave.png" alt="Llogaritësi" className="h-14 w-14" />
                     <div>
                         <p className="text-xl font-bold">Llogaritësi i Pagës dhe Taksave</p>
                         <p className="text-sm text-white/70">{t.footerCopyright}</p>
