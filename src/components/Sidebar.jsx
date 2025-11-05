@@ -9,7 +9,8 @@ import {
     IconInfo,
     IconHelp,
     IconLink,
-    IconMail
+    IconMail,
+    IconUsers
 } from './Icons';
 
 const SectionToggle = ({ title, isOpen, onToggle }) => (
@@ -75,6 +76,7 @@ export const Sidebar = ({ t }) => {
         { to: '/info', label: t.navInfo, icon: IconInfo },
         { to: '/faq', label: t.navFAQ, icon: IconHelp },
         { to: '/links', label: t.navLinks, icon: IconLink },
+        { to: '/programs', label: t.navPrograms, icon: IconUsers },
         { to: '/contact', label: t.navContact, icon: IconMail },
     ];
 

@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect, useCallback, lazy, Suspense } from 'react';
+import React, { useState, useMemo, useEffect, lazy, Suspense } from 'react';
 import { Routes, Route, Navigate, Outlet, useLocation } from 'react-router-dom';
 import { Header } from './components/Header';
 import { Sidebar } from './components/Sidebar';
@@ -30,6 +30,9 @@ const LinksSectionRoute = lazy(() =>
 const ContactSectionRoute = lazy(() =>
     import('./components/ContactSection.jsx').then((module) => ({ default: module.ContactSection }))
 );
+const ProgramsSectionRoute = lazy(() =>
+    import('./components/ProgramsSection.jsx').then((module) => ({ default: module.ProgramsSection }))
+);
 
 const CardFallback = () => (
     <div className="flex flex-col items-center justify-center gap-3 py-16 text-brand-navy/70">
@@ -45,7 +48,7 @@ const LandingFallback = () => (
     </div>
 );
 
-const Layout = ({ t, language, setLanguage, currency, setCurrency, theme, onThemeChange }) => {
+const Layout = ({ t, language, setLanguage, currency, setCurrency }) => {
     const location = useLocation();
     const pageKey = useMemo(() => {
         if (location.pathname === '/' || location.pathname === '') {
@@ -95,6 +98,10 @@ const Layout = ({ t, language, setLanguage, currency, setCurrency, theme, onThem
                 label: t.navContact,
                 description: t.navContact,
             },
+            programs: {
+                label: t.navPrograms,
+                description: t.programsTitle,
+            },
         }),
         [t]
     );
@@ -109,8 +116,6 @@ const Layout = ({ t, language, setLanguage, currency, setCurrency, theme, onThem
                 currency={currency}
                 setCurrency={setCurrency}
                 t={t}
-                theme={theme}
-                setTheme={onThemeChange}
             />
 
             {!isHome && (
@@ -150,29 +155,6 @@ const App = () => {
     const [language, setLanguage] = useState('sq');
     const [currency, setCurrency] = useState('ALL');
     const [rates, setRates] = useState({ ALL: 1, EUR: 107.53, USD: 102.04 });
-    const [theme, setTheme] = useState(() => {
-        if (typeof window === 'undefined') {
-            return 'light';
-        }
-
-        const savedTheme = window.localStorage.getItem('theme');
-        let initialTheme;
-
-        if (savedTheme === 'light' || savedTheme === 'dark') {
-            initialTheme = savedTheme;
-        } else {
-            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-            initialTheme = prefersDark ? 'dark' : 'light';
-        }
-
-        document.documentElement.setAttribute('data-theme', initialTheme);
-        if (document.body) {
-            document.body.setAttribute('data-theme', initialTheme);
-        }
-
-        return initialTheme;
-    });
-
     const t = useMemo(() => translations[language], [language]);
 
     useEffect(() => {
@@ -203,25 +185,6 @@ const App = () => {
         document.documentElement.lang = language;
     }, [language]);
 
-    useEffect(() => {
-        if (typeof window === 'undefined') {
-            return;
-        }
-
-        window.localStorage.setItem('theme', theme);
-        document.documentElement.setAttribute('data-theme', theme);
-        document.body.setAttribute('data-theme', theme);
-    }, [theme]);
-
-    const handleThemeChange = useCallback((nextTheme) => {
-        setTheme((current) => {
-            if (nextTheme === 'light' || nextTheme === 'dark') {
-                return nextTheme;
-            }
-            return current === 'light' ? 'dark' : 'light';
-        });
-    }, []);
-
     return (
         <Routes>
             <Route
@@ -232,8 +195,6 @@ const App = () => {
                         setLanguage={setLanguage}
                         currency={currency}
                         setCurrency={setCurrency}
-                        theme={theme}
-                        onThemeChange={handleThemeChange}
                     />
                 }
             >
@@ -252,6 +213,7 @@ const App = () => {
                 <Route path="info" element={<InfoSectionRoute t={t} />} />
                 <Route path="faq" element={<FAQSectionRoute t={t} />} />
                 <Route path="links" element={<LinksSectionRoute t={t} />} />
+                <Route path="programs" element={<ProgramsSectionRoute t={t} />} />
                 <Route path="contact" element={<ContactSectionRoute t={t} />} />
                 <Route path="*" element={<Navigate to="/" replace />} />
             </Route>
