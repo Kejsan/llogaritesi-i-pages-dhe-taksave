@@ -22,10 +22,9 @@ export const InfoSection = ({ t }) => (
             {t.infoIntro}
         </p>
         <div className="grid gap-4">
-            <InfoBlock title={t.infoGrossNetTitle} content={t.infoGrossNetText} />
-            <InfoBlock title={t.infoContributionsTitle} content={t.infoContributionsText} />
-            <InfoBlock title={t.infoTapTitle} content={t.infoTapText} />
-            <InfoBlock title={t.infoFreelancerTitle} content={t.infoFreelancerText} />
+            {t.infoTopics?.map((topic) => (
+                <InfoBlock key={topic.title} title={topic.title} content={topic.content} />
+            ))}
         </div>
     </div>
 );
