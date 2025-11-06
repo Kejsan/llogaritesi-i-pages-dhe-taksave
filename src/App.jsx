@@ -35,16 +35,16 @@ const ProgramsSectionRoute = lazy(() =>
 );
 
 const CardFallback = () => (
-    <div className="flex flex-col items-center justify-center gap-3 py-16 text-brand-navy/70">
+    <div className="flex flex-col items-center justify-center gap-3 py-16 theme-text-muted">
         <span className="h-3 w-3 animate-ping rounded-full bg-brand-cyan" aria-hidden="true"></span>
         <p className="text-xs font-semibold uppercase tracking-[0.4em]">Loading…</p>
     </div>
 );
 
 const LandingFallback = () => (
-    <div className="flex flex-col items-center justify-center gap-4 rounded-3xl border border-white/30 bg-white/70 p-12 text-center text-brand-navy/80 shadow-xl">
+    <div className="flex flex-col items-center justify-center gap-4 rounded-3xl theme-surface p-12 text-center shadow-xl">
         <span className="text-sm font-semibold uppercase tracking-[0.35em]">Llogaritësi.al</span>
-        <p className="max-w-xl text-base text-brand-navy/70">Loading the latest data…</p>
+        <p className="max-w-xl text-base theme-text-muted">Loading the latest data…</p>
     </div>
 );
 
@@ -119,12 +119,12 @@ const Layout = ({ t, language, setLanguage, currency, setCurrency }) => {
             />
 
             {!isHome && (
-                <section className="bg-white/5 backdrop-blur-sm border border-white/10 shadow-2xl mx-4 mt-6 rounded-3xl">
+                <section className="mx-4 mt-6 rounded-3xl theme-surface shadow-2xl backdrop-blur-sm">
                     <div className="max-w-7xl mx-auto px-6 py-6 lg:py-10 flex flex-col gap-6 lg:flex-row lg:items-center">
-                        <div className="flex-1 space-y-3 text-white">
-                            <p className="text-xs uppercase tracking-[0.4em] text-white/70">{t.navTools}</p>
-                            <h1 className="text-3xl lg:text-4xl font-extrabold drop-shadow-sm">{activeMeta.label}</h1>
-                            <p className="text-white/80 max-w-2xl text-sm lg:text-base leading-relaxed">{activeMeta.description}</p>
+                        <div className="flex-1 space-y-3">
+                            <p className="text-xs uppercase tracking-[0.4em] theme-text-muted">{t.navTools}</p>
+                            <h1 className="text-3xl lg:text-4xl font-extrabold text-brand-navy drop-shadow-sm">{activeMeta.label}</h1>
+                            <p className="max-w-2xl text-sm lg:text-base leading-relaxed theme-text-muted">{activeMeta.description}</p>
                         </div>
                     </div>
                 </section>

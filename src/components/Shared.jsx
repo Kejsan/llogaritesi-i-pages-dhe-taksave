@@ -74,37 +74,29 @@ export const SectionTitle = ({ icon: Icon, title }) => (
 );
 
 export const InfoAlert = ({ title, children, type = 'info' }) => {
-    let colors = {
-        info: {
-            bg: 'bg-blue-50',
-            border: 'border-blue-400',
-            icon: 'text-blue-600',
-            IconComp: IconInfo
-        },
-        warning: {
-            bg: 'bg-yellow-50',
-            border: 'border-yellow-400',
-            icon: 'text-yellow-600',
-            IconComp: IconAlertTriangle
-        },
-        danger: {
-            bg: 'bg-brand-red/10',
-            border: 'border-brand-red',
-            icon: 'text-brand-red',
-            IconComp: IconAlertTriangle
-        }
-    }[type];
+    const tones = {
+        info: { IconComp: IconInfo, tone: 'info' },
+        warning: { IconComp: IconAlertTriangle, tone: 'warning' },
+        danger: { IconComp: IconAlertTriangle, tone: 'danger' },
+    };
+
+    const selected = tones[type] ?? tones.info;
 
     return (
-        <div className={`p-5 mb-6 rounded-2xl border ${colors.border} ${colors.bg} shadow-inner`}
-            role={type === 'warning' || type === 'danger' ? 'alert' : undefined}>
+        <div
+            className={`theme-callout ${selected.tone} p-5 mb-6`}
+            role={type === 'warning' || type === 'danger' ? 'alert' : undefined}
+        >
             <div className="flex">
                 <div className="flex-shrink-0">
-                    <colors.IconComp className={`w-5 h-5 ${colors.icon}`} />
+                    <selected.IconComp className={`h-5 w-5 theme-callout__icon ${selected.tone}`} />
                 </div>
                 <div className="ml-3">
-                    <p className="font-bold text-gray-800">{title}</p>
-                    <div className="text-sm mt-1 text-gray-700" dangerouslySetInnerHTML={{ __html: children }} />
+                    <p className="font-bold theme-callout__title">{title}</p>
+                    <div
+                        className="text-sm mt-1 theme-callout__content"
+                        dangerouslySetInnerHTML={{ __html: children }}
+                    />
                 </div>
             </div>
         </div>
@@ -124,10 +116,10 @@ export const InputGroup = ({ label, value, onChange, placeholder, currency, clas
                 value={value}
                 onChange={onChange}
                 placeholder={placeholder}
-                className={`w-full pl-4 pr-16 py-3 border border-gray-300 rounded-lg text-xl input-focus-effect ${className}`}
+                className={`w-full pl-4 pr-16 py-3 rounded-lg text-xl input-focus-effect theme-input ${className}`}
             />
             <div className="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none">
-                <span className="text-gray-500 sm:text-base font-semibold">{currency}</span>
+                <span className="sm:text-base font-semibold theme-input-suffix">{currency}</span>
             </div>
         </div>
     </div>
@@ -135,10 +127,14 @@ export const InputGroup = ({ label, value, onChange, placeholder, currency, clas
 
 export const DetailRow = ({ label, value, currency, rates, isConstant = false, isHeader = false, isTotal = false }) => (
     <div className={`flex justify-between items-center py-2 ${isTotal ? 'text-base' : 'text-sm'}`}>
-        <span className={`${isConstant ? 'text-gray-500' : isHeader ? 'font-semibold text-brand-navy' : 'text-gray-700'}`}>
+        <span className={`${isConstant ? 'theme-text-muted' : isHeader ? 'font-semibold text-brand-navy' : 'theme-text-primary'}`}>
             {label}
         </span>
-        <span className={`font-bold ${isConstant ? 'text-gray-500' : isTotal ? 'text-brand-navy text-lg' : 'text-brand-cyan'}`}>
+        <span
+            className={`font-bold ${
+                isConstant ? 'theme-text-muted' : isTotal ? 'text-brand-navy text-lg' : 'text-brand-cyan'
+            }`}
+        >
             {formatCurrency(value, currency, rates)}
         </span>
     </div>
