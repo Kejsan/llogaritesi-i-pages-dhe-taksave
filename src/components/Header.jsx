@@ -9,18 +9,20 @@ const LanguageSelector = ({ lang, setLang }) => {
         { code: 'it', flag: '🇮🇹', label: 'Italiano' },
     ];
     return (
-        <div className="flex items-center gap-2 rounded-full border border-white/20 bg-white/10 p-1 backdrop-blur">
+        <div className="flex items-center gap-2 rounded-full theme-surface-muted px-1 py-1 backdrop-blur">
             {languages.map((l) => (
                 <button
                     type="button"
                     key={l.code}
                     onClick={() => setLang(l.code)}
-                    className={`flex items-center gap-1 rounded-full px-3 py-2 text-xs font-semibold uppercase tracking-wide transition ${
-                        lang === l.code ? 'bg-white text-brand-navy shadow-lg' : 'text-white/80 hover:bg-white/20'
+                    className={`flex items-center gap-1 rounded-full px-3 py-2 text-xs font-semibold uppercase tracking-wide transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-cyan/60 ${
+                        lang === l.code
+                            ? 'bg-gradient-to-r from-brand-cyan to-brand-navy text-white shadow-lg'
+                            : 'theme-chip'
                     }`}
-                >
+                    >
                     <span>{l.flag}</span>
-                    <span className="hidden sm:inline">{l.label}</span>
+                    <span className={`hidden sm:inline ${lang === l.code ? '' : 'theme-text-primary'}`}>{l.label}</span>
                 </button>
             ))}
         </div>
@@ -63,19 +65,21 @@ const CurrencySelector = ({ currency, setCurrency, t }) => {
                 id="currency"
                 type="button"
                 onClick={() => setOpen((prev) => !prev)}
-                className="flex items-center gap-2 rounded-full border border-white/30 bg-white/20 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-white transition hover:bg-white/30"
+                className={`flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-wide transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-cyan/60 ${
+                    open ? 'bg-gradient-to-r from-brand-cyan to-brand-navy text-white shadow-lg' : 'theme-chip'
+                }`}
                 aria-haspopup="listbox"
                 aria-expanded={open}
                 aria-controls="currency-selector-menu"
             >
-                <span>{currency}</span>
-                <svg className={`h-4 w-4 transition ${open ? 'rotate-180' : ''}`} viewBox="0 0 20 20" fill="none">
+                <span className={open ? 'text-white' : 'theme-text-primary'}>{currency}</span>
+                <svg className={`h-4 w-4 transition ${open ? 'rotate-180' : ''} ${open ? 'text-white' : 'theme-text-muted'}`} viewBox="0 0 20 20" fill="none">
                     <path d="M5 8l5 5 5-5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
             </button>
             {open && (
                 <div
-                    className="absolute right-0 z-50 mt-3 w-40 rounded-2xl border border-white/40 bg-white/95 p-2 shadow-xl"
+                    className="absolute right-0 z-50 mt-3 w-40 rounded-2xl theme-surface p-2 shadow-xl"
                     id="currency-selector-menu"
                     role="listbox"
                 >
@@ -88,8 +92,10 @@ const CurrencySelector = ({ currency, setCurrency, t }) => {
                                         setCurrency(c);
                                         setOpen(false);
                                     }}
-                                    className={`w-full rounded-xl px-3 py-2 text-left transition ${
-                                        currency === c ? 'bg-brand-cyan/20 text-brand-navy' : 'hover:bg-brand-cyan/10'
+                                    className={`w-full rounded-xl px-3 py-2 text-left transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-cyan/60 ${
+                                        currency === c
+                                            ? 'bg-gradient-to-r from-brand-cyan/80 to-brand-navy/90 text-white shadow'
+                                            : 'theme-chip'
                                     }`}
                                 >
                                     {c}
@@ -97,7 +103,7 @@ const CurrencySelector = ({ currency, setCurrency, t }) => {
                             </li>
                         ))}
                     </ul>
-                    <p className="mt-2 rounded-xl bg-brand-cyan/10 px-3 py-2 text-xs text-brand-navy/80">
+                    <p className="mt-2 rounded-xl theme-surface-muted px-3 py-2 text-xs theme-text-muted">
                         {t.selectCurrency}: kursi përditësohet automatikisht.
                     </p>
                 </div>
@@ -137,29 +143,37 @@ const ThemeToggle = () => {
     const { theme, setTheme } = useTheme();
 
     return (
-        <div role="group" aria-label="Ndrysho temën" className="flex items-center gap-1 rounded-full border border-white/20 bg-white/10 p-1 backdrop-blur">
+        <div
+            role="group"
+            aria-label="Ndrysho temën"
+            className="flex items-center gap-1 rounded-full theme-surface-muted p-1 backdrop-blur"
+        >
             <button
                 type="button"
                 onClick={() => setTheme('light')}
-                className={`flex items-center gap-2 rounded-full px-3 py-2 text-xs font-semibold uppercase tracking-wide transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 ${
-                    theme === 'light' ? 'bg-white text-brand-navy shadow-lg' : 'text-white/80 hover:bg-white/20'
+                className={`flex items-center gap-2 rounded-full px-3 py-2 text-xs font-semibold uppercase tracking-wide transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-cyan/60 ${
+                    theme === 'light'
+                        ? 'bg-gradient-to-r from-brand-cyan to-brand-navy text-white shadow-lg'
+                        : 'theme-chip'
                 }`}
                 aria-pressed={theme === 'light'}
             >
-                <SunIcon className="h-4 w-4" />
-                <span className="hidden sm:inline">E çelët</span>
+                <SunIcon className={`h-4 w-4 ${theme === 'light' ? 'text-white' : 'theme-text-primary'}`} />
+                <span className={`hidden sm:inline ${theme === 'light' ? '' : 'theme-text-primary'}`}>E çelët</span>
                 <span className="sr-only">Përdor temën e çelët</span>
             </button>
             <button
                 type="button"
                 onClick={() => setTheme('dark')}
-                className={`flex items-center gap-2 rounded-full px-3 py-2 text-xs font-semibold uppercase tracking-wide transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 ${
-                    theme === 'dark' ? 'bg-brand-navy/80 text-white shadow-lg' : 'text-white/80 hover:bg-white/20'
+                className={`flex items-center gap-2 rounded-full px-3 py-2 text-xs font-semibold uppercase tracking-wide transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-cyan/60 ${
+                    theme === 'dark'
+                        ? 'bg-gradient-to-r from-brand-navy to-brand-cyan text-white shadow-lg'
+                        : 'theme-chip'
                 }`}
                 aria-pressed={theme === 'dark'}
             >
-                <MoonIcon className="h-4 w-4" />
-                <span className="hidden sm:inline">E errët</span>
+                <MoonIcon className={`h-4 w-4 ${theme === 'dark' ? 'text-white' : 'theme-text-primary'}`} />
+                <span className={`hidden sm:inline ${theme === 'dark' ? '' : 'theme-text-primary'}`}>E errët</span>
                 <span className="sr-only">Përdor temën e errët</span>
             </button>
         </div>

@@ -17,11 +17,13 @@ const SectionToggle = ({ title, isOpen, onToggle }) => (
     <button
         type="button"
         onClick={onToggle}
-        className="flex w-full items-center justify-between rounded-2xl border border-brand-navy/10 bg-white/60 px-4 py-3 text-sm font-semibold uppercase tracking-wide text-brand-navy transition hover:bg-white/80"
+        className={`flex w-full items-center justify-between rounded-2xl theme-surface-muted px-4 py-3 text-sm font-semibold uppercase tracking-wide transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-cyan/60 ${
+            isOpen ? 'shadow-lg shadow-brand-cyan/20' : 'hover:shadow-md hover:-translate-y-0.5'
+        }`}
         aria-expanded={isOpen}
     >
-        <span>{title}</span>
-        <svg className={`h-4 w-4 transition ${isOpen ? 'rotate-180' : ''}`} viewBox="0 0 20 20" fill="none">
+        <span className="theme-text-primary">{title}</span>
+        <svg className={`h-4 w-4 transition theme-text-muted ${isOpen ? 'rotate-180' : ''}`} viewBox="0 0 20 20" fill="none">
             <path d="M5 8l5 5 5-5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
     </button>
@@ -32,10 +34,10 @@ const NavButton = ({ item }) => (
         to={item.to}
         end
         className={({ isActive }) =>
-            `group relative flex w-full items-center justify-between overflow-hidden rounded-2xl border px-4 py-3 text-left transition-all duration-300 ${
+            `group relative flex w-full items-center justify-between overflow-hidden rounded-2xl px-4 py-3 text-left transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-cyan/60 ${
                 isActive
-                    ? 'border-brand-cyan bg-gradient-to-r from-brand-cyan/90 to-brand-navy/90 text-white shadow-xl'
-                    : 'border-transparent bg-white/70 text-brand-navy hover:border-brand-cyan/40 hover:bg-white'
+                    ? 'border border-brand-cyan bg-gradient-to-r from-brand-cyan/90 to-brand-navy/90 text-white shadow-xl'
+                    : 'theme-surface hover:-translate-y-0.5 hover:shadow-lg'
             }`
         }
     >
@@ -43,17 +45,20 @@ const NavButton = ({ item }) => (
             <>
                 <div className="flex items-center gap-3">
                     <span
-                        className={`rounded-xl bg-brand-cyan/15 p-2 text-brand-cyan transition ${
-                            isActive ? 'bg-white/20 text-white' : ''
+                        className={`rounded-xl p-2 transition ${
+                            isActive
+                                ? 'bg-white/20 text-white'
+                                : 'theme-chip'
                         }`}
+                        data-active={isActive}
                     >
                         <item.icon className="h-5 w-5" />
                     </span>
-                    <span className="font-semibold">{item.label}</span>
+                    <span className="font-semibold theme-text-primary">{item.label}</span>
                 </div>
                 <span
                     className={`text-xs font-semibold uppercase tracking-wide ${
-                        isActive ? 'text-white/80' : 'text-brand-navy/40'
+                        isActive ? 'text-white/80' : 'theme-text-muted'
                     }`}
                 >
                     {isActive ? 'Aktive' : 'Shiko'}
@@ -85,12 +90,14 @@ export const Sidebar = ({ t }) => {
 
     return (
         <aside className="w-full lg:w-80">
-            <div className="rounded-3xl border border-white/35 bg-white/70 p-6 shadow-2xl backdrop-blur">
+            <div className="rounded-3xl theme-surface p-6 shadow-2xl backdrop-blur">
                 <div className="flex items-center justify-between">
                     <p className="text-xs font-semibold uppercase tracking-[0.35em] text-brand-navy/60">Navigimi</p>
-                    <span className="rounded-full bg-brand-cyan/15 px-3 py-1 text-xs font-semibold text-brand-cyan">UX i ri</span>
+                    <span className="theme-chip px-3 py-1 text-xs font-semibold" data-active="true">
+                        UX i ri
+                    </span>
                 </div>
-                <p className="mt-2 text-sm text-brand-navy/70">
+                <p className="mt-2 text-sm theme-text-muted">
                     Zgjidh një modul për të llogaritur pagën, taksat ose për të lexuar analizat tona.
                 </p>
 
