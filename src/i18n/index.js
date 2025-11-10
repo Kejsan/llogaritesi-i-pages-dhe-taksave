@@ -14,6 +14,7 @@ export const translations = {
         navPrograms: "Programet",
         navTools: "Mjetet",
         navResources: "Burimet",
+        disclaimer: "ℹ️ Ky mjet shërben vetëm për informacion të përgjithshëm. Verifikoni llogaritjet me një këshilltar tatimor ose ligjor përpara se të merrni vendime.",
         home: {
             heroBadge: "Platformë inteligjente",
             heroTitle: "Llogarit pagën, taksat dhe kontributet në pak sekonda",
@@ -722,6 +723,7 @@ export const translations = {
         navPrograms: "Programs",
         navTools: "Tools",
         navResources: "Resources",
+        disclaimer: "ℹ️ This tool provides informational guidance only. Verify all calculations with a qualified tax or legal advisor before making decisions.",
         home: {
             heroBadge: "Smart finance hub",
             heroTitle: "Calculate salary, taxes, and contributions in seconds",
@@ -1430,6 +1432,7 @@ export const translations = {
         navPrograms: "Programmi",
         navTools: "Strumenti",
         navResources: "Risorse",
+        disclaimer: "ℹ️ Questo strumento offre solo indicazioni informative. Verifica tutti i calcoli con un consulente fiscale o legale qualificato prima di prendere decisioni.",
         home: {
             heroBadge: "Hub finanziario smart",
             heroTitle: "Calcola stipendi, tasse e contributi in pochi secondi",

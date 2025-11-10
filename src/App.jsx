@@ -3,6 +3,7 @@ import { Routes, Route, Navigate, Outlet, useLocation } from 'react-router-dom';
 import { Header } from './components/Header';
 import { Sidebar } from './components/Sidebar';
 import { Footer } from './components/Footer';
+import { DisclaimerBanner } from './components/DisclaimerBanner';
 import { translations } from './i18n';
 
 const HomePage = lazy(() => import('./pages/HomePage.jsx'));
@@ -146,6 +147,7 @@ const Layout = ({ t, language, setLanguage, currency, setCurrency }) => {
                     )}
                 </main>
             </div>
+            <DisclaimerBanner t={t} />
             <Footer t={t} />
         </div>
     );
