@@ -215,7 +215,7 @@ const App = () => {
                 <Route path="info" element={<InfoSectionRoute t={t} />} />
                 <Route path="faq" element={<FAQSectionRoute t={t} />} />
                 <Route path="links" element={<LinksSectionRoute t={t} />} />
-                <Route path="programs" element={<ProgramsSectionRoute t={t} />} />
+                <Route path="programs" element={<ProgramsSectionRoute t={t} language={language} />} />
                 <Route path="contact" element={<ContactSectionRoute t={t} />} />
                 <Route path="*" element={<Navigate to="/" replace />} />
             </Route>

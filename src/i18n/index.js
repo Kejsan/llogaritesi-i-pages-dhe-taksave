@@ -1,3 +1,5 @@
+import { getProgramsForLocale } from '../constants/programs';
+
 export const translations = {
     sq: {
         navHome: "Kryefaqja",
@@ -656,52 +658,8 @@ export const translations = {
         newsErrorOutage: "Shërbimi i lajmeve është përkohësisht i padisponueshëm ndërsa proxy po provon sërish.",
         programsTitle: "Programet & akademitë tona",
         programsSubtitle: "Zgjidh një program të thelluar për të trajnuar ekipin ose për të masteruar detyrimet fiskale.",
-        programsList: [
-            {
-                title: "Akademia e Financave Personale",
-                subtitle: "Program 4-javor, live & online",
-                badge: "I ri",
-                description: "Trajnim i strukturuar për punonjësit që duan të menaxhojnë pagën, kontributet dhe kursimet vullnetare.",
-                benefits: [
-                    "Sesione interaktive me shembuj nga paga bruto/neto",
-                    "Template për planifikimin e kursimeve dhe simulime familjare",
-                    "Qasje në komunitetin e llogaritësi.al për 6 muaj",
-                ],
-                cta: {
-                    label: "Rezervo vendin",
-                    to: "/contact",
-                },
-            },
-            {
-                title: "Bootcamp për Profesionistët e Lirë",
-                subtitle: "2 ditë intensive",
-                badge: "2025",
-                description: "Nga regjistrimi në QKB deri tek deklarimi elektronik i TVSH-së dhe DIVA-s.",
-                benefits: [
-                    "Checklist të dokumenteve dhe regjistrimeve",
-                    "Skenarë realë për tatimin 0%/23% dhe raportimin mujor",
-                    "Mbulim të faturimit për klientë ndërkombëtarë",
-                ],
-                cta: {
-                    label: "Apliko tani",
-                    to: "/contact",
-                },
-            },
-            {
-                title: "Programi për HR & Finance Teams",
-                subtitle: "Workshop i personalizuar",
-                description: "Trajnim in-house për politikat e pagave, paketat e benefiteve dhe komunikimin me punonjësit.",
-                benefits: [
-                    "Analizë e legjislacionit 2024-2025 dhe rreziqeve të pajtueshmërisë",
-                    "Manual praktik për komunikimin e pagës neto dhe bonuseve",
-                    "Dashboard me kalkulatorët tanë të brendshëm për ekipin",
-                ],
-                cta: {
-                    label: "Kërko ofertë",
-                    to: "/contact",
-                },
-            },
-        ],
+        programsEmpty: "Aktualisht nuk kemi programe të publikuara. Na kontaktoni për listën më të fundit.",
+        programsList: getProgramsForLocale('sq'),
         linksTitle: "Burime Zyrtare & Lidhje të Dobishme",
         linksDpt: "Drejtoria e Përgjithshme e Tatimeve (DPT)",
         linksQkb: "Qendra Kombëtare e Biznesit (QKB)",
@@ -1367,52 +1325,8 @@ export const translations = {
         newsErrorOutage: "The news service is temporarily unavailable while the proxy retries.",
         programsTitle: "Programs & academies",
         programsSubtitle: "Choose a deep-dive cohort or tailored workshop to master Albania's 2025 tax changes.",
-        programsList: [
-            {
-                title: "Personal Finance Academy",
-                subtitle: "4-week cohort (live online)",
-                badge: "New",
-                description: "Structured coaching for employees who want clarity on salary breakdowns, contributions, and voluntary savings.",
-                benefits: [
-                    "Interactive sessions with gross/net walk-throughs",
-                    "Planning templates for family deductions and savings goals",
-                    "6 months of access to the llogaritësi.al community",
-                ],
-                cta: {
-                    label: "Reserve your seat",
-                    to: "/contact",
-                },
-            },
-            {
-                title: "Freelancer Compliance Bootcamp",
-                subtitle: "2-day intensive",
-                badge: "2025",
-                description: "From business registration to electronic VAT and annual filings—everything a freelancer needs in 2025.",
-                benefits: [
-                    "Document and registration checklists",
-                    "Real-world scenarios for the 0%/23% income tax split",
-                    "Guidance on invoicing international clients",
-                ],
-                cta: {
-                    label: "Apply now",
-                    to: "/contact",
-                },
-            },
-            {
-                title: "HR & Finance Enablement Program",
-                subtitle: "Tailored on-site workshop",
-                description: "Custom training for teams that manage payroll policies, benefits packages, and employee communications.",
-                benefits: [
-                    "Compliance briefing on the 2024-2025 legal framework",
-                    "Practical handbook for explaining net pay and bonuses",
-                    "Internal dashboard access to our premium calculators",
-                ],
-                cta: {
-                    label: "Request a quote",
-                    to: "/contact",
-                },
-            },
-        ],
+        programsEmpty: "No programs are published right now. Contact us to get the latest cohort list.",
+        programsList: getProgramsForLocale('en'),
         linksTitle: "Official Resources & Useful Links",
         linksDpt: "General Directorate of Taxes (DPT)",
         linksQkb: "National Business Center (QKB)",
@@ -1991,52 +1905,8 @@ export const translations = {
         newsErrorOutage: "Il servizio di notizie non è momentaneamente disponibile mentre il proxy riprova.",
         programsTitle: "Programmi & Academy",
         programsSubtitle: "Scegli un percorso intensivo o un workshop su misura per affrontare le novità fiscali 2025 in Albania.",
-        programsList: [
-            {
-                title: "Academy di Finanza Personale",
-                subtitle: "Percorso di 4 settimane (live online)",
-                badge: "Novità",
-                description: "Formazione strutturata per chi vuole capire in dettaglio stipendio, contributi e risparmio volontario.",
-                benefits: [
-                    "Sessioni interattive con esempi lordo/netto",
-                    "Modelli per simulare deduzioni familiari e obiettivi di risparmio",
-                    "Accesso alla community llogaritësi.al per 6 mesi",
-                ],
-                cta: {
-                    label: "Prenota il posto",
-                    to: "/contact",
-                },
-            },
-            {
-                title: "Bootcamp Conformità Freelancer",
-                subtitle: "Intensivo di 2 giorni",
-                badge: "2025",
-                description: "Dal registro in QKB alla dichiarazione IVA e DIVA: tutto ciò che serve a freelance e creator.",
-                benefits: [
-                    "Checklist di documenti e adempimenti",
-                    "Casi pratici sulla doppia aliquota 0%/23%",
-                    "Linee guida per fatturare clienti internazionali",
-                ],
-                cta: {
-                    label: "Iscriviti ora",
-                    to: "/contact",
-                },
-            },
-            {
-                title: "Programma Team HR & Finance",
-                subtitle: "Workshop personalizzato in sede",
-                description: "Training dedicato a chi gestisce payroll, benefit e comunicazione interna con i dipendenti.",
-                benefits: [
-                    "Aggiornamento normativo 2024-2025 e rischi di compliance",
-                    "Manuale pratico per spiegare netto in busta e bonus",
-                    "Dashboard riservata con i nostri calcolatori premium",
-                ],
-                cta: {
-                    label: "Richiedi un preventivo",
-                    to: "/contact",
-                },
-            },
-        ],
+        programsEmpty: "Al momento non ci sono programmi pubblicati. Contattaci per conoscere i prossimi percorsi.",
+        programsList: getProgramsForLocale('it'),
         linksTitle: "Risorse Ufficiali e Link Utili",
         linksDpt: "Direzione Generale delle Tasse (DPT)",
         linksQkb: "Centro Nazionale delle Imprese (QKB)",
