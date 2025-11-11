@@ -21,7 +21,7 @@ export const formatCurrency = (value, currency, rates) => {
     }).format(convertedValue);
 };
 
-const NEWS_SOURCES = [
+export const NEWS_SOURCES = [
     {
         id: 'tatime-wordpress',
         endpoint: 'https://www.tatime.gov.al/wp-json/wp/v2/posts?per_page=6&_fields=id,link,title.rendered,modified',
@@ -73,11 +73,49 @@ const newsCache = {
     lastSource: null,
 };
 
+const NAMED_HTML_ENTITIES = {
+    amp: '&',
+    lt: '<',
+    gt: '>',
+    quot: '"',
+    apos: "'",
+    nbsp: ' ',
+};
+
 const decodeHtmlEntities = (value) => {
     if (!value) return '';
-    const textarea = document.createElement('textarea');
-    textarea.innerHTML = value;
-    return textarea.value;
+    const stringValue = String(value);
+
+    if (typeof document !== 'undefined' && document?.createElement) {
+        const textarea = document.createElement('textarea');
+        textarea.innerHTML = stringValue;
+        return textarea.value;
+    }
+
+    const entityPattern = /&(#x?[0-9a-fA-F]+|[a-zA-Z]+);/g;
+    return stringValue.replace(entityPattern, (match, entity) => {
+        const normalizedEntity = entity.toLowerCase();
+
+        if (normalizedEntity.startsWith('#x')) {
+            const hex = normalizedEntity.slice(2);
+            const code = Number.parseInt(hex, 16);
+            if (Number.isFinite(code)) return String.fromCodePoint(code);
+            return match;
+        }
+
+        if (normalizedEntity.startsWith('#')) {
+            const decimal = normalizedEntity.slice(1);
+            const code = Number.parseInt(decimal, 10);
+            if (Number.isFinite(code)) return String.fromCodePoint(code);
+            return match;
+        }
+
+        if (normalizedEntity in NAMED_HTML_ENTITIES) {
+            return NAMED_HTML_ENTITIES[normalizedEntity];
+        }
+
+        return match;
+    });
 };
 
 const sanitizeNewsTitle = (value) => {
@@ -90,8 +128,12 @@ const sanitizeNewsTitle = (value) => {
 
 const ensureAbsoluteUrl = (maybeRelative, baseUrl) => {
     if (!maybeRelative) return '';
+    const defaultBase = baseUrl || (typeof window !== 'undefined' ? window.location.origin : undefined);
     try {
-        return new URL(maybeRelative, baseUrl || window.location.origin).toString();
+        if (defaultBase) {
+            return new URL(maybeRelative, defaultBase).toString();
+        }
+        return new URL(maybeRelative).toString();
     } catch {
         return '';
     }
@@ -129,13 +171,30 @@ const parseHtmlDocument = (markup) => {
         if (typeof DOMParser !== 'undefined') {
             return new DOMParser().parseFromString(markup, 'text/html');
         }
-        const template = document.createElement('template');
-        template.innerHTML = markup;
-        return template.content;
+        if (typeof document !== 'undefined' && document?.createElement) {
+            const template = document.createElement('template');
+            template.innerHTML = markup;
+            return template.content;
+        }
     } catch (error) {
         console.warn('Failed to parse HTML markup for news feed', error);
         return null;
     }
+
+    const parserFactory = typeof globalThis !== 'undefined' ? globalThis.__NEWS_HTML_PARSER__ : null;
+    if (typeof parserFactory === 'function') {
+        try {
+            const result = parserFactory(markup);
+            if (result?.document) return result.document;
+            if (result?.window?.document) return result.window.document;
+        } catch (error) {
+            console.warn('Failed to parse HTML markup for news feed', error);
+            return null;
+        }
+    }
+
+    console.warn('Failed to parse HTML markup for news feed');
+    return null;
 };
 
 const parseOpenDataMarkup = (markup, baseUrl) => {
@@ -214,7 +273,7 @@ const parseGenericNewsMarkup = (markup, { baseUrl, hostLabel, minimumTitleLength
     return items;
 };
 
-const standardizeNewsItems = (items, { baseUrl, fallbackSource } = {}) => {
+export const standardizeNewsItems = (items, { baseUrl, fallbackSource } = {}) => {
     if (!Array.isArray(items)) return [];
     const seen = new Set();
     const normalized = [];
@@ -247,6 +306,8 @@ const standardizeNewsItems = (items, { baseUrl, fallbackSource } = {}) => {
     return normalized.slice(0, 6);
 };
 
+const NEWS_API_ENDPOINT = '/api/news';
+
 export const fetchNewsUpdates = async ({ forceRefresh = false } = {}) => {
     if (forceRefresh) {
         newsCache.timestamp = 0;
@@ -265,46 +326,54 @@ export const fetchNewsUpdates = async ({ forceRefresh = false } = {}) => {
     }
 
     const request = (async () => {
-        let lastError = null;
+        try {
+            const response = await fetch(NEWS_API_ENDPOINT, {
+                mode: 'cors',
+                credentials: 'omit',
+                cache: 'no-store',
+                headers: {
+                    'Accept': 'application/json',
+                },
+            });
 
-        for (const source of NEWS_SOURCES) {
-            try {
-                const response = await fetch(source.endpoint, {
-                    mode: 'cors',
-                    credentials: 'omit',
-                    cache: 'no-store',
-                    headers: {
-                        'Accept': 'application/json, text/html;q=0.9',
-                    },
-                });
-
-                if (!response.ok) {
-                    throw new Error(`Failed to load updates from ${source.id} (HTTP ${response.status})`);
-                }
-
-                const rawItems = await source.parser(response);
-                const normalized = standardizeNewsItems(rawItems, {
-                    baseUrl: source.baseUrl,
-                    fallbackSource: source.hostLabel || rawItems?.[0]?.source,
-                });
-
-                if (normalized.length) {
-                    newsCache.data = normalized;
-                    newsCache.timestamp = Date.now();
-                    newsCache.lastSource = source.id;
-                    return normalized;
-                }
-            } catch (error) {
-                lastError = error;
-                console.warn('News source failed', source.id, error);
-                continue;
+            if (!response.ok) {
+                const message = `Service temporarily unavailable (HTTP ${response.status})`;
+                throw new Error(message);
             }
-        }
 
-        throw lastError || new Error('Failed to load official updates');
-    })().finally(() => {
-        newsCache.promise = null;
-    });
+            let payload;
+            try {
+                payload = await response.json();
+            } catch (error) {
+                throw new Error('Received an invalid response from the news service');
+            }
+
+            const items = Array.isArray(payload?.items) ? payload.items : [];
+            const fetchedAt = payload?.fetchedAt && typeof payload.fetchedAt === 'string'
+                ? payload.fetchedAt
+                : new Date().toISOString();
+
+            if (payload?.error?.message) {
+                throw new Error(payload.error.message);
+            }
+
+            const normalized = standardizeNewsItems(items);
+            const result = { items: normalized, fetchedAt };
+
+            newsCache.data = result;
+            newsCache.timestamp = Date.now();
+            newsCache.lastSource = payload?.source || null;
+
+            return result;
+        } catch (error) {
+            const message = error?.message || 'Service temporarily unavailable';
+            const enhancedError = new Error(message);
+            enhancedError.cause = error;
+            throw enhancedError;
+        } finally {
+            newsCache.promise = null;
+        }
+    })();
 
     newsCache.promise = request;
     return request;
