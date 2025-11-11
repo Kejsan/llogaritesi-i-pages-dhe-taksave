@@ -652,6 +652,8 @@ export const translations = {
         newsSourceLabel: "Burimi",
         newsPublished: "Publikuar",
         newsReadMore: "Lexo më shumë",
+        newsLastRefreshed: (timestamp) => `Rifreskuar për herë të fundit ${timestamp}`,
+        newsErrorOutage: "Shërbimi i lajmeve është përkohësisht i padisponueshëm ndërsa proxy po provon sërish.",
         programsTitle: "Programet & akademitë tona",
         programsSubtitle: "Zgjidh një program të thelluar për të trajnuar ekipin ose për të masteruar detyrimet fiskale.",
         programsList: [
@@ -1361,6 +1363,8 @@ export const translations = {
         newsSourceLabel: "Source",
         newsPublished: "Published",
         newsReadMore: "Read more",
+        newsLastRefreshed: (timestamp) => `Last refreshed ${timestamp}`,
+        newsErrorOutage: "The news service is temporarily unavailable while the proxy retries.",
         programsTitle: "Programs & academies",
         programsSubtitle: "Choose a deep-dive cohort or tailored workshop to master Albania's 2025 tax changes.",
         programsList: [
@@ -1983,6 +1987,8 @@ export const translations = {
         newsSourceLabel: "Fonte",
         newsPublished: "Pubblicato",
         newsReadMore: "Scopri di più",
+        newsLastRefreshed: (timestamp) => `Ultimo aggiornamento ${timestamp}`,
+        newsErrorOutage: "Il servizio di notizie non è momentaneamente disponibile mentre il proxy riprova.",
         programsTitle: "Programmi & Academy",
         programsSubtitle: "Scegli un percorso intensivo o un workshop su misura per affrontare le novità fiscali 2025 in Albania.",
         programsList: [

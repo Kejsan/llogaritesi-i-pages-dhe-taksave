@@ -7,6 +7,7 @@ export const NewsUpdatesSection = ({ t, language }) => {
     const [status, setStatus] = useState('loading');
     const [items, setItems] = useState([]);
     const [error, setError] = useState(null);
+    const [lastFetchedAt, setLastFetchedAt] = useState(null);
     const isMountedRef = React.useRef(true);
 
     const locale = useMemo(() => {
@@ -27,8 +28,10 @@ export const NewsUpdatesSection = ({ t, language }) => {
         try {
             const updates = await fetchNewsUpdates({ forceRefresh });
             if (!isMountedRef.current) return;
-            setItems(updates);
-            setStatus(updates.length ? 'success' : 'empty');
+            const normalizedItems = Array.isArray(updates?.items) ? updates.items : [];
+            setItems(normalizedItems);
+            setLastFetchedAt(updates?.fetchedAt || null);
+            setStatus(normalizedItems.length ? 'success' : 'empty');
         } catch (err) {
             if (!isMountedRef.current) return;
             setError(err);
@@ -69,10 +72,27 @@ export const NewsUpdatesSection = ({ t, language }) => {
         loadNews({ forceRefresh: true });
     };
 
+    const lastRefreshedText = useMemo(() => {
+        if (!lastFetchedAt) return '';
+        const formatted = formatTimestamp(lastFetchedAt);
+        if (!formatted) return '';
+        if (typeof t.newsLastRefreshed === 'function') {
+            return t.newsLastRefreshed(formatted);
+        }
+        if (typeof t.newsLastRefreshed === 'string') {
+            return `${t.newsLastRefreshed} ${formatted}`;
+        }
+        return `Last refreshed ${formatted}`;
+    }, [lastFetchedAt, formatTimestamp, t]);
+
     return (
         <div className="space-y-6">
             <SectionTitle icon={IconNewspaper} title={t.newsTitle} />
             <p className="text-sm text-brand-navy/70">{t.newsSubtitle}</p>
+
+            {lastRefreshedText && (status === 'success' || status === 'empty') && (
+                <p className="text-xs text-brand-navy/60">{lastRefreshedText}</p>
+            )}
 
             {status === 'loading' && (
                 <div className="flex items-center gap-3 rounded-2xl border border-brand-cyan/20 bg-white/70 px-4 py-3 text-brand-navy">
@@ -90,6 +110,9 @@ export const NewsUpdatesSection = ({ t, language }) => {
                     {error?.message && (
                         <p className="mt-2 text-sm text-brand-red/80">{error.message}</p>
                     )}
+                    {t.newsErrorOutage && (
+                        <p className="mt-2 text-sm text-brand-red/80">{t.newsErrorOutage}</p>
+                    )}
                     <button
                         type="button"
                         onClick={handleRetry}
@@ -97,6 +120,9 @@ export const NewsUpdatesSection = ({ t, language }) => {
                     >
                         {t.newsRetry}
                     </button>
+                    {lastRefreshedText && (
+                        <p className="mt-3 text-xs text-brand-red/70">{lastRefreshedText}</p>
+                    )}
                 </div>
             )}
 
