@@ -148,6 +148,8 @@ export const EmployeeCalculator = ({ t, currency, rates }) => {
         [JOB_TYPES.TERTIARY]: createDefaultJobState(JOB_TYPES.TERTIARY),
     }));
     const [dependents, setDependents] = useState(0);
+    const [dependentsInput, setDependentsInput] = useState('0');
+    const [dependentsClamped, setDependentsClamped] = useState(false);
     const [voluntaryPension, setVoluntaryPension] = useState(0);
 
     const rate = useMemo(() => rates[currency] || 1, [rates, currency]);
@@ -231,13 +233,47 @@ export const EmployeeCalculator = ({ t, currency, rates }) => {
     }, []);
 
     const handleDependentsChange = useCallback((value) => {
-        const parsed = parseInt(value, 10);
-        if (Number.isNaN(parsed) || parsed < 0) {
-            setDependents(0);
-        } else {
-            setDependents(Math.min(6, parsed));
+        if (value === '') {
+            setDependentsInput('');
+            return;
+        }
+
+        if (!/^\d+$/.test(value)) {
+            return;
+        }
+
+        setDependentsInput(value);
+
+        const parsed = Number(value);
+        if (parsed >= 0 && parsed <= 6) {
+            setDependents(parsed);
+            setDependentsClamped(false);
         }
     }, []);
+
+    const handleDependentsBlur = useCallback(() => {
+        if (dependentsInput === '') {
+            setDependents(0);
+            setDependentsInput('0');
+            setDependentsClamped(false);
+            return;
+        }
+
+        const parsed = Number(dependentsInput);
+        if (!Number.isFinite(parsed)) {
+            setDependents(0);
+            setDependentsInput('0');
+            setDependentsClamped(false);
+            return;
+        }
+
+        const rounded = Math.round(parsed);
+        const clamped = Math.max(0, Math.min(6, rounded));
+        const sanitized = String(clamped);
+        setDependents(clamped);
+        setDependentsInput(sanitized);
+        setDependentsClamped(sanitized !== dependentsInput);
+    }, [dependentsInput]);
 
     const handleVoluntaryChange = useCallback((value) => {
         const parsed = parseFloat(value);
@@ -317,7 +353,10 @@ export const EmployeeCalculator = ({ t, currency, rates }) => {
     const applyPreset = useCallback((preset) => {
         handleLayoutChange(preset.jobLayout);
         setTertiaryEnabled(Boolean(preset.tertiary));
-        setDependents(preset.dependents ?? 0);
+        const nextDependents = preset.dependents ?? 0;
+        setDependents(nextDependents);
+        setDependentsInput(String(nextDependents));
+        setDependentsClamped(false);
         setVoluntaryPension(preset.voluntaryPension ?? 0);
 
         setJobs((prev) => {
@@ -429,11 +468,18 @@ export const EmployeeCalculator = ({ t, currency, rates }) => {
                             type="number"
                             min="0"
                             max="6"
-                            value={dependents}
+                            step={1}
+                            inputMode="numeric"
+                            pattern="[0-9]*"
+                            value={dependentsInput}
                             onChange={(event) => handleDependentsChange(event.target.value)}
+                            onBlur={handleDependentsBlur}
                             className="mt-2 w-full rounded-2xl border border-gray-200 bg-white px-4 py-3 text-xl font-semibold text-brand-navy shadow-inner focus:border-brand-cyan focus:ring-2 focus:ring-brand-cyan/40"
                         />
                         <p className="mt-2 text-xs text-brand-navy/60">{t.dependentsHelper}</p>
+                        {dependentsClamped && (
+                            <p className="mt-1 text-xs font-semibold text-brand-cyan">{t.dependentsClampMessage}</p>
+                        )}
                     </div>
                     <div>
                         <label className="flex items-center gap-2 text-sm font-semibold text-brand-navy">
