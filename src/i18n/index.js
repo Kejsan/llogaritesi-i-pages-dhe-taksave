@@ -107,7 +107,16 @@ export const translations = {
         voluntaryPensionLabel: "Kontribut vullnetar në pension (ALL)",
         voluntaryPensionTooltip: (cap) => `Zbritje mujore e lejuar deri në ${new Intl.NumberFormat('sq-AL').format(cap)} ALL.`,
         voluntaryPensionHelper: (cap) => `Shuma aplikohet vetëm në kontratën primare dhe kufizohet në ${new Intl.NumberFormat('sq-AL').format(cap)} ALL.`,
-        voluntaryPensionWarning: (cap) => `Për TAP llogaritet vetëm ${new Intl.NumberFormat('sq-AL').format(cap)} ALL. Kontrollo shumën.`,
+        voluntaryPensionWarning: (status, cap) => {
+            const formattedCap = new Intl.NumberFormat('sq-AL').format(cap);
+            if (status === 'near') {
+                return `Po afroheni kufirit të zbritshëm prej ${formattedCap} ALL. Mbajeni shumën nën kontroll.`;
+            }
+            if (status === 'exceeded') {
+                return `Për TAP llogaritet vetëm ${formattedCap} ALL. Ulni shumën për të qëndruar brenda kufirit.`;
+            }
+            return '';
+        },
         jobCards: {
             primary: { title: "Kontrata primare", badge: "Primare" },
             secondary: { title: "Kontrata dytësore", badge: "Sekondare" },
@@ -775,7 +784,16 @@ export const translations = {
         voluntaryPensionLabel: "Voluntary pension contribution (ALL)",
         voluntaryPensionTooltip: (cap) => `Monthly deduction allowed up to ${new Intl.NumberFormat('en-US').format(cap)} ALL.`,
         voluntaryPensionHelper: (cap) => `Applied only to the primary contract and capped at ${new Intl.NumberFormat('en-US').format(cap)} ALL.`,
-        voluntaryPensionWarning: (cap) => `Only ${new Intl.NumberFormat('en-US').format(cap)} ALL counts toward the deduction. Adjust the amount.`,
+        voluntaryPensionWarning: (status, cap) => {
+            const formattedCap = new Intl.NumberFormat('en-US').format(cap);
+            if (status === 'near') {
+                return `You're nearing the deductible cap of ${formattedCap} ALL. Keep the contribution in check.`;
+            }
+            if (status === 'exceeded') {
+                return `You've exceeded the deductible cap—only ${formattedCap} ALL counts toward TAP. Adjust the amount.`;
+            }
+            return '';
+        },
         jobCards: {
             primary: { title: "Primary contract", badge: "Primary" },
             secondary: { title: "Secondary contract", badge: "Secondary" },
@@ -1443,7 +1461,16 @@ export const translations = {
         voluntaryPensionLabel: "Contributo pensione volontaria (ALL)",
         voluntaryPensionTooltip: (cap) => `Deduzione mensile consentita fino a ${new Intl.NumberFormat('it-IT').format(cap)} ALL.`,
         voluntaryPensionHelper: (cap) => `Si applica solo al contratto primario ed è limitata a ${new Intl.NumberFormat('it-IT').format(cap)} ALL.`,
-        voluntaryPensionWarning: (cap) => `Ai fini TAP vengono considerati solo ${new Intl.NumberFormat('it-IT').format(cap)} ALL. Controlla l'importo.`,
+        voluntaryPensionWarning: (status, cap) => {
+            const formattedCap = new Intl.NumberFormat('it-IT').format(cap);
+            if (status === 'near') {
+                return `Ti stai avvicinando al tetto deducibile di ${formattedCap} ALL. Tieni sotto controllo l'importo.`;
+            }
+            if (status === 'exceeded') {
+                return `Il tetto è superato: solo ${formattedCap} ALL è deducibile TAP. Correggi l'importo.`;
+            }
+            return '';
+        },
         jobCards: {
             primary: { title: "Contratto primario", badge: "Primario" },
             secondary: { title: "Contratto secondario", badge: "Secondario" },
