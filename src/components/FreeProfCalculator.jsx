@@ -2,7 +2,7 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { CORE_CONSTANTS, FREE_PROF_TAX_RATES } from '../constants';
 import { formatCurrency, formatALL, calculateFreelancerTaxes } from '../utils';
 import { ResultCard, SectionTitle, InfoAlert } from './Shared';
-import { IconBriefcase, IconCamera } from './Icons';
+import { IconBriefcase, IconCamera, IconAlertTriangle } from './Icons';
 
 const MAX_ANNUAL_INCOME = 500000000;
 
@@ -22,6 +22,68 @@ const resolveRate = (currency, rates) => {
     const rate = rates[currency];
     if (!rate || !Number.isFinite(rate) || rate <= 0) return 1;
     return rate;
+};
+
+const buildEmptyCalculation = (clientMix) => ({
+    annualIncomeALL: 0,
+    contributionsAnnual: 0,
+    taxableProfit: 0,
+    profitTax: 0,
+    netIncomeAfterTax: 0,
+    profitBands: [
+        {
+            id: 'band-zero',
+            min: 0,
+            max: FREE_PROF_TAX_RATES.AnnualThreshold1,
+            rate: 0,
+            amount: 0,
+            tax: 0,
+        },
+        {
+            id: 'band-high',
+            min: FREE_PROF_TAX_RATES.AnnualThreshold1,
+            max: Infinity,
+            rate: FREE_PROF_TAX_RATES.RateHigh,
+            amount: 0,
+            tax: 0,
+        },
+    ],
+    vatInfo: { band: 'under', requiresVAT: false },
+    warnings: [],
+    normalizedMix: {
+        localShare: clientMix.localShare ?? 0,
+        foreignShare: clientMix.foreignShare ?? 0,
+        topLocalClientShare: clientMix.topLocalClientShare ?? 0,
+        topTwoLocalClientsShare: clientMix.topTwoLocalClientsShare ?? 0,
+    },
+});
+
+const ValidationAlert = ({ title, messages }) => {
+    if (!messages?.length) return null;
+
+    return (
+        <div
+            role="alert"
+            aria-live="assertive"
+            className="rounded-2xl border border-brand-red/30 bg-brand-red/10 p-4 text-brand-red"
+        >
+            <div className="flex items-start gap-3">
+                <span className="mt-1 inline-flex h-9 w-9 items-center justify-center rounded-full bg-brand-red/15">
+                    <IconAlertTriangle className="h-5 w-5" aria-hidden="true" />
+                </span>
+                <div>
+                    <p className="font-semibold tracking-wide uppercase text-xs text-brand-red/80">{title}</p>
+                    <ul className="mt-2 space-y-1 text-sm leading-relaxed">
+                        {messages.map((message, index) => (
+                            <li key={index} className="list-disc pl-4">
+                                {message}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    );
 };
 
 export const FreeProfCalculator = ({ t, currency, rates, isInfluencer = false }) => {
@@ -100,26 +162,45 @@ export const FreeProfCalculator = ({ t, currency, rates, isInfluencer = false })
         [localShare, topLocalClientShare, topTwoLocalClientsShare]
     );
 
-    const calculation = useMemo(
-        () =>
-            calculateFreelancerTaxes({
-                annualIncome: annualIncomeValue,
-                incomeCurrency,
-                rates,
-                clientMix,
-            }),
-        [annualIncomeValue, incomeCurrency, rates, clientMix]
+    const isTopClientInvalid = useMemo(
+        () => topLocalClientShare > localShare && topLocalClientShare > 0,
+        [topLocalClientShare, localShare]
     );
 
-    const currencyOptions = useMemo(() => Object.keys(rates || { ALL: 1 }), [rates]);
+    const isTopTwoInvalid = useMemo(
+        () => topTwoLocalClientsShare > localShare && topTwoLocalClientsShare > 0,
+        [topTwoLocalClientsShare, localShare]
+    );
 
-    const validationMessages = [];
-    if (topLocalClientShare > localShare && topLocalClientShare > 0) {
-        validationMessages.push(t.freelancerCalculator.validation.topClientExceedsLocal);
-    }
-    if (topTwoLocalClientsShare > localShare && topTwoLocalClientsShare > 0) {
-        validationMessages.push(t.freelancerCalculator.validation.topTwoClientsExceedsLocal);
-    }
+    const validationMessages = useMemo(() => {
+        const messages = [];
+        if (isTopClientInvalid) {
+            messages.push(t.freelancerCalculator.validation.topClientExceedsLocal);
+        }
+        if (isTopTwoInvalid) {
+            messages.push(t.freelancerCalculator.validation.topTwoClientsExceedsLocal);
+        }
+        return messages;
+    }, [isTopClientInvalid, isTopTwoInvalid, t.freelancerCalculator.validation]);
+
+    const hasValidationError = validationMessages.length > 0;
+
+    const emptyCalculation = useMemo(() => buildEmptyCalculation(clientMix), [clientMix]);
+
+    const calculation = useMemo(() => {
+        if (hasValidationError) {
+            return emptyCalculation;
+        }
+
+        return calculateFreelancerTaxes({
+            annualIncome: annualIncomeValue,
+            incomeCurrency,
+            rates,
+            clientMix,
+        });
+    }, [annualIncomeValue, incomeCurrency, rates, clientMix, hasValidationError, emptyCalculation]);
+
+    const currencyOptions = useMemo(() => Object.keys(rates || { ALL: 1 }), [rates]);
 
     const vatBand = calculation.vatInfo.band;
     const vatBadgeMap = {
@@ -131,7 +212,15 @@ export const FreeProfCalculator = ({ t, currency, rates, isInfluencer = false })
     const vatBadgeLabel = t.freelancerCalculator.vatBadges[vatBand];
     const vatDescription = t.freelancerCalculator.vatDescriptions[vatBand];
 
-    const warningsToDisplay = calculation.warnings;
+    const warningsToDisplay = hasValidationError ? [] : calculation.warnings;
+
+    const percentageInputClass = (isInvalid) =>
+        [
+            'mt-2 w-full rounded-lg border px-3 py-2 text-base font-semibold text-brand-navy shadow-sm focus:outline-none focus:ring-2',
+            isInvalid
+                ? 'border-brand-red focus:border-brand-red focus:ring-brand-red/40'
+                : 'border-gray-300 focus:border-brand-cyan focus:ring-brand-cyan/40',
+        ].join(' ');
 
     return (
         <div className="space-y-8">
@@ -201,7 +290,8 @@ export const FreeProfCalculator = ({ t, currency, rates, isInfluencer = false })
                                     max="100"
                                     value={localShareInput}
                                     onChange={handlePercentageChange(setLocalShareInput)}
-                                    className="mt-2 w-full rounded-lg border border-gray-300 px-3 py-2 text-base font-semibold text-brand-navy shadow-sm focus:border-brand-cyan focus:outline-none focus:ring-2 focus:ring-brand-cyan/40"
+                                    aria-invalid={isTopClientInvalid || isTopTwoInvalid}
+                                    className={percentageInputClass(isTopClientInvalid || isTopTwoInvalid)}
                                 />
                                 <span className="mt-1 block text-xs font-medium uppercase tracking-wide text-brand-navy/60">
                                     {t.freelancerCalculator.inputs.percentSuffix}
@@ -215,7 +305,8 @@ export const FreeProfCalculator = ({ t, currency, rates, isInfluencer = false })
                                     max="100"
                                     value={topLocalClientInput}
                                     onChange={handlePercentageChange(setTopLocalClientInput)}
-                                    className="mt-2 w-full rounded-lg border border-gray-300 px-3 py-2 text-base font-semibold text-brand-navy shadow-sm focus:border-brand-cyan focus:outline-none focus:ring-2 focus:ring-brand-cyan/40"
+                                    aria-invalid={isTopClientInvalid}
+                                    className={percentageInputClass(isTopClientInvalid)}
                                 />
                                 <span className="mt-1 block text-xs font-medium uppercase tracking-wide text-brand-navy/60">
                                     {t.freelancerCalculator.inputs.percentSuffix}
@@ -229,19 +320,19 @@ export const FreeProfCalculator = ({ t, currency, rates, isInfluencer = false })
                                     max="100"
                                     value={topTwoLocalClientsInput}
                                     onChange={handlePercentageChange(setTopTwoLocalClientsInput)}
-                                    className="mt-2 w-full rounded-lg border border-gray-300 px-3 py-2 text-base font-semibold text-brand-navy shadow-sm focus:border-brand-cyan focus:outline-none focus:ring-2 focus:ring-brand-cyan/40"
+                                    aria-invalid={isTopTwoInvalid}
+                                    className={percentageInputClass(isTopTwoInvalid)}
                                 />
                                 <span className="mt-1 block text-xs font-medium uppercase tracking-wide text-brand-navy/60">
                                     {t.freelancerCalculator.inputs.percentSuffix}
                                 </span>
                             </label>
                         </div>
-                        {validationMessages.length > 0 && (
-                            <div className="space-y-1 text-sm text-brand-red">
-                                {validationMessages.map((message, index) => (
-                                    <p key={index}>{message}</p>
-                                ))}
-                            </div>
+                        {hasValidationError && (
+                            <ValidationAlert
+                                title={t.freelancerCalculator.summary.mixLabel}
+                                messages={validationMessages}
+                            />
                         )}
                     </div>
                 </div>
