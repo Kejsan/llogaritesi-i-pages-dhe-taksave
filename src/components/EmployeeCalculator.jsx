@@ -286,6 +286,13 @@ export const EmployeeCalculator = ({ t, currency, rates }) => {
 
     const voluntaryApplied = clampVoluntaryPension(voluntaryPension);
     const voluntaryExceeded = voluntaryPension > VOLUNTARY_PENSION_CAP;
+    const voluntaryNearCap =
+        voluntaryPension >= VOLUNTARY_PENSION_CAP * 0.8 && !voluntaryExceeded;
+    const voluntaryStatus = voluntaryExceeded
+        ? 'exceeded'
+        : voluntaryNearCap
+            ? 'near'
+            : 'ok';
 
     const calculations = useMemo(() => {
         const result = {};
@@ -385,6 +392,18 @@ export const EmployeeCalculator = ({ t, currency, rates }) => {
             return next;
         });
     }, [currency, rate, handleLayoutChange]);
+
+    const voluntaryInputStateClasses = {
+        ok: 'border-gray-200 text-brand-navy',
+        near: 'border-amber-300 text-brand-navy',
+        exceeded: 'border-brand-red text-brand-red',
+    };
+
+    const voluntaryInputFocusClasses = {
+        ok: 'focus:border-brand-cyan focus:ring-brand-cyan/40',
+        near: 'focus:border-amber-400 focus:ring-amber-200',
+        exceeded: 'focus:border-brand-red focus:ring-brand-red/30',
+    };
 
     return (
         <div className="space-y-10">
@@ -493,17 +512,21 @@ export const EmployeeCalculator = ({ t, currency, rates }) => {
                                 max="100000"
                                 value={voluntaryPension}
                                 onChange={(event) => handleVoluntaryChange(event.target.value)}
-                                className={`w-full rounded-2xl border px-4 py-3 text-xl font-semibold shadow-inner focus:border-brand-cyan focus:ring-2 focus:ring-brand-cyan/40 ${
-                                    voluntaryExceeded ? 'border-brand-red text-brand-red' : 'border-gray-200 text-brand-navy'
-                                }`}
+                                className={`w-full rounded-2xl border px-4 py-3 text-xl font-semibold shadow-inner focus:ring-2 ${voluntaryInputStateClasses[voluntaryStatus]} ${voluntaryInputFocusClasses[voluntaryStatus]}`}
                             />
                             <div className="absolute inset-y-0 right-0 flex items-center pr-4 text-xs font-semibold uppercase tracking-wide text-brand-cyan/70">
                                 ALL
                             </div>
                         </div>
                         <p className="mt-2 text-xs text-brand-navy/60">{t.voluntaryPensionHelper(VOLUNTARY_PENSION_CAP)}</p>
-                        {voluntaryExceeded && (
-                            <p className="mt-2 text-xs font-semibold text-brand-red">{t.voluntaryPensionWarning(VOLUNTARY_PENSION_CAP)}</p>
+                        {voluntaryStatus === 'near' && (
+                            <p className="mt-2 inline-flex items-center gap-2 rounded-full bg-amber-50 px-3 py-1 text-xs font-semibold text-amber-700">
+                                <span className="h-2 w-2 rounded-full bg-amber-400" aria-hidden="true"></span>
+                                {t.voluntaryPensionWarning(voluntaryStatus, VOLUNTARY_PENSION_CAP)}
+                            </p>
+                        )}
+                        {voluntaryStatus === 'exceeded' && (
+                            <p className="mt-2 text-xs font-semibold text-brand-red">{t.voluntaryPensionWarning(voluntaryStatus, VOLUNTARY_PENSION_CAP)}</p>
                         )}
                     </div>
                 </div>
