@@ -580,6 +580,8 @@ export const translations = {
         influencerWarningText: "Trajtimi juaj fiskal është i njëjtë me atë të një **Profesionisti të Lirë**. Dallimi kryesor është tek pagesat në natyrë (barter). Rekomandohet përdorimi i metodës së **shpenzimeve të supozuara (30%)** për shkak të kompleksitetit të vlerësimit të produkteve ose shërbimeve të marra si pagesë.",
         infoTitle: "Si funksionon Kalkulatori?",
         infoIntro: "Ky seksion përmbledh si tatohet paga, cilat janë ndryshimet kryesore për 2025 dhe çfarë detyrimesh shtesë duhet të njihni si punëmarrës ose kontribuues i lirë.",
+        infoExpand: "Hape",
+        infoCollapse: "Mbyll",
         infoTopics: [
             {
                 title: "Shpërndarja e tatimeve në pagë (2024)",
@@ -1262,6 +1264,8 @@ export const translations = {
         influencerWarningText: "Your fiscal treatment is the same as a **Free Professional**. The main difference is in-kind payments (barter). It is recommended to use the **presumed expenses (30%)** method due to the complexity of valuing products or services received as payment.",
         infoTitle: "How does the Calculator work?",
         infoIntro: "This section summarises how salaries are taxed in Albania, highlights the announced 2025 reforms, and lists follow-up obligations for employees and contractors.",
+        infoExpand: "Open",
+        infoCollapse: "Close",
         infoTopics: [
             {
                 title: "Salary tax breakdown (2024)",
@@ -1857,6 +1861,8 @@ export const translations = {
         influencerWarningText: "Il tuo trattamento fiscale è identico a quello di un **Libero Professionista**. La differenza principale sono i pagamenti in natura (barter). Si raccomanda di utilizzare il metodo delle **spese forfettarie (30%)** a causa della complessità nella valutazione dei prodotti o servizi ricevuti come pagamento.",
         infoTitle: "Come funziona il Calcolatore?",
         infoIntro: "Questa sezione riassume la tassazione dello stipendio in Albania, le novità annunciate per il 2025 e gli adempimenti annuali da non dimenticare.",
+        infoExpand: "Apri",
+        infoCollapse: "Chiudi",
         infoTopics: [
             {
                 title: "Ripartizione fiscale dello stipendio (2024)",
