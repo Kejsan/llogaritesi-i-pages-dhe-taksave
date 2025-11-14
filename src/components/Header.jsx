@@ -207,6 +207,7 @@ export const Header = ({ lang, setLang, currency, setCurrency, t, lastUpdatedUni
     const dropdownMenuRef = useRef(null);
     const dropdownButtonRef = useRef(null);
     const calculatorItemsRefs = useRef([]);
+    const previousBodyOverflow = useRef('');
     const location = useLocation();
 
     const calculators = useMemo(
@@ -244,6 +245,40 @@ export const Header = ({ lang, setLang, currency, setCurrency, t, lastUpdatedUni
         setMobileOpen(false);
         setCalculatorsOpen(false);
     }, [location.pathname]);
+
+    useEffect(() => {
+        if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') {
+            return undefined;
+        }
+
+        const mediaQuery = window.matchMedia('(min-width: 1024px)');
+
+        const handleMediaChange = (event) => {
+            if (event.matches) {
+                setMobileOpen(false);
+                setCalculatorsOpen(false);
+            }
+        };
+
+        if (mediaQuery.matches) {
+            setMobileOpen(false);
+            setCalculatorsOpen(false);
+        }
+
+        if (typeof mediaQuery.addEventListener === 'function') {
+            mediaQuery.addEventListener('change', handleMediaChange);
+        } else {
+            mediaQuery.addListener(handleMediaChange);
+        }
+
+        return () => {
+            if (typeof mediaQuery.removeEventListener === 'function') {
+                mediaQuery.removeEventListener('change', handleMediaChange);
+            } else {
+                mediaQuery.removeListener(handleMediaChange);
+            }
+        };
+    }, []);
 
     useEffect(() => {
         if (!calculatorsOpen) {
@@ -301,9 +336,7 @@ export const Header = ({ lang, setLang, currency, setCurrency, t, lastUpdatedUni
     const toggleMobileMenu = () => {
         setMobileOpen((prev) => {
             const next = !prev;
-            if (!next) {
-                setCalculatorsOpen(false);
-            }
+            setCalculatorsOpen(false);
             return next;
         });
     };
@@ -316,6 +349,23 @@ export const Header = ({ lang, setLang, currency, setCurrency, t, lastUpdatedUni
         setMobileOpen(false);
         setCalculatorsOpen(false);
     };
+
+    useEffect(() => {
+        if (mobileOpen) {
+            previousBodyOverflow.current = document.body.style.overflow;
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = previousBodyOverflow.current || '';
+            previousBodyOverflow.current = '';
+        }
+
+        return () => {
+            if (mobileOpen) {
+                document.body.style.overflow = previousBodyOverflow.current || '';
+                previousBodyOverflow.current = '';
+            }
+        };
+    }, [mobileOpen]);
 
     const desktopNavLinkClass = ({ isActive }) =>
         `inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold uppercase tracking-wide transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 ${
@@ -420,80 +470,86 @@ export const Header = ({ lang, setLang, currency, setCurrency, t, lastUpdatedUni
                     </div>
 
                     <div className="flex items-center justify-between gap-4">
-                        <nav className="hidden lg:block" aria-label="Navigimi kryesor">
-                            <ul className="flex items-center gap-2">
-                                {navItems.map((item) => {
-                                    if (item.type === 'dropdown') {
-                                        return (
-                                            <li key={item.label} className="relative">
-                                                <button
-                                                    type="button"
-                                                    ref={dropdownButtonRef}
-                                                    onClick={handleDropdownToggle}
-                                                    className={`inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold uppercase tracking-wide text-white transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 ${
-                                                        calculatorsOpen ? 'bg-white/15 shadow-lg shadow-brand-cyan/30' : 'hover:bg-white/15'
-                                                    }`}
-                                                    aria-expanded={calculatorsOpen}
-                                                    aria-haspopup="true"
-                                                    aria-controls="desktop-calculators-menu"
-                                                >
-                                                    <span>{t.navCalculators}</span>
-                                                    <svg className={`h-4 w-4 transition ${calculatorsOpen ? 'rotate-180' : ''}`} viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                                                        <path
-                                                            d="M5 8l5 5 5-5"
-                                                            stroke="currentColor"
-                                                            strokeWidth="1.5"
-                                                            strokeLinecap="round"
-                                                            strokeLinejoin="round"
-                                                        />
-                                                    </svg>
-                                                </button>
-                                                {calculatorsOpen && (
-                                                    <div
-                                                        ref={dropdownMenuRef}
-                                                        id="desktop-calculators-menu"
-                                                        role="menu"
-                                                        className="absolute left-0 z-50 mt-3 w-[22rem] rounded-3xl border border-white/15 bg-white/95 p-4 text-brand-navy shadow-2xl"
+                        {!mobileOpen && (
+                            <nav
+                                className="hidden lg:block"
+                                aria-label="Navigimi kryesor"
+                                aria-hidden={mobileOpen}
+                            >
+                                <ul className="flex items-center gap-2">
+                                    {navItems.map((item) => {
+                                        if (item.type === 'dropdown') {
+                                            return (
+                                                <li key={item.label} className="relative">
+                                                    <button
+                                                        type="button"
+                                                        ref={dropdownButtonRef}
+                                                        onClick={handleDropdownToggle}
+                                                        className={`inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold uppercase tracking-wide text-white transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 ${
+                                                            calculatorsOpen ? 'bg-white/15 shadow-lg shadow-brand-cyan/30' : 'hover:bg-white/15'
+                                                        }`}
+                                                        aria-expanded={calculatorsOpen}
+                                                        aria-haspopup="true"
+                                                        aria-controls="desktop-calculators-menu"
                                                     >
-                                                        <div className="flex flex-col gap-3">
-                                                            {calculators.map((calculator, index) => (
-                                                                <NavLink
-                                                                    key={calculator.to}
-                                                                    to={calculator.to}
-                                                                    className={({ isActive }) =>
-                                                                        `flex items-start gap-3 rounded-2xl border px-3 py-3 text-left transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-cyan ${
-                                                                            isActive ? 'border-brand-cyan bg-brand-cyan/10 text-brand-navy' : 'border-transparent hover:border-brand-cyan/40 hover:bg-brand-cyan/10'
-                                                                        }`
-                                                                    }
-                                                                    onClick={handleNavSelection}
-                                                                    role="menuitem"
-                                                                    ref={(el) => {
-                                                                        calculatorItemsRefs.current[index] = el;
-                                                                    }}
-                                                                >
-                                                                    <div className="flex-1">
-                                                                        <p className="text-sm font-semibold uppercase tracking-wide">{calculator.label}</p>
-                                                                        <p className="text-xs text-brand-navy/70 leading-relaxed">{calculator.description}</p>
-                                                                    </div>
-                                                                </NavLink>
-                                                            ))}
+                                                        <span>{t.navCalculators}</span>
+                                                        <svg className={`h-4 w-4 transition ${calculatorsOpen ? 'rotate-180' : ''}`} viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                                                            <path
+                                                                d="M5 8l5 5 5-5"
+                                                                stroke="currentColor"
+                                                                strokeWidth="1.5"
+                                                                strokeLinecap="round"
+                                                                strokeLinejoin="round"
+                                                            />
+                                                        </svg>
+                                                    </button>
+                                                    {calculatorsOpen && (
+                                                        <div
+                                                            ref={dropdownMenuRef}
+                                                            id="desktop-calculators-menu"
+                                                            role="menu"
+                                                            className="absolute left-0 z-50 mt-3 w-[22rem] rounded-3xl border border-white/15 bg-white/95 p-4 text-brand-navy shadow-2xl"
+                                                        >
+                                                            <div className="flex flex-col gap-3">
+                                                                {calculators.map((calculator, index) => (
+                                                                    <NavLink
+                                                                        key={calculator.to}
+                                                                        to={calculator.to}
+                                                                        className={({ isActive }) =>
+                                                                            `flex items-start gap-3 rounded-2xl border px-3 py-3 text-left transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-cyan ${
+                                                                                isActive ? 'border-brand-cyan bg-brand-cyan/10 text-brand-navy' : 'border-transparent hover:border-brand-cyan/40 hover:bg-brand-cyan/10'
+                                                                            }`
+                                                                        }
+                                                                        onClick={handleNavSelection}
+                                                                        role="menuitem"
+                                                                        ref={(el) => {
+                                                                            calculatorItemsRefs.current[index] = el;
+                                                                        }}
+                                                                    >
+                                                                        <div className="flex-1">
+                                                                            <p className="text-sm font-semibold uppercase tracking-wide">{calculator.label}</p>
+                                                                            <p className="text-xs text-brand-navy/70 leading-relaxed">{calculator.description}</p>
+                                                                        </div>
+                                                                    </NavLink>
+                                                                ))}
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                )}
+                                                    )}
+                                                </li>
+                                            );
+                                        }
+
+                                        return (
+                                            <li key={item.to}>
+                                                <NavLink to={item.to} end={item.end} className={desktopNavLinkClass} onClick={handleNavSelection}>
+                                                    {item.label}
+                                                </NavLink>
                                             </li>
                                         );
-                                    }
-
-                                    return (
-                                        <li key={item.to}>
-                                            <NavLink to={item.to} end={item.end} className={desktopNavLinkClass} onClick={handleNavSelection}>
-                                                {item.label}
-                                            </NavLink>
-                                        </li>
-                                    );
-                                })}
-                            </ul>
-                        </nav>
+                                    })}
+                                </ul>
+                            </nav>
+                        )}
                     </div>
 
                     {mobileOpen && (
