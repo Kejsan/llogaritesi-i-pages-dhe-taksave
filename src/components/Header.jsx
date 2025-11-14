@@ -390,11 +390,11 @@ export const Header = ({ lang, setLang, currency, setCurrency, t, lastUpdatedUni
                         <QuickHint />
 
                         <div className="flex items-center gap-3">
-                            <div className="flex flex-col items-end gap-1">
+                            <div className="flex flex-col items-start gap-1">
                                 <CurrencySelector currency={currency} setCurrency={setCurrency} t={t} />
                                 {ratesCaption && (
                                     <span
-                                        className={`hidden sm:block text-[11px] text-right ${
+                                        className={`hidden sm:block text-[11px] leading-tight ${
                                             isFallbackRates ? 'font-semibold text-amber-200' : 'text-white/70'
                                         }`}
                                         aria-live="polite"
