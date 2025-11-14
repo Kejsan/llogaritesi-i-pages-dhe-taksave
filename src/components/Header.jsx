@@ -200,7 +200,7 @@ const MobileToggleIcon = ({ open }) => (
     </svg>
 );
 
-export const Header = ({ lang, setLang, currency, setCurrency, t }) => {
+export const Header = ({ lang, setLang, currency, setCurrency, t, lastUpdatedUnix, isFallbackRates }) => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [mobileOpen, setMobileOpen] = useState(false);
     const [calculatorsOpen, setCalculatorsOpen] = useState(false);
@@ -329,6 +329,39 @@ export const Header = ({ lang, setLang, currency, setCurrency, t }) => {
                 : 'border-white/10 bg-white/10 text-white hover:bg-white/20'
         }`;
 
+    const locale = useMemo(() => {
+        switch (lang) {
+            case 'sq':
+                return 'sq-AL';
+            case 'it':
+                return 'it-IT';
+            default:
+                return 'en-GB';
+        }
+    }, [lang]);
+
+    const ratesCaption = useMemo(() => {
+        if (isFallbackRates) {
+            return t?.fallbackRatesNotice || null;
+        }
+        if (typeof lastUpdatedUnix === 'number' && lastUpdatedUnix > 0) {
+            try {
+                const formatted = new Intl.DateTimeFormat(locale, {
+                    dateStyle: 'medium',
+                    timeStyle: 'short',
+                }).format(new Date(lastUpdatedUnix * 1000));
+                if (typeof t?.currencyLastUpdated === 'function') {
+                    return t.currencyLastUpdated(formatted);
+                }
+                return `Last updated: ${formatted}`;
+            } catch (error) {
+                console.error('Failed to format rates timestamp', error);
+                return null;
+            }
+        }
+        return null;
+    }, [isFallbackRates, lastUpdatedUnix, locale, t]);
+
     return (
         <header className={`sticky top-0 z-40 transition-shadow ${isScrolled ? 'shadow-2xl shadow-brand-navy/20' : ''}`}>
             <div className="relative overflow-visible bg-gradient-to-br from-brand-navy via-[#03035f] to-brand-cyan/40">
@@ -357,7 +390,20 @@ export const Header = ({ lang, setLang, currency, setCurrency, t }) => {
                         <QuickHint />
 
                         <div className="flex items-center gap-3">
-                            <CurrencySelector currency={currency} setCurrency={setCurrency} t={t} />
+                            <div className="flex flex-col items-start gap-1">
+                                <CurrencySelector currency={currency} setCurrency={setCurrency} t={t} />
+                                {ratesCaption && (
+                                    <span
+                                        className={`hidden sm:block text-[11px] leading-tight ${
+                                            isFallbackRates ? 'font-semibold text-amber-200' : 'text-white/70'
+                                        }`}
+                                        aria-live="polite"
+                                        role="status"
+                                    >
+                                        {ratesCaption}
+                                    </span>
+                                )}
+                            </div>
                             <ThemeToggle t={t} />
                             <LanguageSelector lang={lang} setLang={setLang} />
                             <button

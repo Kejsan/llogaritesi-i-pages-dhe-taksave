@@ -49,7 +49,7 @@ const LandingFallback = () => (
     </div>
 );
 
-const Layout = ({ t, language, setLanguage, currency, setCurrency }) => {
+const Layout = ({ t, language, setLanguage, currency, setCurrency, lastUpdatedUnix, isFallbackRates }) => {
     const location = useLocation();
     const pageKey = useMemo(() => {
         if (location.pathname === '/' || location.pathname === '') {
@@ -117,6 +117,8 @@ const Layout = ({ t, language, setLanguage, currency, setCurrency }) => {
                 currency={currency}
                 setCurrency={setCurrency}
                 t={t}
+                lastUpdatedUnix={lastUpdatedUnix}
+                isFallbackRates={isFallbackRates}
             />
 
             {!isHome && (
@@ -157,6 +159,8 @@ const App = () => {
     const [language, setLanguage] = useState('sq');
     const [currency, setCurrency] = useState('ALL');
     const [rates, setRates] = useState({ ALL: 1, EUR: 107.53, USD: 102.04 });
+    const [lastUpdatedUnix, setLastUpdatedUnix] = useState(null);
+    const [isFallbackRates, setIsFallbackRates] = useState(true);
     const t = useMemo(() => translations[language], [language]);
 
     useEffect(() => {
@@ -174,9 +178,20 @@ const App = () => {
                     EUR: rateALL,
                     USD: rateALL / rateUSD,
                 });
+                if (typeof data.time_last_update_unix === 'number') {
+                    setLastUpdatedUnix(data.time_last_update_unix);
+                } else if (typeof data.time_last_update_utc === 'string') {
+                    const parsed = Date.parse(data.time_last_update_utc);
+                    setLastUpdatedUnix(Number.isFinite(parsed) ? Math.floor(parsed / 1000) : null);
+                } else {
+                    setLastUpdatedUnix(null);
+                }
+                setIsFallbackRates(false);
             } catch (error) {
                 console.error('Failed to fetch exchange rates, using fallback.', error);
                 setRates({ ALL: 1, EUR: 107.53, USD: 102.04 });
+                setLastUpdatedUnix(null);
+                setIsFallbackRates(true);
             }
         };
 
@@ -197,6 +212,8 @@ const App = () => {
                         setLanguage={setLanguage}
                         currency={currency}
                         setCurrency={setCurrency}
+                        lastUpdatedUnix={lastUpdatedUnix}
+                        isFallbackRates={isFallbackRates}
                     />
                 }
             >
