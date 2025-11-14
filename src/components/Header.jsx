@@ -247,6 +247,40 @@ export const Header = ({ lang, setLang, currency, setCurrency, t, lastUpdatedUni
     }, [location.pathname]);
 
     useEffect(() => {
+        if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') {
+            return undefined;
+        }
+
+        const mediaQuery = window.matchMedia('(min-width: 1024px)');
+
+        const handleMediaChange = (event) => {
+            if (event.matches) {
+                setMobileOpen(false);
+                setCalculatorsOpen(false);
+            }
+        };
+
+        if (mediaQuery.matches) {
+            setMobileOpen(false);
+            setCalculatorsOpen(false);
+        }
+
+        if (typeof mediaQuery.addEventListener === 'function') {
+            mediaQuery.addEventListener('change', handleMediaChange);
+        } else {
+            mediaQuery.addListener(handleMediaChange);
+        }
+
+        return () => {
+            if (typeof mediaQuery.removeEventListener === 'function') {
+                mediaQuery.removeEventListener('change', handleMediaChange);
+            } else {
+                mediaQuery.removeListener(handleMediaChange);
+            }
+        };
+    }, []);
+
+    useEffect(() => {
         if (!calculatorsOpen) {
             return;
         }
