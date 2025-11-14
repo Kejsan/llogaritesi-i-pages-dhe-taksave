@@ -139,13 +139,16 @@ const MoonIcon = ({ className }) => (
     </svg>
 );
 
-const ThemeToggle = () => {
+const ThemeToggle = ({ t }) => {
     const { theme, setTheme } = useTheme();
+    const lightLabel = t?.themeLight ?? 'Light';
+    const darkLabel = t?.themeDark ?? 'Dark';
+    const ariaLabel = t?.themeToggleAria ?? 'Switch theme';
 
     return (
         <div
             role="group"
-            aria-label="Ndrysho temën"
+            aria-label={ariaLabel}
             className="flex items-center gap-1 rounded-full theme-surface-muted p-1 backdrop-blur"
         >
             <button
@@ -159,8 +162,8 @@ const ThemeToggle = () => {
                 aria-pressed={theme === 'light'}
             >
                 <SunIcon className={`h-4 w-4 ${theme === 'light' ? 'text-white' : 'theme-text-primary'}`} />
-                <span className={`hidden sm:inline ${theme === 'light' ? '' : 'theme-text-primary'}`}>E çelët</span>
-                <span className="sr-only">Përdor temën e çelët</span>
+                <span className={`hidden sm:inline ${theme === 'light' ? '' : 'theme-text-primary'}`}>{lightLabel}</span>
+                <span className="sr-only">{`${ariaLabel}: ${lightLabel}`}</span>
             </button>
             <button
                 type="button"
@@ -173,8 +176,8 @@ const ThemeToggle = () => {
                 aria-pressed={theme === 'dark'}
             >
                 <MoonIcon className={`h-4 w-4 ${theme === 'dark' ? 'text-white' : 'theme-text-primary'}`} />
-                <span className={`hidden sm:inline ${theme === 'dark' ? '' : 'theme-text-primary'}`}>E errët</span>
-                <span className="sr-only">Përdor temën e errët</span>
+                <span className={`hidden sm:inline ${theme === 'dark' ? '' : 'theme-text-primary'}`}>{darkLabel}</span>
+                <span className="sr-only">{`${ariaLabel}: ${darkLabel}`}</span>
             </button>
         </div>
     );
@@ -355,7 +358,7 @@ export const Header = ({ lang, setLang, currency, setCurrency, t }) => {
 
                         <div className="flex items-center gap-3">
                             <CurrencySelector currency={currency} setCurrency={setCurrency} t={t} />
-                            <ThemeToggle />
+                            <ThemeToggle t={t} />
                             <LanguageSelector lang={lang} setLang={setLang} />
                             <button
                                 type="button"
