@@ -151,14 +151,17 @@ export const translations = {
             presets: {
                 singleFamily: {
                     label: "Primare · 95,000 ALL · 2 fëmijë",
+                    shortLabel: "Primare · 95K · 2 fëmijë",
                     description: "Pagë fikse në sektorin publik me kontribut vullnetar 25,000 ALL.",
                 },
                 dualCreative: {
                     label: "2 kontrata · Neto kreative",
+                    shortLabel: "2 kontrata · Neto krijuese",
                     description: "Kontratë kryesore 120,000 ALL dhe projekt dytësor me pagesë neto mujore.",
                 },
                 tripleTeam: {
                     label: "3 kontrata · Mix bruto/neto",
+                    shortLabel: "3 kontrata · Mix bruto/neto",
                     description: "Shembull për ekip menaxherial me pension vullnetar maksimal dhe fëmijë në ngarkim.",
                 },
             },
@@ -835,14 +838,17 @@ export const translations = {
             presets: {
                 singleFamily: {
                     label: "Primary · 95,000 ALL · 2 kids",
+                    shortLabel: "Primary · 95K · 2 kids",
                     description: "Public sector baseline with a 25,000 ALL voluntary pension.",
                 },
                 dualCreative: {
                     label: "2 contracts · Creative net pay",
+                    shortLabel: "2 contracts · Net creative pay",
                     description: "Primary contract 120,000 ALL plus a secondary net-paid project.",
                 },
                 tripleTeam: {
                     label: "3 contracts · Mixed gross/net",
+                    shortLabel: "3 contracts · Mixed gross/net",
                     description: "Management example with max voluntary pension and dependents.",
                 },
             },
@@ -1519,14 +1525,17 @@ export const translations = {
             presets: {
                 singleFamily: {
                     label: "Primario · 95.000 ALL · 2 figli",
+                    shortLabel: "Primario · 95K · 2 figli",
                     description: "Base settore pubblico con pensione volontaria da 25.000 ALL.",
                 },
                 dualCreative: {
                     label: "2 contratti · Netto creativo",
+                    shortLabel: "2 contratti · Netto creativo",
                     description: "Contratto principale da 120.000 ALL e progetto secondario pagato al netto.",
                 },
                 tripleTeam: {
                     label: "3 contratti · Lordo/netto misto",
+                    shortLabel: "3 contratti · Lordo/netto",
                     description: "Esempio manageriale con pensione volontaria massima e figli a carico.",
                 },
             },

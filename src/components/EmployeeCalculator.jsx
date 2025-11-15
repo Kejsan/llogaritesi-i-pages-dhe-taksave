@@ -70,6 +70,7 @@ const presetConfigs = (t) => ([
     {
         key: 'single-family',
         label: t.examples.presets.singleFamily.label,
+        shortLabel: t.examples.presets.singleFamily.shortLabel ?? t.examples.presets.singleFamily.label,
         description: t.examples.presets.singleFamily.description,
         setup: {
             jobLayout: 'single',
@@ -88,6 +89,7 @@ const presetConfigs = (t) => ([
     {
         key: 'dual-creative',
         label: t.examples.presets.dualCreative.label,
+        shortLabel: t.examples.presets.dualCreative.shortLabel ?? t.examples.presets.dualCreative.label,
         description: t.examples.presets.dualCreative.description,
         setup: {
             jobLayout: 'multi',
@@ -111,6 +113,7 @@ const presetConfigs = (t) => ([
     {
         key: 'triple-team',
         label: t.examples.presets.tripleTeam.label,
+        shortLabel: t.examples.presets.tripleTeam.shortLabel ?? t.examples.presets.tripleTeam.label,
         description: t.examples.presets.tripleTeam.description,
         setup: {
             jobLayout: 'multi',
@@ -538,16 +541,19 @@ export const EmployeeCalculator = ({ t, currency, rates }) => {
                         <div className="text-xs uppercase tracking-wide text-brand-cyan font-semibold">{t.examples.title}</div>
                         <p className="mt-1 text-sm text-brand-navy/70">{t.examples.subtitle}</p>
                     </div>
-                    <div className="flex flex-wrap gap-3">
+                    <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                         {presets.map((preset) => (
                             <button
                                 key={preset.key}
                                 type="button"
                                 onClick={() => applyPreset(preset.setup)}
-                                className="group rounded-2xl border border-brand-cyan/30 bg-white/70 px-4 py-3 text-left shadow-sm transition hover:border-brand-cyan hover:shadow-lg"
+                                className="group w-full rounded-2xl border border-brand-cyan/30 bg-white/70 px-4 py-3 text-left shadow-sm transition hover:border-brand-cyan hover:shadow-lg sm:w-auto"
                             >
-                                <div className="text-sm font-semibold text-brand-navy group-hover:text-brand-cyan">{preset.label}</div>
-                                <div className="mt-1 text-xs text-brand-navy/60 max-w-xs">{preset.description}</div>
+                                <div className="text-sm font-semibold text-brand-navy group-hover:text-brand-cyan">
+                                    <span className="sm:hidden">{preset.shortLabel}</span>
+                                    <span className="hidden sm:inline">{preset.label}</span>
+                                </div>
+                                <div className="mt-1 w-full whitespace-normal text-xs text-brand-navy/60 sm:max-w-xs">{preset.description}</div>
                             </button>
                         ))}
                     </div>
