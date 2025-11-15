@@ -1,4 +1,4 @@
-import { CORE_CONSTANTS, TAP_BRACKETS_2024 } from '../constants';
+import { CORE_CONSTANTS, TAP_BRACKETS_2024 } from '../constants/index.js';
 
 export const JOB_TYPES = {
     PRIMARY: 'primary',

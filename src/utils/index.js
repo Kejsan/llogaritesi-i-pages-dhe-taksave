@@ -12,13 +12,15 @@ export const formatCurrency = (value, currency, rates) => {
     const isALL = currency === 'ALL';
     const rate = rates[currency] || 1;
     const convertedValue = isALL ? value : value / rate;
+    const numericValue = Number.isFinite(convertedValue) ? convertedValue : 0;
+    const roundedValue = Math.round((numericValue + Number.EPSILON) * 100) / 100;
 
     return new Intl.NumberFormat(isALL ? 'sq-AL' : (currency === 'USD' ? 'en-US' : 'de-DE'), {
         style: 'currency',
         currency: currency,
         minimumFractionDigits: 2,
         maximumFractionDigits: 2,
-    }).format(convertedValue);
+    }).format(roundedValue);
 };
 
 export const NEWS_SOURCES = [
@@ -379,4 +381,4 @@ export const fetchNewsUpdates = async ({ forceRefresh = false } = {}) => {
     return request;
 };
 
-export { calculateFreelancerTaxes } from "./freelancer";
+export { calculateFreelancerTaxes } from './freelancer.js';

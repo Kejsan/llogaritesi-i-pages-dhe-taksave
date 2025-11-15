@@ -1,4 +1,4 @@
-import { CORE_CONSTANTS, FREE_PROF_TAX_RATES } from '../constants';
+import { CORE_CONSTANTS, FREE_PROF_TAX_RATES } from '../constants/index.js';
 
 const HEALTH_RATE = 0.034;
 const SOCIAL_RATE = 0.23;
