@@ -568,6 +568,8 @@ export const EmployeeCalculator = ({ t, currency, rates }) => {
                     const isExpanded = jobState.expanded;
                     const { calculation } = entry || {};
                     const IconComponent = meta.icon;
+                    const isGrossSelected = jobState.mode === 'gross';
+                    const isNetSelected = jobState.mode === 'net';
 
                     return (
                         <div key={role} className="overflow-hidden rounded-3xl border border-brand-cyan/20 bg-white/80 shadow-xl">
@@ -599,7 +601,10 @@ export const EmployeeCalculator = ({ t, currency, rates }) => {
                                     <div className="space-y-6">
                                         <div className="grid gap-4 md:grid-cols-2">
                                             <div>
-                                                <label className="text-sm font-semibold text-brand-navy">{jobState.mode === 'gross' ? t.jobCards.grossInputLabel : t.jobCards.netInputLabel}</label>
+                                                <div className="flex items-baseline justify-between gap-3">
+                                                    <label className="text-sm font-semibold text-brand-navy">{jobState.mode === 'gross' ? t.jobCards.grossInputLabel : t.jobCards.netInputLabel}</label>
+                                                    <span className="text-xs font-medium text-brand-cyan/80">{jobState.mode === 'gross' ? t.jobCards.currentModeGross : t.jobCards.currentModeNet}</span>
+                                                </div>
                                                 <div className="relative mt-2">
                                                     <input
                                                         type="number"
@@ -623,21 +628,43 @@ export const EmployeeCalculator = ({ t, currency, rates }) => {
                                                     <button
                                                         type="button"
                                                         onClick={() => handleModeChange(role, 'gross')}
-                                                        className={`flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold transition ${
-                                                            jobState.mode === 'gross' ? 'bg-brand-navy text-white shadow-lg' : 'text-brand-navy/70 hover:text-brand-navy'
+                                                        aria-pressed={isGrossSelected}
+                                                        className={`group flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold transition duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-cyan focus-visible:ring-offset-2 focus-visible:ring-offset-white ${
+                                                            isGrossSelected
+                                                                ? 'border-2 border-brand-cyan/80 bg-brand-navy text-white shadow-lg shadow-[0_0_0_3px_rgba(6,182,212,0.18)]'
+                                                                : 'border border-brand-cyan/20 bg-white/40 text-brand-navy/70 hover:border-brand-cyan/40 hover:text-brand-navy'
                                                         }`}
                                                     >
-                                                        <IconTrendingDown className="h-4 w-4" />
+                                                        <span
+                                                            className={`flex h-6 w-6 items-center justify-center rounded-full transition duration-200 ${
+                                                                isGrossSelected
+                                                                    ? 'bg-white/20 text-white ring-2 ring-white/30'
+                                                                    : 'bg-brand-cyan/10 text-brand-navy/70 group-hover:bg-brand-cyan/20 group-hover:text-brand-navy'
+                                                            }`}
+                                                        >
+                                                            <IconTrendingDown className="h-4 w-4" />
+                                                        </span>
                                                         {t.modeGrossToNet}
                                                     </button>
                                                     <button
                                                         type="button"
                                                         onClick={() => handleModeChange(role, 'net')}
-                                                        className={`flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold transition ${
-                                                            jobState.mode === 'net' ? 'bg-brand-navy text-white shadow-lg' : 'text-brand-navy/70 hover:text-brand-navy'
+                                                        aria-pressed={isNetSelected}
+                                                        className={`group flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold transition duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-cyan focus-visible:ring-offset-2 focus-visible:ring-offset-white ${
+                                                            isNetSelected
+                                                                ? 'border-2 border-brand-cyan/80 bg-brand-navy text-white shadow-lg shadow-[0_0_0_3px_rgba(6,182,212,0.18)]'
+                                                                : 'border border-brand-cyan/20 bg-white/40 text-brand-navy/70 hover:border-brand-cyan/40 hover:text-brand-navy'
                                                         }`}
                                                     >
-                                                        <IconTrendingUp className="h-4 w-4" />
+                                                        <span
+                                                            className={`flex h-6 w-6 items-center justify-center rounded-full transition duration-200 ${
+                                                                isNetSelected
+                                                                    ? 'bg-white/20 text-white ring-2 ring-white/30'
+                                                                    : 'bg-brand-cyan/10 text-brand-navy/70 group-hover:bg-brand-cyan/20 group-hover:text-brand-navy'
+                                                            }`}
+                                                        >
+                                                            <IconTrendingUp className="h-4 w-4" />
+                                                        </span>
                                                         {t.modeNetToGross}
                                                     </button>
                                                 </div>
