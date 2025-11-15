@@ -156,6 +156,7 @@ export const EmployeeCalculator = ({ t, currency, rates }) => {
     const [voluntaryPension, setVoluntaryPension] = useState(0);
 
     const rate = useMemo(() => rates[currency] || 1, [rates, currency]);
+    const voluntaryApplied = useMemo(() => clampVoluntaryPension(voluntaryPension), [voluntaryPension]);
     const jobMeta = useMemo(() => getJobMeta(t), [t]);
     const presets = useMemo(() => presetConfigs(t), [t]);
 
@@ -183,42 +184,54 @@ export const EmployeeCalculator = ({ t, currency, rates }) => {
         updateJobState(role, { value });
     }, [updateJobState]);
 
-    const handleModeChange = useCallback((role, nextMode) => {
-        updateJobState(role, (current) => {
-            if (current.mode === nextMode) return current;
+    const handleModeChange = useCallback(
+        (role, nextMode) => {
+            updateJobState(role, (current) => {
+                if (current.mode === nextMode) return current;
 
-            const numericValue = parseFloat(current.value);
-            const hasAmount = current.value !== '' && Number.isFinite(numericValue) && numericValue >= 0;
-            let nextValue = current.value;
+                const numericValue = parseFloat(current.value);
+                const hasAmount = current.value !== '' && Number.isFinite(numericValue) && numericValue >= 0;
 
-            if (hasAmount) {
+                if (!hasAmount) {
+                    return {
+                        ...current,
+                        mode: nextMode,
+                    };
+                }
+
                 const amountALL = numericValue * rate;
+
                 if (nextMode === 'net') {
                     const { netSalary } = calculateJobPayroll({
                         grossSalary: amountALL,
                         jobType: role,
                         dependents,
-                        voluntaryPension,
+                        voluntaryPension: voluntaryApplied,
                     });
-                    nextValue = convertAllToInputValue(netSalary, currency, rate);
-                } else {
-                    const { grossSalary } = solveGrossFromNet({
-                        targetNet: amountALL,
-                        jobType: role,
-                        dependents,
-                        voluntaryPension,
-                    });
-                    nextValue = convertAllToInputValue(grossSalary, currency, rate);
-                }
-            }
 
-            return {
-                ...current,
-                mode: nextMode,
-                value: nextValue,
-            };
-        });
-    }, [currency, rate, dependents, voluntaryPension, updateJobState]);
+                    return {
+                        ...current,
+                        mode: nextMode,
+                        value: convertAllToInputValue(netSalary, currency, rate),
+                    };
+                }
+
+                const { grossSalary } = solveGrossFromNet({
+                    targetNet: amountALL,
+                    jobType: role,
+                    dependents,
+                    voluntaryPension: voluntaryApplied,
+                });
+
+                return {
+                    ...current,
+                    mode: nextMode,
+                    value: convertAllToInputValue(grossSalary, currency, rate),
+                };
+            });
+        },
+        [currency, rate, dependents, voluntaryApplied, updateJobState]
+    );
 
     const handleWorkingDaysChange = useCallback((role, value) => {
         updateJobState(role, { workingDays: roundWorkingDays(value) });
@@ -287,7 +300,6 @@ export const EmployeeCalculator = ({ t, currency, rates }) => {
         setVoluntaryPension(parsed);
     }, []);
 
-    const voluntaryApplied = clampVoluntaryPension(voluntaryPension);
     const voluntaryExceeded = voluntaryPension > VOLUNTARY_PENSION_CAP;
     const voluntaryNearCap =
         voluntaryPension >= VOLUNTARY_PENSION_CAP * 0.8 && !voluntaryExceeded;
@@ -302,18 +314,20 @@ export const EmployeeCalculator = ({ t, currency, rates }) => {
         activeRoles.forEach((role) => {
             const jobState = jobs[role];
             const numericValue = parseFloat(jobState.value);
-            const amountALL = jobState.value !== '' && Number.isFinite(numericValue) && numericValue > 0 ? numericValue * rate : 0;
+            const hasAmount = jobState.value !== '' && Number.isFinite(numericValue) && numericValue >= 0;
+            const amountALL = hasAmount ? numericValue * rate : 0;
 
             let calculation;
 
             if (jobState.mode === 'gross') {
+                const grossALL = hasAmount ? amountALL : role === JOB_TYPES.PRIMARY ? CORE_CONSTANTS.PagaMinimale : 0;
                 calculation = calculateJobPayroll({
-                    grossSalary: amountALL,
+                    grossSalary: grossALL,
                     jobType: role,
                     dependents,
                     voluntaryPension: voluntaryApplied,
                 });
-            } else if (amountALL > 0) {
+            } else if (hasAmount) {
                 calculation = solveGrossFromNet({
                     targetNet: amountALL,
                     jobType: role,
@@ -571,6 +585,13 @@ export const EmployeeCalculator = ({ t, currency, rates }) => {
                     const isGrossSelected = jobState.mode === 'gross';
                     const isNetSelected = jobState.mode === 'net';
 
+                    const grossSummaryLabel = jobState.mode === 'gross'
+                        ? t.jobCards.summaryGrossInput
+                        : t.jobCards.summaryGrossCalculated;
+                    const netSummaryLabel = jobState.mode === 'gross'
+                        ? t.jobCards.summaryNetCalculated
+                        : t.jobCards.summaryNetInput;
+
                     return (
                         <div key={role} className="overflow-hidden rounded-3xl border border-brand-cyan/20 bg-white/80 shadow-xl">
                             <button
@@ -611,7 +632,11 @@ export const EmployeeCalculator = ({ t, currency, rates }) => {
                                                         min="0"
                                                         value={jobState.value}
                                                         onChange={(event) => handleAmountChange(role, event.target.value)}
-                                                        placeholder={t.jobCards.placeholder}
+                                                        placeholder={
+                                                            jobState.mode === 'gross'
+                                                                ? t.jobCards.placeholderGross
+                                                                : t.jobCards.placeholderNet
+                                                        }
                                                         className="w-full rounded-2xl border border-gray-200 bg-white px-4 py-3 text-xl font-semibold text-brand-navy shadow-inner focus:border-brand-cyan focus:ring-2 focus:ring-brand-cyan/40"
                                                     />
                                                     <div className="absolute inset-y-0 right-0 flex items-center pr-4 text-xs font-semibold uppercase tracking-wide text-brand-cyan/70">
@@ -694,14 +719,14 @@ export const EmployeeCalculator = ({ t, currency, rates }) => {
                                     </div>
                                     <div className="space-y-4 rounded-2xl border border-brand-cyan/20 bg-white/80 p-5 shadow-inner">
                                         <h4 className="text-sm font-semibold uppercase tracking-wide text-brand-cyan">{t.jobCards.breakdownTitle}</h4>
-                                        <DetailRow label={t.jobCards.summaryGross} value={calculation?.grossSalary || 0} currency={currency} rates={rates} />
+                                        <DetailRow label={grossSummaryLabel} value={calculation?.grossSalary || 0} currency={currency} rates={rates} />
                                         <DetailRow label={t.jobCards.contributionsLabel} value={calculation?.totalEmployeeContributions || 0} currency={currency} rates={rates} />
                                         <DetailRow label={t.jobCards.taxLabel} value={calculation?.taxAmount || 0} currency={currency} rates={rates} />
                                         <DetailRow label={t.jobCards.voluntaryLabel} value={calculation?.voluntaryPensionApplied || 0} currency={currency} rates={rates} />
                                         <div className="rounded-2xl border border-dashed border-brand-cyan/40 bg-brand-cyan/5 p-4">
                                             <DetailRow label={t.jobCards.summaryDeductions} value={calculation?.totalEmployeeDeductions || 0} currency={currency} rates={rates} isTotal={true} />
                                         </div>
-                                        <DetailRow label={t.jobCards.summaryNet} value={calculation?.netSalary || 0} currency={currency} rates={rates} />
+                                        <DetailRow label={netSummaryLabel} value={calculation?.netSalary || 0} currency={currency} rates={rates} />
                                         <DetailRow label={t.jobCards.summaryEmployer} value={calculation?.totalEmployerCost || 0} currency={currency} rates={rates} />
                                         <div className="rounded-xl border border-gray-200/70 bg-gray-50/80 p-3 text-xs text-brand-navy/70">
                                             <div className="font-semibold text-brand-navy">{t.jobCards.taxableCaption}</div>
