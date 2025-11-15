@@ -8,6 +8,12 @@ export const ResultCard = ({ title, value, currency, rates, isNet = false }) => 
 
     const toggleFlip = () => setIsFlipped((prev) => !prev);
 
+    const badgeStyles = isNet
+        ? 'border-emerald-300 text-emerald-100 bg-emerald-400/10'
+        : 'border-amber-300 text-amber-100 bg-amber-400/10';
+    const badgeLabel = isNet ? 'Net pay' : 'Gross total';
+    const flipLabel = isFlipped ? 'Mbyll' : 'Detaje';
+
     const handleKeyDown = (event) => {
         if (event.key === 'Enter' || event.key === ' ') {
             event.preventDefault();
@@ -30,30 +36,42 @@ export const ResultCard = ({ title, value, currency, rates, isNet = false }) => 
                 }`}
             >
                 <div className="flip-card-face bg-gradient-to-br from-brand-navy to-[#02027a] text-white p-6 shadow-xl">
-                    <div className="flex h-full flex-col justify-between gap-4">
-                        <div>
-                            <div className="text-sm uppercase tracking-wide text-white/70">{title}</div>
-                            <div className="mt-2 text-right font-black leading-tight tracking-tight text-white text-[clamp(1.65rem,2vw,2.35rem)] drop-shadow-sm">
-                                {formatCurrency(value, currency, rates)}
-                            </div>
+                    <div className="flex h-full flex-col justify-between gap-5">
+                        <div className="flex items-start justify-between gap-3">
+                            <div className="text-xs uppercase tracking-wide text-white/60 font-medium">{title}</div>
+                            <span
+                                className={`inline-flex items-center rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-wide ${badgeStyles}`}
+                            >
+                                {badgeLabel}
+                            </span>
                         </div>
-                        <div className="flex justify-between items-center text-xs text-white/70">
-                            <span className="tracking-wide">{isNet ? 'pas kontributeve' : 'para zbritjeve'}</span>
-                            <span className="inline-flex items-center gap-1 rounded-full bg-white/20 px-3 py-1 font-semibold uppercase">
-                                {isFlipped ? 'Mbyll' : 'Shfaq detaje'}
+                        <div className="text-right font-black leading-tight tracking-tight text-white text-3xl sm:text-4xl drop-shadow-sm">
+                            {formatCurrency(value, currency, rates)}
+                        </div>
+                        <div className="flex justify-between items-center text-xs text-white/60">
+                            <span className="tracking-wide font-medium">
+                                {isNet ? 'pas kontributeve' : 'para zbritjeve'}
+                            </span>
+                            <span className="inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1 font-semibold uppercase tracking-wide text-white/85">
+                                <IconInfo className="h-3.5 w-3.5" aria-hidden="true" />
+                                {flipLabel}
                             </span>
                         </div>
                     </div>
                 </div>
                 <div className="flip-card-face flip-card-back bg-gradient-to-br from-brand-cyan to-brand-red text-white p-6 shadow-xl">
-                    <div className="flex h-full flex-col justify-between gap-3" id={descriptionId}>
-                        <p className="text-base font-semibold leading-snug">
-                            {isNet ? 'Shuma që merrni në dorë pas TAP' : 'Totali i llogaritur nga paga bruto'}
+                    <div className="flex h-full flex-col justify-between gap-4" id={descriptionId}>
+                        <p className="text-sm leading-relaxed text-white/90">
+                            {isNet
+                                ? 'Ky rezultat tregon shumën neto që merrni në dorë, pasi janë zbatuar kontributet dhe tatimet përkatëse.'
+                                : 'Ky rezultat përfaqëson totalin bruto para çdo zbritjeje, duke ju ndihmuar të kuptoni diferencën me pagën neto.'}
                         </p>
-                        <p className="text-sm text-white/85 leading-relaxed">
-                            Kur prekni ose klikoni kartën, shfaqen sqarimet shtesë. Vlerat rifreskohen automatikisht sipas inputit të përzgjedhur.
-                        </p>
-                        <div className="text-xs uppercase tracking-wide text-white/80">Përditësuar në kohë reale</div>
+                        <div className="flex justify-end">
+                            <span className="inline-flex items-center gap-2 rounded-full border border-white/40 bg-white/15 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white/90">
+                                <IconInfo className="h-3.5 w-3.5" aria-hidden="true" />
+                                {flipLabel}
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
