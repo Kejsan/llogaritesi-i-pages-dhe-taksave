@@ -28,12 +28,12 @@ export const Footer = ({ t }) => (
                 <p className="mt-4 max-w-xl text-sm theme-text-muted">
                     {t.footerCreatedBy} –{' '}
                     <a
-                        href="https://kejsan-coku.netlify.app/"
+                        href="https://kejsancoku.com/"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="font-semibold text-brand-navy hover:text-brand-navy/80"
                     >
-                        kejsan-coku.netlify.app
+                        Kejsan Coku
                     </a>
                 </p>
             </div>
