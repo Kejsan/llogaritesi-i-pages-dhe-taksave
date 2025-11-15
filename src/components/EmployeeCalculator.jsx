@@ -22,6 +22,13 @@ import {
 } from '../utils/salary';
 
 const JOB_ORDER = [JOB_TYPES.PRIMARY, JOB_TYPES.SECONDARY, JOB_TYPES.TERTIARY];
+const SUMMARY_CARD_KEYS = ['gross', 'deductions', 'net', 'employer'];
+
+const createSummaryCardState = () =>
+    SUMMARY_CARD_KEYS.reduce((acc, key) => {
+        acc[key] = false;
+        return acc;
+    }, {});
 
 const createDefaultJobState = (role) => ({
     mode: 'gross',
@@ -154,6 +161,7 @@ export const EmployeeCalculator = ({ t, currency, rates }) => {
     const [dependentsInput, setDependentsInput] = useState('0');
     const [dependentsClamped, setDependentsClamped] = useState(false);
     const [voluntaryPension, setVoluntaryPension] = useState(0);
+    const [flippedSummaryCards, setFlippedSummaryCards] = useState(() => createSummaryCardState());
 
     const rate = useMemo(() => rates[currency] || 1, [rates, currency]);
     const voluntaryApplied = useMemo(() => clampVoluntaryPension(voluntaryPension), [voluntaryPension]);
@@ -409,6 +417,61 @@ export const EmployeeCalculator = ({ t, currency, rates }) => {
             return next;
         });
     }, [currency, rate, handleLayoutChange]);
+
+    const toggleSummaryCard = useCallback((key) => {
+        setFlippedSummaryCards((prev) => ({
+            ...prev,
+            [key]: !prev[key],
+        }));
+    }, []);
+
+    const handleSummaryCardClick = useCallback(
+        (event, key) => {
+            if (event?.detail === 0) return;
+            toggleSummaryCard(key);
+        },
+        [toggleSummaryCard]
+    );
+
+    const handleSummaryCardKeyDown = useCallback(
+        (event, key) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                toggleSummaryCard(key);
+            }
+        },
+        [toggleSummaryCard]
+    );
+
+    const summaryCards = useMemo(
+        () => [
+            {
+                key: 'gross',
+                label: t.totalMonthlyCard.gross,
+                value: totals.gross,
+                description: t.totalMonthlyCard.grossBack,
+            },
+            {
+                key: 'deductions',
+                label: t.totalMonthlyCard.deductions,
+                value: totals.deductions,
+                description: t.totalMonthlyCard.deductionsBack,
+            },
+            {
+                key: 'net',
+                label: t.totalMonthlyCard.net,
+                value: totals.net,
+                description: t.totalMonthlyCard.netBack,
+            },
+            {
+                key: 'employer',
+                label: t.totalMonthlyCard.employer,
+                value: totals.employer,
+                description: t.totalMonthlyCard.employerBack,
+            },
+        ],
+        [t, totals]
+    );
 
     const voluntaryInputStateClasses = {
         ok: 'border-gray-200 text-brand-navy',
@@ -759,22 +822,54 @@ export const EmployeeCalculator = ({ t, currency, rates }) => {
                     <div className="text-xs text-brand-navy/70">{t.totalMonthlyCard.subtitle}</div>
                 </div>
                 <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
-                    <div className="rounded-2xl border border-brand-cyan/20 bg-white/70 p-4 shadow-sm">
-                        <div className="text-xs uppercase tracking-wide text-brand-cyan">{t.totalMonthlyCard.gross}</div>
-                        <div className="mt-2 text-2xl font-bold text-brand-navy">{formatCurrency(totals.gross, currency, rates)}</div>
-                    </div>
-                    <div className="rounded-2xl border border-brand-cyan/20 bg-white/70 p-4 shadow-sm">
-                        <div className="text-xs uppercase tracking-wide text-brand-cyan">{t.totalMonthlyCard.deductions}</div>
-                        <div className="mt-2 text-2xl font-bold text-brand-navy">{formatCurrency(totals.deductions, currency, rates)}</div>
-                    </div>
-                    <div className="rounded-2xl border border-brand-cyan/20 bg-white/70 p-4 shadow-sm">
-                        <div className="text-xs uppercase tracking-wide text-brand-cyan">{t.totalMonthlyCard.net}</div>
-                        <div className="mt-2 text-2xl font-bold text-brand-navy">{formatCurrency(totals.net, currency, rates)}</div>
-                    </div>
-                    <div className="rounded-2xl border border-brand-cyan/20 bg-white/70 p-4 shadow-sm">
-                        <div className="text-xs uppercase tracking-wide text-brand-cyan">{t.totalMonthlyCard.employer}</div>
-                        <div className="mt-2 text-2xl font-bold text-brand-navy">{formatCurrency(totals.employer, currency, rates)}</div>
-                    </div>
+                    {summaryCards.map((card) => {
+                        const isFlipped = flippedSummaryCards[card.key];
+                        const formattedValue = formatCurrency(card.value, currency, rates);
+
+                        return (
+                            <div key={card.key} className="h-full">
+                                <button
+                                    type="button"
+                                    onClick={(event) => handleSummaryCardClick(event, card.key)}
+                                    onKeyDown={(event) => handleSummaryCardKeyDown(event, card.key)}
+                                    aria-pressed={isFlipped}
+                                    aria-label={`${card.label}. ${isFlipped ? t.totalMonthlyCard.flipBackHint : t.totalMonthlyCard.flipHint}`}
+                                    title={isFlipped ? t.totalMonthlyCard.flipBackHint : t.totalMonthlyCard.flipHint}
+                                    className="group relative block h-full w-full focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-cyan/60 [perspective:1500px]"
+                                >
+                                    <span className="sr-only">
+                                        {isFlipped ? t.totalMonthlyCard.flipBackHint : t.totalMonthlyCard.flipHint}
+                                    </span>
+                                    <div
+                                        className="relative h-full min-h-[160px] w-full rounded-2xl transition-transform duration-500 ease-out [transform-style:preserve-3d]"
+                                        style={{ transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)' }}
+                                    >
+                                        <div className="absolute inset-0 flex flex-col rounded-2xl border border-brand-cyan/20 bg-white/70 p-4 shadow-sm [backface-visibility:hidden]">
+                                            <div className="text-xs uppercase tracking-wide text-brand-cyan">{card.label}</div>
+                                            <div className="mt-2 text-2xl font-bold text-brand-navy break-words text-balance leading-tight">
+                                                {formattedValue}
+                                            </div>
+                                            <div className="mt-auto text-xs font-semibold text-brand-cyan/70">
+                                                {t.totalMonthlyCard.flipHint}
+                                            </div>
+                                        </div>
+                                        <div
+                                            className="absolute inset-0 flex flex-col rounded-2xl border border-brand-cyan/30 bg-brand-cyan/5 p-4 text-brand-navy [backface-visibility:hidden]"
+                                            style={{ transform: 'rotateY(180deg)' }}
+                                        >
+                                            <div className="text-xs font-semibold uppercase tracking-wide text-brand-cyan">{card.label}</div>
+                                            <p className="mt-2 text-sm text-brand-navy/80 text-balance">
+                                                {card.description}
+                                            </p>
+                                            <div className="mt-auto text-xs font-semibold text-brand-cyan/80">
+                                                {t.totalMonthlyCard.flipBackHint}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </button>
+                            </div>
+                        );
+                    })}
                 </div>
             </div>
         </div>
