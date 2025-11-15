@@ -687,7 +687,7 @@ export const translations = {
         linksQkb: "Qendra Kombëtare e Biznesit (QKB)",
         linksKodiPunes: "Kodi i Punës (Tekst i plotë)",
         linksSigurime: "Instituti i Sigurimeve Shoqërore (ISSH)",
-        footerCreatedBy: "Krijuar nga Kejsan Coku",
+        footerCreatedBy: "Krijuar nga:",
         footerCopyright: "© 2025. Llogaritjet mund të përmbajnë pasaktësi ose të mos pasqyrojnë përditësimet e fundit ligjore. Konsultohuni me një kontabilist ose këshilltar ligjor përpara se të merrni vendime financiare.",
     },
     en: {
@@ -1376,7 +1376,7 @@ export const translations = {
         linksQkb: "National Business Center (QKB)",
         linksKodiPunes: "Labor Code (Full Text)",
         linksSigurime: "Social Insurance Institute (ISSH)",
-        footerCreatedBy: "Created by Kejsan Coku",
+        footerCreatedBy: "Created by:",
         footerCopyright: "© 2025. Calculations may include inaccuracies or omit recent legal updates. Seek advice from a certified accountant or legal professional before making financial decisions.",
     },
     it: {
@@ -1978,7 +1978,7 @@ export const translations = {
         linksQkb: "Centro Nazionale delle Imprese (QKB)",
         linksKodiPunes: "Codice del Lavoro (Testo completo)",
         linksSigurime: "Istituto delle Assicurazioni Sociali (ISSH)",
-        footerCreatedBy: "Creato da Kejsan Coku",
+        footerCreatedBy: "Creato da:",
         footerCopyright: "© 2025. I calcoli possono contenere imprecisioni o non riflettere gli ultimi aggiornamenti normativi. Confrontati con un consulente fiscale o legale prima di prendere decisioni finanziarie.",
     }
 };
