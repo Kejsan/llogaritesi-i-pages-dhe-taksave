@@ -13,8 +13,6 @@ import {
     X,
     Users,
     Settings,
-    Github,
-    Linkedin,
     TrendingUp,
     TrendingDown,
 } from 'lucide-react';
@@ -33,7 +31,5 @@ export const IconAlertTriangle = AlertTriangle;
 export const IconX = X;
 export const IconUsers = Users;
 export const IconSettings = Settings;
-export const IconBrandGithub = Github;
-export const IconBrandLinkedin = Linkedin;
 export const IconTrendingUp = TrendingUp;
 export const IconTrendingDown = TrendingDown;
