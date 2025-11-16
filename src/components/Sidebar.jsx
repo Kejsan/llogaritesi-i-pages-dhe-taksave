@@ -92,14 +92,11 @@ export const Sidebar = ({ t }) => {
         <aside className="w-full lg:w-80">
             <div className="rounded-3xl theme-surface p-6 shadow-2xl backdrop-blur">
                 <div className="flex items-center justify-between">
-                    <p className="text-xs font-semibold uppercase tracking-[0.35em] text-brand-navy/60">Navigimi</p>
-                    <span className="theme-chip px-3 py-1 text-xs font-semibold" data-active="true">
-                        UX i ri
-                    </span>
+                    <p className="text-xs font-semibold uppercase tracking-[0.35em] text-brand-navy/60">
+                        {t.sidebar.navigation.title}
+                    </p>
                 </div>
-                <p className="mt-2 text-sm theme-text-muted">
-                    Zgjidh një modul për të llogaritur pagën, taksat ose për të lexuar analizat tona.
-                </p>
+                <p className="mt-2 text-sm theme-text-muted">{t.sidebar.navigation.description}</p>
 
                 <div className="mt-6 space-y-6">
                     <div>
