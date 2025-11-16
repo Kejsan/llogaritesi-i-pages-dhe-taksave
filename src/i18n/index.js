@@ -19,8 +19,7 @@ export const translations = {
         themeLight: "E çelët",
         themeDark: "E errët",
         themeToggleAria: "Ndrysho temën",
-        disclaimer: "ℹ️ Shënim: Informacioni i paraqitur në këtë platformë është për qëllime edukimi financiar dhe informimi të përgjithshëm. Të dhënat, kalkulimet dhe analizat janë bazuar në kuadrin ligjor aktual të Shqipërisë, por nuk përbëjnë këshillë profesionale, tatimore apo ligjore. Për çështje që kanë ndikim financiar, tatimor apo juridik — veçanërisht vendime që lidhen me deklarime tatimore, kontrata pune, ose aktivitet të pavarur — rekomandohet të konsultoheni me një kontabilist të licencuar, jurist ose profesionist të fushës për të marrë këshillë të personalizuar dhe të saktë."
-",
+        disclaimer: "ℹ️ Shënim: Informacioni i paraqitur në këtë platformë është për qëllime edukimi financiar dhe informimi të përgjithshëm. Të dhënat, kalkulimet dhe analizat janë bazuar në kuadrin ligjor aktual të Shqipërisë, por nuk përbëjnë këshillë profesionale, tatimore apo ligjore. Për çështje që kanë ndikim financiar, tatimor apo juridik — veçanërisht vendime që lidhen me deklarime tatimore, kontrata pune, ose aktivitet të pavarur — rekomandohet të konsultoheni me një kontabilist të licencuar, jurist ose profesionist të fushës për të marrë këshillë të personalizuar dhe të saktë.",
         home: {
             heroBadge: "Platformë inteligjente",
             heroTitle: "Llogarit pagën, taksat dhe kontributet në pak sekonda",
