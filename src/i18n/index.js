@@ -19,7 +19,8 @@ export const translations = {
         themeLight: "E çelët",
         themeDark: "E errët",
         themeToggleAria: "Ndrysho temën",
-        disclaimer: "ℹ️ Ky mjet shërben vetëm për informacion të përgjithshëm. Verifikoni llogaritjet me një këshilltar tatimor ose ligjor përpara se të merrni vendime.",
+        disclaimer: "ℹ️ Shënim: Informacioni i paraqitur në këtë platformë është për qëllime edukimi financiar dhe informimi të përgjithshëm. Të dhënat, kalkulimet dhe analizat janë bazuar në kuadrin ligjor aktual të Shqipërisë, por nuk përbëjnë këshillë profesionale, tatimore apo ligjore. Për çështje që kanë ndikim financiar, tatimor apo juridik — veçanërisht vendime që lidhen me deklarime tatimore, kontrata pune, ose aktivitet të pavarur — rekomandohet të konsultoheni me një kontabilist të licencuar, jurist ose profesionist të fushës për të marrë këshillë të personalizuar dhe të saktë."
+",
         home: {
             heroBadge: "Platformë inteligjente",
             heroTitle: "Llogarit pagën, taksat dhe kontributet në pak sekonda",
@@ -719,7 +720,7 @@ export const translations = {
         themeLight: "Light",
         themeDark: "Dark",
         themeToggleAria: "Switch theme",
-        disclaimer: "ℹ️ This tool provides informational guidance only. Verify all calculations with a qualified tax or legal advisor before making decisions.",
+        disclaimer: "ℹ️ Disclaimer: The information presented on this platform is for educational and general informational purposes only. The data, calculations and legal assumptions are based on Albania’s current tax and labor laws, but do not constitute professional, tax or legal advice. For decisions that have financial, tax or legal implications — especially those related to tax filings, employment contracts or freelance business activity — you should consult a licensed accountant, lawyer or professional advisor for accurate and personalized guidance.",
         home: {
             heroBadge: "Smart finance hub",
             heroTitle: "Calculate salary, taxes, and contributions in seconds",
@@ -1419,7 +1420,7 @@ export const translations = {
         themeLight: "Chiaro",
         themeDark: "Scuro",
         themeToggleAria: "Cambia tema",
-        disclaimer: "ℹ️ Questo strumento offre solo indicazioni informative. Verifica tutti i calcoli con un consulente fiscale o legale qualificato prima di prendere decisioni.",
+        disclaimer: "ℹ️ Nota: Le informazioni fornite su questa piattaforma sono solo a scopo educativo e informativo generale. I dati, i calcoli e le analisi si basano sull’attuale legislazione fiscale e lavorativa dell’Albania, ma non costituiscono consulenza professionale, fiscale o legale. Per decisioni con impatti economici, fiscali o legali — in particolare per dichiarazioni fiscali, contratti di lavoro o attività di libero professionista — è consigliabile consultare un commercialista, avvocato o professionista abilitato per ricevere una consulenza accurata e personalizzata.",
         home: {
             heroBadge: "Hub finanziario smart",
             heroTitle: "Calcola stipendi, tasse e contributi in pochi secondi",
