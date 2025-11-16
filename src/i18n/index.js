@@ -16,6 +16,12 @@ export const translations = {
         navPrograms: "Programet",
         navTools: "Mjetet",
         navResources: "Burimet",
+        sidebar: {
+            navigation: {
+                title: "Navigimi",
+                description: "Zgjidh një modul për të llogaritur pagën, taksat ose për të lexuar analizat tona.",
+            },
+        },
         themeLight: "E çelët",
         themeDark: "E errët",
         themeToggleAria: "Ndrysho temën",
@@ -717,6 +723,12 @@ export const translations = {
         navPrograms: "Programs",
         navTools: "Tools",
         navResources: "Resources",
+        sidebar: {
+            navigation: {
+                title: "Navigation",
+                description: "Choose a module to calculate salary, taxes, or read our analyses.",
+            },
+        },
         themeLight: "Light",
         themeDark: "Dark",
         themeToggleAria: "Switch theme",
@@ -1417,6 +1429,12 @@ export const translations = {
         navPrograms: "Programmi",
         navTools: "Strumenti",
         navResources: "Risorse",
+        sidebar: {
+            navigation: {
+                title: "Navigazione",
+                description: "Scegli un modulo per calcolare stipendio, tasse o leggere le nostre analisi.",
+            },
+        },
         themeLight: "Chiaro",
         themeDark: "Scuro",
         themeToggleAria: "Cambia tema",
