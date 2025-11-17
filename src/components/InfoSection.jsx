@@ -1,30 +1,33 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { SectionTitle } from './Shared';
 import { IconInfo, IconChevronDown } from './Icons';
+import { AccordionItem } from './Accordion.jsx';
 
-const InfoBlock = ({ title, content, expandLabel, collapseLabel }) => {
-    const [isOpen, setIsOpen] = useState(false);
+const InfoIndicator = ({ isOpen, expandLabel, collapseLabel }) => (
+    <span
+        className={`inline-flex items-center gap-2 rounded-full border border-brand-cyan/40 bg-brand-cyan/10 px-3 py-1 text-xs font-semibold text-brand-cyan transition ${isOpen ? 'border-brand-cyan bg-brand-cyan text-white' : ''}`}
+    >
+        <span className={isOpen ? 'hidden' : 'inline'}>{expandLabel}</span>
+        <span className={isOpen ? 'inline' : 'hidden'}>{collapseLabel}</span>
+        <IconChevronDown
+            className={`h-3.5 w-3.5 transition-transform ${isOpen ? 'rotate-180' : ''}`}
+            aria-hidden="true"
+        />
+    </span>
+);
 
-    return (
-        <details
-            className="group rounded-2xl border border-brand-navy/10 bg-white/75 transition focus-within:border-brand-cyan/50 hover:border-brand-cyan/40"
-            onToggle={(event) => setIsOpen(event.target.open)}
-        >
-            <summary
-                className="flex cursor-pointer items-center justify-between gap-3 px-5 py-4 text-lg font-semibold text-brand-navy focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-cyan focus-visible:ring-opacity-40 [&::-webkit-details-marker]:hidden"
-                aria-expanded={isOpen}
-            >
-                <span className="leading-snug">{title}</span>
-                <span className="inline-flex items-center gap-2 rounded-full border border-brand-cyan/40 bg-brand-cyan/10 px-3 py-1 text-xs font-semibold text-brand-cyan transition group-open:border-brand-cyan group-open:bg-brand-cyan group-open:text-white">
-                    <span className="group-open:hidden">{expandLabel}</span>
-                    <span className="hidden group-open:inline">{collapseLabel}</span>
-                    <IconChevronDown className="h-3.5 w-3.5 transition-transform group-open:rotate-180" aria-hidden="true" />
-                </span>
-            </summary>
-            <div className="px-5 pb-5 text-sm leading-relaxed text-brand-navy/80" dangerouslySetInnerHTML={{ __html: content }} />
-        </details>
-    );
-};
+const InfoBlock = ({ title, content, expandLabel, collapseLabel }) => (
+    <AccordionItem
+        title={title}
+        content={content}
+        indicator={(isOpen) => (
+            <InfoIndicator isOpen={isOpen} expandLabel={expandLabel} collapseLabel={collapseLabel} />
+        )}
+        containerClassName="bg-white/75"
+        headerClassName="px-4 py-2"
+        bodyClassName="px-3"
+    />
+);
 
 export const InfoSection = ({ t }) => (
     <div className="space-y-8">
