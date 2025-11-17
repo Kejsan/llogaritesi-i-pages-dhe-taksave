@@ -2,6 +2,7 @@ import React, { useState, useMemo, useEffect, lazy, Suspense } from 'react';
 import { Routes, Route, Navigate, Outlet, useLocation } from 'react-router-dom';
 import { Header } from './components/Header';
 import { Sidebar } from './components/Sidebar';
+import { ResourcesSidebar } from './components/ResourcesSidebar';
 import { Footer } from './components/Footer';
 import { DisclaimerBanner } from './components/DisclaimerBanner';
 import { translations } from './i18n';
@@ -123,7 +124,7 @@ const Layout = ({ t, language, setLanguage, currency, setCurrency, lastUpdatedUn
 
             {!isHome && (
                 <section className="mx-4 mt-6 rounded-3xl theme-surface shadow-2xl backdrop-blur-sm">
-                    <div className="max-w-7xl mx-auto px-6 py-6 lg:py-10 flex flex-col gap-6 lg:flex-row lg:items-center">
+                    <div className="max-w-screen-2xl mx-auto px-6 lg:px-10 xl:px-14 py-6 lg:py-10 flex flex-col gap-6 lg:flex-row lg:items-center">
                         <div className="flex-1 space-y-3">
                             <p className="text-xs uppercase tracking-[0.4em] theme-text-muted">{t.navTools}</p>
                             <h1 className="text-3xl lg:text-4xl font-extrabold text-brand-navy drop-shadow-sm">{activeMeta.label}</h1>
@@ -133,21 +134,24 @@ const Layout = ({ t, language, setLanguage, currency, setCurrency, lastUpdatedUn
                 </section>
             )}
 
-            <div className="main-layout max-w-7xl mx-auto w-full flex flex-col lg:flex-row gap-10 py-10 px-4 lg:px-6">
-                <Sidebar t={t} />
-                <main className="flex-1 min-w-0 space-y-8">
-                    {isHome ? (
-                        <Suspense fallback={<LandingFallback />}>
-                            <Outlet />
-                        </Suspense>
-                    ) : (
-                        <div className="floating-card p-6 sm:p-8">
-                            <Suspense fallback={<CardFallback />}>
+            <div className="main-layout w-full max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-10">
+                <div className="flex flex-col gap-8 lg:grid lg:grid-cols-[18rem,1fr,18rem] xl:grid-cols-[20rem,1fr,20rem] lg:items-start">
+                    <Sidebar t={t} />
+                    <main className="flex-1 min-w-0 space-y-8">
+                        {isHome ? (
+                            <Suspense fallback={<LandingFallback />}>
                                 <Outlet />
                             </Suspense>
-                        </div>
-                    )}
-                </main>
+                        ) : (
+                            <div className="floating-card p-6 sm:p-8">
+                                <Suspense fallback={<CardFallback />}>
+                                    <Outlet />
+                                </Suspense>
+                            </div>
+                        )}
+                    </main>
+                    <ResourcesSidebar t={t} />
+                </div>
             </div>
             <DisclaimerBanner t={t} />
             <Footer t={t} />

@@ -1,19 +1,8 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import {
-    IconUser,
-    IconBriefcase,
-    IconCamera,
-    IconSettings,
-    IconNewspaper,
-    IconInfo,
-    IconHelp,
-    IconLink,
-    IconMail,
-    IconUsers
-} from './Icons';
+import { IconUser, IconBriefcase, IconCamera, IconSettings } from './Icons';
 
-const SectionToggle = ({ title, isOpen, onToggle }) => (
+export const SectionToggle = ({ title, isOpen, onToggle }) => (
     <button
         type="button"
         onClick={onToggle}
@@ -29,7 +18,7 @@ const SectionToggle = ({ title, isOpen, onToggle }) => (
     </button>
 );
 
-const NavButton = ({ item }) => (
+export const NavButton = ({ item }) => (
     <NavLink
         to={item.to}
         end
@@ -76,20 +65,10 @@ export const Sidebar = ({ t }) => {
         { to: '/freelancer-guide', label: t.navFreelancerGuide, icon: IconSettings },
     ];
 
-    const infoItems = [
-        { to: '/news', label: t.navNews, icon: IconNewspaper },
-        { to: '/info', label: t.navInfo, icon: IconInfo },
-        { to: '/faq', label: t.navFAQ, icon: IconHelp },
-        { to: '/links', label: t.navLinks, icon: IconLink },
-        { to: '/programs', label: t.navPrograms, icon: IconUsers },
-        { to: '/contact', label: t.navContact, icon: IconMail },
-    ];
-
     const [toolsOpen, setToolsOpen] = useState(true);
-    const [resourcesOpen, setResourcesOpen] = useState(true);
 
     return (
-        <aside className="w-full lg:w-80">
+        <aside className="w-full lg:max-w-[20rem] xl:max-w-[21rem]">
             <div className="rounded-3xl theme-surface p-6 shadow-2xl backdrop-blur">
                 <div className="flex items-center justify-between">
                     <p className="text-xs font-semibold uppercase tracking-[0.35em] text-brand-navy/60">
@@ -104,19 +83,6 @@ export const Sidebar = ({ t }) => {
                         {toolsOpen && (
                             <ul className="mt-3 space-y-3">
                                 {navItems.map((item) => (
-                                    <li key={item.to}>
-                                        <NavButton item={item} />
-                                    </li>
-                                ))}
-                            </ul>
-                        )}
-                    </div>
-
-                    <div>
-                        <SectionToggle title={t.navResources} isOpen={resourcesOpen} onToggle={() => setResourcesOpen((prev) => !prev)} />
-                        {resourcesOpen && (
-                            <ul className="mt-3 space-y-3">
-                                {infoItems.map((item) => (
                                     <li key={item.to}>
                                         <NavButton item={item} />
                                     </li>
