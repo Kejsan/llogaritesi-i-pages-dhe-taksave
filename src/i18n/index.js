@@ -21,6 +21,10 @@ export const translations = {
                 title: "Navigimi",
                 description: "Zgjidh një modul për të llogaritur pagën, taksat ose për të lexuar analizat tona.",
             },
+            resources: {
+                title: "Burimet & analizat",
+                description: "Shko direkt tek lajmet, pyetjet e shpeshta dhe lidhjet zyrtare.",
+            },
         },
         themeLight: "E çelët",
         themeDark: "E errët",
@@ -727,6 +731,10 @@ export const translations = {
                 title: "Navigation",
                 description: "Choose a module to calculate salary, taxes, or read our analyses.",
             },
+            resources: {
+                title: "Resources & insights",
+                description: "Jump to updates, FAQs, and official links without losing your place.",
+            },
         },
         themeLight: "Light",
         themeDark: "Dark",
@@ -1432,6 +1440,10 @@ export const translations = {
             navigation: {
                 title: "Navigazione",
                 description: "Scegli un modulo per calcolare stipendio, tasse o leggere le nostre analisi.",
+            },
+            resources: {
+                title: "Risorse & approfondimenti",
+                description: "Vai subito a novità, FAQ e link ufficiali senza perdere la pagina corrente.",
             },
         },
         themeLight: "Chiaro",
