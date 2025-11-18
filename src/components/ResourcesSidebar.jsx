@@ -15,7 +15,7 @@ export const ResourcesSidebar = ({ t }) => {
     const [resourcesOpen, setResourcesOpen] = useState(true);
 
     return (
-        <aside className="w-full lg:max-w-[20rem] xl:max-w-[21rem]">
+        <aside className="w-full lg:w-80">
             <div className="rounded-3xl theme-surface p-6 shadow-2xl backdrop-blur">
                 <div className="flex items-center justify-between">
                     <p className="text-xs font-semibold uppercase tracking-[0.35em] text-brand-navy/60">
