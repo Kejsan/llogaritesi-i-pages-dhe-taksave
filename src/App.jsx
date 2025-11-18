@@ -2,7 +2,6 @@ import React, { useState, useMemo, useEffect, lazy, Suspense } from 'react';
 import { Routes, Route, Navigate, Outlet, useLocation } from 'react-router-dom';
 import { Header } from './components/Header';
 import { Sidebar } from './components/Sidebar';
-import { ResourcesSidebar } from './components/ResourcesSidebar';
 import { Footer } from './components/Footer';
 import { DisclaimerBanner } from './components/DisclaimerBanner';
 import { translations } from './i18n';
@@ -134,7 +133,7 @@ const Layout = ({ t, language, setLanguage, currency, setCurrency, lastUpdatedUn
                 </section>
             )}
 
-            <div className="main-layout max-w-7xl mx-auto w-full flex flex-col gap-10 py-10 px-4 lg:px-6 lg:flex-row lg:items-start">
+            <div className="main-layout max-w-7xl mx-auto w-full flex flex-col lg:flex-row gap-10 py-10 px-4 lg:px-6">
                 <Sidebar t={t} />
                 <main className="flex-1 min-w-0 space-y-8">
                     {isHome ? (
@@ -149,7 +148,6 @@ const Layout = ({ t, language, setLanguage, currency, setCurrency, lastUpdatedUn
                         </div>
                     )}
                 </main>
-                <ResourcesSidebar t={t} />
             </div>
             <DisclaimerBanner t={t} />
             <Footer t={t} />
